@@ -2,26 +2,148 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@layer base {
+    :root {
+        --color-primary: #1560bd;
+        --color-secondary: #456cac;
+        --color-tertiary: #073944;
+    }
+
+    /* @media (prefers-color-scheme: dark) {
+        :root {2
+            --color-primary: 112, 137, 193;
+        }
+    } */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.nav__links__animation {
+    position: relative;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.nav__links__animation::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    border-radius: 4px;
+    background-color: var(--color-secondary);
+    bottom: 0;
+    left: 0;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav__links__animation:hover::before, .nav__links__animation:active::before{
+    transform-origin: left;
+    transform: scaleX(1);
+}
+
+.nav__links__selected::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    border-radius: 4px;
+    background-color: var(--color-secondary);
+    bottom: 0;
+    left: 0;
+    transform-origin: right;
+    transform: scale(1);
+}
+
+/* Animations */
+
+.right-to-middle-fast {
+    animation: 0.25s ease-out 0s 1 right-to-middle;
+}
+
+.middle-to-right-fast {
+    animation: 0.25s ease-out 0s 1 middle-to-right;
+}
+
+.right-to-middle {
+    animation: 0.8s ease-out 0s 1 right-to-middle;
+}
+
+.middle-to-right {
+    animation: 0.8s ease-out 0s 1 middle-to-right;
+}
+
+.middle-to-left {
+    animation: 0.8s ease-out 0s 1 middle-to-left;
+}
+
+.left-to-middle {
+    animation: 0.8s ease-out 0s 1 left-to-middle;
+}
+
+@keyframes right-to-middle {
+    0% {
+        opacity: 0;
+        transform: translateX(30%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes middle-to-right {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(30%);
+    }
+}
+
+@keyframes middle-to-left {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-30%);
+    }
+}
+
+@keyframes left-to-middle {
+    0% {
+        opacity: 0;
+        transform: translateX(-30%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.shake {
+    animation: tilt-shaking 0.75s 0s;
+}
+
+.shake2 {
+    animation: tilt-shaking 1s 0.25s;
+}
+
+@keyframes tilt-shaking {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(1deg);
+    }
+    50% {
+        transform: rotate(0eg);
+    }
+    75% {
+        transform: rotate(-1deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
 }
