@@ -45,7 +45,7 @@ const Navbar = () => {
             {open && (
                 <div className="md:hidden fixed top-0 left-0 h-[100dvh] w-full bg-gray-500/50"></div>
             )}
-            <nav className="bg-white relative w-full flex h-20 justify-center items-center">
+            <nav className="bg-white relative w-full flex h-20 2xl:h-24 justify-center items-center">
                 <div className=" px-5 sm:px-7 container w-full h-full flex items-center">
                     <div className="w-full h-full flex justify-between items-center">
                         <Link
@@ -88,7 +88,7 @@ const Navbar = () => {
                                     target="_blank"
                                     rel="noreferrer"
                                 >
-                                    Consultation
+                                    Book a free call
                                 </a>
                             </li>
                             <li
@@ -104,7 +104,7 @@ const Navbar = () => {
                                     target="_blank"
                                     rel="noreferrer"
                                 >
-                                    Application
+                                    Apply Now
                                 </a>
                             </li>
                         </ul>
@@ -143,7 +143,7 @@ const Navbar = () => {
                                         target="_blank"
                                         rel="noreferrer"
                                     >
-                                        Consultation
+                                        Book a free call
                                     </a>
                                 </li>
                                 <li
@@ -159,7 +159,7 @@ const Navbar = () => {
                                         target="_blank"
                                         rel="noreferrer"
                                     >
-                                        Application
+                                        Apply Now
                                     </a>
                                 </li>
                                 {/* <li>Toggle</li> */}
