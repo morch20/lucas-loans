@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction } from "react";
-import { IconType } from "react-icons";
 
 interface IQuestion {
     value: string;
