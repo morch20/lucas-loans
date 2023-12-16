@@ -1,9 +1,6 @@
 "use client";
-import { IAnimationNode, IQuestion } from "@/Interfaces";
-import { pause } from "@/utils/functions";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { IAnimationNode, IState, IStateNumber, IQuestion } from "@/Interfaces";
+import { isNumeric, pause } from "@/utils/functions";
 import { FaArrowLeftLong } from "react-icons/fa6";
 
 const Question = ({
@@ -12,74 +9,50 @@ const Question = ({
     maxIndex,
     strict,
     animationState,
+    inputState,
     className,
     buttonsTop,
+    currentIndex,
+    limit
 }: {
     question: IQuestion;
     index: number;
     maxIndex: number;
     strict: boolean;
     animationState: IAnimationNode;
+    inputState: IState;
     className: string;
     buttonsTop: boolean;
+    currentIndex: IStateNumber;
+    limit: number | undefined
 }) => {
-    const searchParams = useSearchParams();
-    const router = useRouter();
-    const query = "q";
-
-    // const [inputValue, setInputValue] = useState('');
-
-    const parseQueries = (queries: string): string => {
-        for (const [key, value] of searchParams.entries()) {
-            if (key !== query) queries += `&${key}=${value}`;
-        }
-
-        return queries;
-    };
-
-    const handleStrict = () => {
-        if (strict && index > 0) {
-            for (let i = 0; i < index; i++) {
-                if (!searchParams.get(query + i)) {
-                    let queries = `?${query}=${i}`;
-                    router.push("/" + parseQueries(queries));
-                    break;
-                }
-            }
-        }
-    };
 
     const handleBack = async () => {
         if (index > 0) {
-            animationState.parent?.setAnimate("left-to-middle");
-            animationState.child?.setAnimate("right-to-middle");
-            animationState.value.setAnimate("middle-to-right");
+            animationState.parent?.setState("left-to-middle");
+            animationState.child?.setState("right-to-middle");
+            animationState.value.setState("middle-to-right");
             await pause(400);
-            router.push("/" + parseQueries(`?${query}=${index - 1}`));
+            currentIndex.setState(prev => prev - 1);
         }
     };
 
     const handleNext = async () => {
         // TODO: change 'true' to validate if the input is valid
-        if (index < maxIndex && true) {
-            animationState.parent?.setAnimate("left-to-middle");
-            animationState.child?.setAnimate("right-to-middle");
-            animationState.value.setAnimate("middle-to-left");
+        if (index < maxIndex && inputState.state && inputState.state !== '0') {
+            animationState.parent?.setState("left-to-middle");
+            animationState.child?.setState("right-to-middle");
+            animationState.value.setState("middle-to-left");
             await pause(400);
-            router.push("/" + parseQueries(`?${query}=${index + 1}`));
+            currentIndex.setState(prev => prev + 1);
         }
     };
 
-    useEffect(() => {
-        if(searchParams.get("q") && parseInt(searchParams.get('q') || "0") > maxIndex) router.push('/');
-        handleStrict();
-    }, [searchParams]);
-
-    if (parseInt(searchParams.get("q") || "0") !== index) return <></>;
+    if(currentIndex.state !== index) return <></>;
 
     return (
         <>
-            <div className=' h-full md:w-1/2 md:h-auto flex flex-col md:flex-initial flex-auto'>
+            <div className="max-h-[40rem] h-full md:w-1/2 md:h-auto flex flex-col md:flex-initial flex-auto">
                 {buttonsTop && (
                     <div
                         className={
@@ -100,17 +73,19 @@ const Question = ({
                         <button
                             onClick={handleNext}
                             className={
-                                " flex items-center justify-center text-lg w-16 h-9 transition-all rounded-md hover:text-xl active:text-xl shadow-md hover:shadow-lg active:shadow-md " +
-                                (index === maxIndex
-                                    ? "bg-secondary text-white hover:bg-primary active:bg-primary"
-                                    : "bg-white")
+                                " flex items-center justify-center text-lg w-16 h-9 transition-all rounded-md shadow-md " +
+                                (inputState.state && inputState.state !== "0"
+                                    ? index === maxIndex
+                                        ? "bg-secondary text-white hover:bg-primary active:bg-primary hover:text-xl active:text-xl hover:shadow-lg active:shadow-md"
+                                        : "bg-white hover:text-xl active:text-xl hover:shadow-lg active:shadow-md"
+                                    : "cursor-default bg-gray-300")
                             }
                         >
                             <FaArrowLeftLong className=" rotate-180" />
                         </button>
                     </div>
                 )}
-                <div className={ className + ' ' + animationState.value.animate}>
+                <div className={className + " " + animationState.value.state}>
                     <div className="w-4/5 flex items-center">
                         <div className=" text-2xl lg:text-4xl bg-secondary p-4 rounded-full border border-white text-white">
                             {question.icon}
@@ -128,6 +103,32 @@ const Question = ({
                         type={question.type}
                         className=" outline-none w-4/5 rounded py-1 px-2 bg-gray-200 focus:outline-primary"
                         placeholder={question.placeholder}
+                        value={inputState.state}
+                        onChange={() => {}}
+                        onKeyUp={(e) => {
+                            if (e.key === "Backspace" && inputState.state) {
+                                const newValue = parseFloat(
+                                    inputState.state
+                                        .substring(
+                                            0,
+                                            inputState.state.length - 1
+                                        )
+                                        .replaceAll(",", "") + e.key
+                                ).toLocaleString();
+                                inputState.setState(
+                                    newValue === "NaN" ? "0" : newValue
+                                );
+                            }
+        
+                            if (!isNumeric(e.key) || inputState.state.length > 7 )return;
+                            else {
+                                const newValue = parseFloat(
+                                    inputState.state.replaceAll(",", "") + e.key
+                                );
+                                if(limit && newValue > 850) return;
+                                inputState.setState(newValue.toLocaleString());
+                            }
+                        }}
                     />
                     <div className="w-full xsm:w-4/5 flex items-center justify-around">
                         {[...Array(maxIndex + 1).keys()].map((i: number) => {
@@ -162,36 +163,6 @@ const Question = ({
                         })}
                     </div>
                 </div>
-                {!buttonsTop && (
-                    <div
-                        className={
-                            "w-full h-10 flex justify-between items-center "
-                        }
-                    >
-                        <button
-                            onClick={handleBack}
-                            className={
-                                " flex items-center justify-center text-lg w-16 h-9 transition-all rounded-md " +
-                                (index !== 0
-                                    ? " shadow-md hover:shadow-lg active:shadow-lg hover:text-xl active:text-xl bg-white "
-                                    : " cursor-default bg-gray-300")
-                            }
-                        >
-                            <FaArrowLeftLong />
-                        </button>
-                        <button
-                            onClick={handleNext}
-                            className={
-                                " flex items-center justify-center text-lg w-16 h-9 transition-all rounded-md hover:text-xl active:text-xl shadow-md hover:shadow-lg active:shadow-md " +
-                                (index === maxIndex
-                                    ? "bg-secondary text-white hover:bg-primary active:bg-primary"
-                                    : "bg-white")
-                            }
-                        >
-                            <FaArrowLeftLong className=" rotate-180" />
-                        </button>
-                    </div>
-                )}
             </div>
         </>
     );

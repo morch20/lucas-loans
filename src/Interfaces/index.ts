@@ -4,23 +4,30 @@ import { IconType } from "react-icons";
 interface IQuestion {
     value: string;
     question: string;
-    subtext?: string;
     type: string;
     placeholder: string;
     icon: any
+    subtext?: string;
+    limit?: number;
 }
 
-interface IAnimate {
-    animate: string;
-    setAnimate: Dispatch<SetStateAction<string>>;
+interface IState {
+    state: string;
+    setState: Dispatch<SetStateAction<string>>;
+}
+
+interface IStateNumber {
+    state: number;
+    setState: Dispatch<SetStateAction<number>>;
 }
 
 interface IAnimationNode {
-    parent: IAnimate | null;
-    value: IAnimate;
-    child: IAnimate | null;
+    parent: IState | null;
+    value: IState;
+    child: IState | null;
 }
 
 export type { IQuestion as IQuestion };
-export type { IAnimate as IAnimate };
+export type { IState as IState };
+export type { IStateNumber as IStateNumber };
 export type { IAnimationNode as IAnimationNode };
