@@ -13,7 +13,7 @@ const Question = ({
     className,
     buttonsTop,
     currentIndex,
-    limit
+    limit,
 }: {
     question: IQuestion;
     index: number;
@@ -24,68 +24,71 @@ const Question = ({
     className: string;
     buttonsTop: boolean;
     currentIndex: IStateNumber;
-    limit: number | undefined
+    limit: number | undefined;
 }) => {
-
     const handleBack = async () => {
         if (index > 0) {
             animationState.parent?.setState("left-to-middle");
             animationState.child?.setState("right-to-middle");
             animationState.value.setState("middle-to-right");
             await pause(400);
-            currentIndex.setState(prev => prev - 1);
+            currentIndex.setState((prev) => prev - 1);
         }
     };
 
     const handleNext = async () => {
-        // TODO: change 'true' to validate if the input is valid
-        if (index < maxIndex && inputState.state && inputState.state !== '0') {
+        if (index < maxIndex) {
+            if (strict && (!inputState.state || inputState.state === "0"))
+                return;
             animationState.parent?.setState("left-to-middle");
             animationState.child?.setState("right-to-middle");
             animationState.value.setState("middle-to-left");
             await pause(400);
-            currentIndex.setState(prev => prev + 1);
+            currentIndex.setState((prev) => prev + 1);
         }
     };
 
-    if(currentIndex.state !== index) return <></>;
+    const handleNextClasses = (): string => {
+        if (strict && (!inputState.state || inputState.state === "0")){
+            return "cursor-default bg-gray-300";
+        }
+        if(index === maxIndex){
+           return "bg-secondary text-white hover:bg-primary active:bg-primary hover:text-xl active:text-xl hover:shadow-lg active:shadow-md";
+        }
+        return "bg-white hover:text-xl active:text-xl hover:shadow-lg active:shadow-md";
+    }
+
+    if (currentIndex.state !== index) return <></>;
+
+    const buttons = (
+        <div className={"w-full h-10 flex justify-between items-center "}>
+            <button
+                onClick={handleBack}
+                className={
+                    " flex items-center justify-center text-lg w-16 h-9 transition-all rounded-md " +
+                    (index !== 0
+                        ? " shadow-md hover:shadow-lg active:shadow-lg hover:text-xl active:text-xl bg-white "
+                        : " cursor-default bg-gray-300")
+                }
+            >
+                <FaArrowLeftLong />
+            </button>
+            <button
+                onClick={handleNext}
+                className={" flex items-center justify-center text-lg w-16 h-9 transition-all rounded-md shadow-md " + handleNextClasses()}
+            >
+                <FaArrowLeftLong className=" rotate-180" />
+            </button>
+        </div>
+    );
 
     return (
         <>
             <div className="max-h-[40rem] h-full md:w-1/2 md:h-auto flex flex-col md:flex-initial flex-auto">
-                {buttonsTop && (
-                    <div
-                        className={
-                            "w-full h-10 flex justify-between items-center "
-                        }
-                    >
-                        <button
-                            onClick={handleBack}
-                            className={
-                                " flex items-center justify-center text-lg w-16 h-9 transition-all rounded-md " +
-                                (index !== 0
-                                    ? " shadow-md hover:shadow-lg active:shadow-lg hover:text-xl active:text-xl bg-white "
-                                    : " cursor-default bg-gray-300")
-                            }
-                        >
-                            <FaArrowLeftLong />
-                        </button>
-                        <button
-                            onClick={handleNext}
-                            className={
-                                " flex items-center justify-center text-lg w-16 h-9 transition-all rounded-md shadow-md " +
-                                (inputState.state && inputState.state !== "0"
-                                    ? index === maxIndex
-                                        ? "bg-secondary text-white hover:bg-primary active:bg-primary hover:text-xl active:text-xl hover:shadow-lg active:shadow-md"
-                                        : "bg-white hover:text-xl active:text-xl hover:shadow-lg active:shadow-md"
-                                    : "cursor-default bg-gray-300")
-                            }
-                        >
-                            <FaArrowLeftLong className=" rotate-180" />
-                        </button>
-                    </div>
-                )}
-                <div className={className + " " + animationState.value.state}>
+                {buttonsTop && <>{buttons}</>}
+                <div
+                    className={className + " p-2 " + animationState.value.state}
+                >
                     <div className="w-4/5 flex items-center">
                         <div className=" text-2xl lg:text-4xl bg-secondary p-4 rounded-full border border-white text-white">
                             {question.icon}
@@ -119,13 +122,17 @@ const Question = ({
                                     newValue === "NaN" ? "0" : newValue
                                 );
                             }
-        
-                            if (!isNumeric(e.key) || inputState.state.length > 7 )return;
+
+                            if (
+                                !isNumeric(e.key) ||
+                                inputState.state.length > 7
+                            )
+                                return;
                             else {
                                 const newValue = parseFloat(
                                     inputState.state.replaceAll(",", "") + e.key
                                 );
-                                if(limit && newValue > 850) return;
+                                if (limit && newValue > 850) return;
                                 inputState.setState(newValue.toLocaleString());
                             }
                         }}
@@ -163,6 +170,7 @@ const Question = ({
                         })}
                     </div>
                 </div>
+                {!buttons && <>{buttons}</>}
             </div>
         </>
     );
