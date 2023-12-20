@@ -48,9 +48,17 @@ const Footer = () => {
                 </div>
 
                 <div className="text-center w-80">
-                    <h3 className="text-xl font-medium ">Disclaimer</h3>
+                    <h3 className="text-xl font-medium ">Legal</h3>
                     <div className="my-2 flex flex-col gap-y-2 text-gray-300">
                         <Disclaimer />
+                        <a
+                            href="https://www.termsfeed.com/live/961d7319-fe7d-47c0-9329-0ca64a876fd5"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-blue-400"
+                        >
+                            Privacy Policy
+                        </a>
                     </div>
                 </div>
 
