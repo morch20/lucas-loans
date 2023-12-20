@@ -113,7 +113,7 @@ const Question = ({
                         placeholder={question.placeholder}
                         value={inputState.state}
                         onChange={() => {}}
-                        onKeyUp={(e) => {
+                        onKeyDown={(e) => {
                             if (e.key === "Backspace" && inputState.state) {
                                 const newValue = parseFloat(
                                     inputState.state
