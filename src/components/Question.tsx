@@ -5,6 +5,7 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 
 const Question = ({
     question,
+    submit,
     index,
     maxIndex,
     strict,
@@ -16,6 +17,7 @@ const Question = ({
     limit,
 }: {
     question: IQuestion;
+    submit: Function;
     index: number;
     maxIndex: number;
     strict: boolean;
@@ -45,6 +47,9 @@ const Question = ({
             animationState.value.setState("middle-to-left");
             await pause(400);
             currentIndex.setState((prev) => prev + 1);
+        }
+        else if(index === maxIndex){
+            submit();
         }
     };
 
@@ -91,7 +96,7 @@ const Question = ({
                 >
                     <div className="w-4/5 flex items-center">
                         <div className=" text-2xl lg:text-4xl bg-secondary p-4 rounded-full border border-white text-white">
-                            {question.icon}
+                            {question.icon()}
                         </div>
                         <h2 className="text-xl pl-5 sm:pl-10 md:pl-12 lg:text-2xl xl:text-3xl font-medium">
                             {question.question}
@@ -170,7 +175,7 @@ const Question = ({
                         })}
                     </div>
                 </div>
-                {!buttons && <>{buttons}</>}
+                {!buttonsTop && <>{buttons}</>}
             </div>
         </>
     );

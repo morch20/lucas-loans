@@ -5,7 +5,7 @@ interface IQuestion {
     question: string;
     type: string;
     placeholder: string;
-    icon: any
+    icon: any;
     subtext?: string;
     limit?: number;
 }
