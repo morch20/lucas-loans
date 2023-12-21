@@ -126,34 +126,6 @@ const Question = ({
                             inputState.setState(newValue.toLocaleString());
 
                         }}
-                        // onKeyDown={(e) => {
-                        //     if (e.key === "Backspace" && inputState.state) {
-                        //         const newValue = parseFloat(
-                        //             inputState.state
-                        //                 .substring(
-                        //                     0,
-                        //                     inputState.state.length - 1
-                        //                 )
-                        //                 .replaceAll(",", "") + e.key
-                        //         ).toLocaleString();
-                        //         inputState.setState(
-                        //             newValue === "NaN" ? "0" : newValue
-                        //         );
-                        //     }
-
-                        //     if (
-                        //         !isNumeric(e.key) ||
-                        //         inputState.state.length > 7
-                        //     )
-                        //         return;
-                        //     else {
-                        //         const newValue = parseFloat(
-                        //             inputState.state.replaceAll(",", "") + e.key
-                        //         );
-                        //         if (limit && newValue > 850) return;
-                        //         inputState.setState(newValue.toLocaleString());
-                        //     }
-                        // }}
                     />
                     <div className="w-full xsm:w-4/5 flex items-center justify-around">
                         {[...Array(maxIndex + 1).keys()].map((i: number) => {
