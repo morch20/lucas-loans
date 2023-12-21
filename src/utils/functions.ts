@@ -17,6 +17,7 @@ export function calculate(monthlyIncome: number, monthlyDebt: number, downPaymen
 
     // second equation
     const rate = parseFloat(process.env.NEXT_PUBLIC_MORTGAGE_RATE || "0.07");
+    console.log('Rate:', rate);
     const n = 12;
     const t = 30;
     const P = ( principalAndInterestPayment * (1 - Math.pow(1 + (rate/n), ((-n)*t)) )) / (rate/n);
