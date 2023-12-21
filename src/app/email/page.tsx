@@ -60,11 +60,15 @@ const Email = () => {
                             ? "You can afford this much house upon approval*"
                             : "Find out how much house you can afford"}
                     </h3>
-                    {showVideo && <p className="md:text-lg my-2">Please watch video to see full disclosures</p>}
+                    {showVideo && (
+                        <p className="md:text-lg my-2">
+                            Please watch video to see full disclosures
+                        </p>
+                    )}
                 </div>
 
                 {showVideo ? (
-                    <div className="w-full h-1/2 my-10 md:my-0 flex items-center justify-center">
+                    <div className="w-full h-1/2 my-10 md:my-0 flex flex-col items-center justify-center">
                         <p className=" left-to-middle text-xl md:font-medium md:text-2xl lg:text-3xl py-2 px-4 lg:py-3 lg:px-5 rounded-md bg-tertiary text-white shadow-lg shadow-blue-200">
                             $
                             {calculate(
@@ -73,6 +77,34 @@ const Email = () => {
                                 parseInt(searchParams.get("DP") || "0")
                             ).toLocaleString()}
                         </p>
+
+                        <h3
+                            className={
+                                roboto.className +
+                                " md:text-xl lg:text-2xl mb-4 mt-10 "
+                            }
+                        >
+                            Finalize Offer Now
+                        </h3>
+
+                        <div className="flex w-full justify-between lg:justify-around ">
+                            <a
+                                href="https://calendly.com/lucas-eu/one-on-one-phone-consultation"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="w-32 h-10 bg-primary flex items-center justify-center text-white rounded shadow-md hover:shadow-lg active:shadow-lg hover:text-lg active:text-lg transition-all"
+                            >
+                                Book a free call
+                            </a>
+                            <a
+                                href="https://stfloans.shapeportal.com/ref/13"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="w-32 h-10 bg-primary flex items-center justify-center text-white rounded shadow-md hover:shadow-lg active:shadow-lg hover:text-lg active:text-lg transition-all"
+                            >
+                                Apply Now
+                            </a>
+                        </div>
                     </div>
                 ) : (
                     <div className=" relative hidden md:flex items-center justify-center w-full h-auto ">
@@ -94,7 +126,7 @@ const Email = () => {
                 )}
             </header>
 
-            <div className="max-h-[40rem] relative h-full md:w-1/2 md:h-auto flex flex-col md:flex-initial flex-auto">
+            <div className="max-h-[40rem] min-h-[20rem] relative h-full md:w-1/2 md:h-auto flex flex-col md:flex-initial flex-auto">
                 {showVideo ? (
                     <video controls className=" rounded shadow-md">
                         <source src="/lucasVideo.mp4" type="video/mp4" />
