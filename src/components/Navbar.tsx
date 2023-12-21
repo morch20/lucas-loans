@@ -52,13 +52,6 @@ const Navbar = () => {
                             href="/"
                             className="w-fit h-14 text-primary flex items-center justify-center "
                         >
-                            {/* <Image
-                                src={'/logo.svg'}
-                                alt="logo"
-                                width={50}
-                                height={50}
-                                className=" rounded-full border border-primary"
-                            /> */}
                             <FaHome className=" w-6 h-6 md:w-10 md:h-10 " />
                             <div className="h-fit w-fit">
                                 <h2 className=" text-xl md:text-2xl lg:text-3xl 2xl:text-4xl mina !leading-none">
@@ -100,7 +93,7 @@ const Navbar = () => {
                                     className=" text-primary"
                                 />
                                 <a
-                                    href="https://stfloans.shapeportal.com/ref/13"
+                                    href="https://lucas-loans.pos.yoursonar.com/?originator=lucas%40lucas-loans.com"
                                     target="_blank"
                                     rel="noreferrer"
                                 >
@@ -155,14 +148,13 @@ const Navbar = () => {
                                         className=" text-primary"
                                     />
                                     <a
-                                        href="https://stfloans.shapeportal.com/ref/13"
+                                        href="https://lucas-loans.pos.yoursonar.com/?originator=lucas%40lucas-loans.com"
                                         target="_blank"
                                         rel="noreferrer"
                                     >
                                         Apply Now
                                     </a>
                                 </li>
-                                {/* <li>Toggle</li> */}
                             </ul>
                         </div>
                     )}

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { useSearchParams, useRouter } from "next/navigation";
 import EmailModal from "./component/EmailModal";
 import { Mina, Roboto } from "next/font/google";
@@ -21,22 +21,41 @@ const roboto = Roboto({
 });
 
 const Email = () => {
-
     const [showVideo, setShowVideo] = useState(false);
     const searchParams = useSearchParams();
     const router = useRouter();
 
-    // TODO: credit score goes to mailchimp
+    const handleSubmit = (email: string, name: string) => {
+        const creditScore = parseInt(searchParams.get("CS") || "0");
+
+        fetch("/api/email", {
+            method: "POST",
+            body: JSON.stringify({
+                email,
+                name,
+                creditScore,
+            }),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((e) => console.log(e));
+
+        setShowVideo(true);
+    };
 
     useEffect(() => {
         values.forEach((i: IQuestion) => {
-            if(!validateInput(searchParams.get(i.value)) || !isNumeric(searchParams.get(i.value))) {
-                console.log("AHHHAHAHAHA!!!!", i.value)
+            if (
+                !validateInput(searchParams.get(i.value)) ||
+                !isNumeric(searchParams.get(i.value))
+            ) {
+                console.log("AHHHAHAHAHA!!!!", i.value);
                 router.push("/");
             }
         });
     }, []);
-
 
     return (
         <main className=" w-full h-full min-h-[90dvh] flex flex-col md:items-stretch md:py-6 md:flex-row md:justify-between ">
@@ -97,7 +116,7 @@ const Email = () => {
                                 Book a free call
                             </a>
                             <a
-                                href="https://stfloans.shapeportal.com/ref/13"
+                                href="https://lucas-loans.pos.yoursonar.com/?originator=lucas%40lucas-loans.com"
                                 target="_blank"
                                 rel="noreferrer"
                                 className="w-32 h-10 bg-primary flex items-center justify-center text-white rounded shadow-md hover:shadow-lg active:shadow-lg hover:text-lg active:text-lg transition-all"
@@ -133,7 +152,7 @@ const Email = () => {
                         Your browser does not support the video tag.
                     </video>
                 ) : (
-                    <EmailModal setShowVideo={setShowVideo} />
+                    <EmailModal submit={handleSubmit} />
                 )}
             </div>
         </main>
