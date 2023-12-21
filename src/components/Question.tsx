@@ -112,7 +112,7 @@ const Question = ({
                         className=" outline-none w-4/5 rounded py-1 px-2 bg-gray-200 focus:outline-primary"
                         placeholder={question.placeholder}
                         value={inputState.state}
-                        onChange={() => {}}
+                        // onChange={() => {}}
                         onKeyDown={(e) => {
                             if (e.key === "Backspace" && inputState.state) {
                                 const newValue = parseFloat(
