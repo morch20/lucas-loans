@@ -57,9 +57,10 @@ const Email = () => {
                         }
                     >
                         {showVideo
-                            ? "You can afford this much for house*"
+                            ? "You can afford this much house upon approval*"
                             : "Find out how much house you can afford"}
                     </h3>
+                    {showVideo && <p className="md:text-lg my-2">Please watch video to see full disclosures</p>}
                 </div>
 
                 {showVideo ? (

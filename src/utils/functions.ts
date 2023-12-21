@@ -17,11 +17,14 @@ export function calculate(monthlyIncome: number, monthlyDebt: number, downPaymen
 
     // second equation
     const rate = parseFloat(process.env.NEXT_PUBLIC_MORTGAGE_RATE || "0.07");
+    console.log('Rate:', rate);
     const n = 12;
     const t = 30;
     const P = ( principalAndInterestPayment * (1 - Math.pow(1 + (rate/n), ((-n)*t)) )) / (rate/n);
     console.log("P: ", P);
-    console.log('Total max affordability: ', P + downPayment);
+    const total = P + downPayment;
+    console.log('Total max affordability: ', total);
+    if(total < 0) return 0;
     return Math.trunc(P + downPayment);
     
 }
