@@ -112,35 +112,48 @@ const Question = ({
                         className=" outline-none w-4/5 rounded py-1 px-2 bg-gray-200 focus:outline-primary"
                         placeholder={question.placeholder}
                         value={inputState.state}
-                        // onChange={() => {}}
-                        onKeyDown={(e) => {
-                            if (e.key === "Backspace" && inputState.state) {
-                                const newValue = parseFloat(
-                                    inputState.state
-                                        .substring(
-                                            0,
-                                            inputState.state.length - 1
-                                        )
-                                        .replaceAll(",", "") + e.key
-                                ).toLocaleString();
-                                inputState.setState(
-                                    newValue === "NaN" ? "0" : newValue
-                                );
+                        onChange={(e) => {
+                            if(e.target.value === ""){
+                                inputState.setState("0");
+                                return;
                             }
 
-                            if (
-                                !isNumeric(e.key) ||
-                                inputState.state.length > 7
-                            )
-                                return;
-                            else {
-                                const newValue = parseFloat(
-                                    inputState.state.replaceAll(",", "") + e.key
-                                );
-                                if (limit && newValue > 850) return;
-                                inputState.setState(newValue.toLocaleString());
-                            }
+                            if(e.target.value.length > 8) return;
+                            let value = e.target.value.replaceAll(",", "");
+                            if(!isNumeric(value)) return
+                            const newValue = parseInt(value);
+                            if (limit && newValue > 850) return;
+                            inputState.setState(newValue.toLocaleString());
+
                         }}
+                        // onKeyDown={(e) => {
+                        //     if (e.key === "Backspace" && inputState.state) {
+                        //         const newValue = parseFloat(
+                        //             inputState.state
+                        //                 .substring(
+                        //                     0,
+                        //                     inputState.state.length - 1
+                        //                 )
+                        //                 .replaceAll(",", "") + e.key
+                        //         ).toLocaleString();
+                        //         inputState.setState(
+                        //             newValue === "NaN" ? "0" : newValue
+                        //         );
+                        //     }
+
+                        //     if (
+                        //         !isNumeric(e.key) ||
+                        //         inputState.state.length > 7
+                        //     )
+                        //         return;
+                        //     else {
+                        //         const newValue = parseFloat(
+                        //             inputState.state.replaceAll(",", "") + e.key
+                        //         );
+                        //         if (limit && newValue > 850) return;
+                        //         inputState.setState(newValue.toLocaleString());
+                        //     }
+                        // }}
                     />
                     <div className="w-full xsm:w-4/5 flex items-center justify-around">
                         {[...Array(maxIndex + 1).keys()].map((i: number) => {
