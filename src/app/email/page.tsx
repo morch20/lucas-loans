@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { useSearchParams, useRouter } from "next/navigation";
 import EmailModal from "./component/EmailModal";
 import { Mina, Roboto } from "next/font/google";
@@ -21,22 +21,41 @@ const roboto = Roboto({
 });
 
 const Email = () => {
-
     const [showVideo, setShowVideo] = useState(false);
     const searchParams = useSearchParams();
     const router = useRouter();
 
-    // TODO: credit score goes to mailchimp
+    const handleSubmit = (email: string, name: string) => {
+        const creditScore = parseInt(searchParams.get("CS") || "0");
+
+        fetch("/api/email", {
+            method: "POST",
+            body: JSON.stringify({
+                email,
+                name,
+                creditScore,
+            }),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((e) => console.log(e));
+
+        setShowVideo(true);
+    };
 
     useEffect(() => {
         values.forEach((i: IQuestion) => {
-            if(!validateInput(searchParams.get(i.value)) || !isNumeric(searchParams.get(i.value))) {
-                console.log("AHHHAHAHAHA!!!!", i.value)
+            if (
+                !validateInput(searchParams.get(i.value)) ||
+                !isNumeric(searchParams.get(i.value))
+            ) {
+                console.log("AHHHAHAHAHA!!!!", i.value);
                 router.push("/");
             }
         });
     }, []);
-
 
     return (
         <main className=" w-full h-full min-h-[90dvh] flex flex-col md:items-stretch md:py-6 md:flex-row md:justify-between ">
@@ -60,11 +79,15 @@ const Email = () => {
                             ? "You can afford this much house upon approval*"
                             : "Find out how much house you can afford"}
                     </h3>
-                    {showVideo && <p className="md:text-lg my-2">Please watch video to see full disclosures</p>}
+                    {showVideo && (
+                        <p className="md:text-lg my-2">
+                            Please watch video to see full disclosures
+                        </p>
+                    )}
                 </div>
 
                 {showVideo ? (
-                    <div className="w-full h-1/2 my-10 md:my-0 flex items-center justify-center">
+                    <div className="w-full h-1/2 my-10 md:my-0 flex flex-col items-center justify-center">
                         <p className=" left-to-middle text-xl md:font-medium md:text-2xl lg:text-3xl py-2 px-4 lg:py-3 lg:px-5 rounded-md bg-tertiary text-white shadow-lg shadow-blue-200">
                             $
                             {calculate(
@@ -73,6 +96,34 @@ const Email = () => {
                                 parseInt(searchParams.get("DP") || "0")
                             ).toLocaleString()}
                         </p>
+
+                        <h3
+                            className={
+                                roboto.className +
+                                " md:text-xl lg:text-2xl mb-4 mt-10 "
+                            }
+                        >
+                            Finalize Offer Now
+                        </h3>
+
+                        <div className="flex w-full justify-between lg:justify-around ">
+                            <a
+                                href="https://calendly.com/lucas-eu/one-on-one-phone-consultation"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="w-32 h-10 bg-primary flex items-center justify-center text-white rounded shadow-md hover:shadow-lg active:shadow-lg hover:text-lg active:text-lg transition-all"
+                            >
+                                Book a free call
+                            </a>
+                            <a
+                                href="https://lucas-loans.pos.yoursonar.com/?originator=lucas%40lucas-loans.com"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="w-32 h-10 bg-primary flex items-center justify-center text-white rounded shadow-md hover:shadow-lg active:shadow-lg hover:text-lg active:text-lg transition-all"
+                            >
+                                Apply Now
+                            </a>
+                        </div>
                     </div>
                 ) : (
                     <div className=" relative hidden md:flex items-center justify-center w-full h-auto ">
@@ -94,14 +145,14 @@ const Email = () => {
                 )}
             </header>
 
-            <div className="max-h-[40rem] relative h-full md:w-1/2 md:h-auto flex flex-col md:flex-initial flex-auto">
+            <div className="max-h-[40rem] min-h-[20rem] relative h-full md:w-1/2 md:h-auto flex flex-col md:flex-initial flex-auto">
                 {showVideo ? (
                     <video controls className=" rounded shadow-md">
                         <source src="/lucasVideo.mp4" type="video/mp4" />
                         Your browser does not support the video tag.
                     </video>
                 ) : (
-                    <EmailModal setShowVideo={setShowVideo} />
+                    <EmailModal submit={handleSubmit} />
                 )}
             </div>
         </main>

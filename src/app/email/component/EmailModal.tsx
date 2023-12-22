@@ -2,12 +2,11 @@
 import Image from "next/image";
 import { useState } from "react";
 import { emailValidator } from "@/utils/constants";
-import { Dispatch, SetStateAction } from "react";
 
 const EmailModal = ({
-    setShowVideo,
+    submit,
 }: {
-    setShowVideo: Dispatch<SetStateAction<boolean>>;
+    submit: Function;
 }) => {
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
@@ -20,7 +19,7 @@ const EmailModal = ({
             name &&
             name.trim()
         ) {
-            setShowVideo(true);
+            submit(email, name);
         }
     };
 
