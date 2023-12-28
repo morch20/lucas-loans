@@ -7,8 +7,8 @@ const values: IQuestion[] = [
         value: "MI",
         question: "Monthly income before taxes.",
         subtext:
-            "Please put in the amount you make per month before taxes",
-        type: "text",
+            "Please put in the amount you make per month before taxes.",
+        type: "tel",
         placeholder: "Enter monthly income...",
         icon: MdAttachMoney,
     },
@@ -17,7 +17,7 @@ const values: IQuestion[] = [
         question: "Monthly debt payments.",
         subtext:
             "Include car loans, credit card payments, personal loans and other mortgages.",
-        type: "text",
+        type: "tel",
         placeholder: "Enter monthly debt...",
         icon: MdPayments ,
     },
@@ -25,7 +25,7 @@ const values: IQuestion[] = [
         value: "CS",
         question: "Estimated Credit score.",
         subtext: "300-850",
-        type: "text",
+        type: "tel",
         placeholder: "Enter credit score...",
         limit: 850,
         icon: MdCreditScore ,
@@ -33,8 +33,8 @@ const values: IQuestion[] = [
     {
         value: "DP",
         question: "Down payment",
-        subtext: "3-5% minimum for conventional loans and 3.5% for FHA",
-        type: "text",
+        subtext: "3-5% minimum for conventional loans and 3.5% for FHA.",
+        type: "tel",
         placeholder: "Enter down payment...",
         icon: TbPigMoney ,
     }
