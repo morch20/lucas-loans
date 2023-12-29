@@ -17,7 +17,11 @@
 }
 
 ._closeButton_1glaf_188 {
-    display: none;
+    display: none !important;
+}
+
+._close_11p8l_1{
+    display: none !important;
 }
 
 video {
