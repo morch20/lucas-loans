@@ -26,7 +26,20 @@ interface IAnimationNode {
     child: IState | null;
 }
 
+interface IAccessToken {
+    "access_token": string;
+    "token_type": string;
+    "expires_in": number;
+    "refresh_token": string;
+    "scope": string;
+    "userType": string;
+    "companyId": string;
+    "locationId": string;
+    "userId": string;
+}
+
 export type { IQuestion as IQuestion };
 export type { IState as IState };
 export type { IStateNumber as IStateNumber };
 export type { IAnimationNode as IAnimationNode };
+export type { IAccessToken as IAccessToken };

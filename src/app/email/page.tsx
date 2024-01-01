@@ -25,15 +25,25 @@ const Email = () => {
     const searchParams = useSearchParams();
     const router = useRouter();
 
-    const handleSubmit = (email: string, name: string) => {
+    const handleSubmit = (number: string, name: string, email: string) => {
         const creditScore = parseInt(searchParams.get("CS") || "0");
+        const monthlyIncome = parseInt(searchParams.get("MI") || "0");
+        const monthlyDebt = parseInt(searchParams.get("MD") || "0");
 
         fetch("/api/email", {
             method: "POST",
             body: JSON.stringify({
                 email,
+                phone: number.replace("(", "").replace(")", ""),
                 name,
                 creditScore,
+                MI: monthlyIncome,
+                MD: monthlyDebt,
+                AN: calculate(
+                    monthlyIncome,
+                    monthlyDebt,
+                    parseInt(searchParams.get("DP") || "0")
+                ).toLocaleString(),
             }),
         })
             .then((response) => response.json())

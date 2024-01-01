@@ -1,4 +1,9 @@
 import { NextRequest } from "next/server";
+import { generateCreditScoreTags } from "@/utils/functions";
+import { connectToDB } from "@/utils/db";
+import Token from "@/models/Token";
+import { addSeconds } from "@/utils/functions";
+import { refresh } from "@/utils/goHighLevel";
 
 export const POST = async (req: NextRequest) => {
     try {
@@ -6,27 +11,67 @@ export const POST = async (req: NextRequest) => {
         const creditScore = body.creditScore || "0";
         const name = body.name;
         const email = body.email;
+        const phone = "+1 " + body.phone;
+        const { AN, MI, MD } = body;
 
-        let newCS = "Poor";
-        if (creditScore < 580) newCS = "Poor";
-        else if (creditScore >= 580 && creditScore <= 669) newCS = "Fair";
-        else if (creditScore >= 670 && creditScore <= 739) newCS = "Good";
-        else if (creditScore >= 740 && creditScore <= 799) newCS = "Very Good";
-        else newCS = "Excellent";
+        const newCS = generateCreditScoreTags(creditScore);
 
-        const response = await fetch(process.env.API_URL || "", {
+        await connectToDB();
+        const token = await Token.findOne();
+        console.log(token)
+        let fetchingAccessToken = token.accessToken;
+
+        const date = new Date(token.created);
+        const newDate = addSeconds(date, token.expires_in);
+
+        if (new Date() >= newDate) {
+            console.log("EXPIRED");
+            await refresh(token.refreshToken);
+
+            const savedToken = await Token.findOneAndUpdate(
+                { _id: "6590ebaf7ffcd4b1842d708a" },
+                {
+                    accessToken: token.access_token,
+                    refreshToken: token.refresh_token,
+                    expires_in: token.expires_in,
+                    created: new Date().toString(),
+                }
+            );
+            console.log("DB Updated!", savedToken);
+            fetchingAccessToken = savedToken.accessToken;
+        }
+
+        const response = await fetch(process.env.API_URL + "contacts/", {
             method: "POST",
             headers: {
-                Authorization: "Bearer " + process.env.API_KEY,
+                Accept: "application/json",
+                Authorization: "Bearer " + fetchingAccessToken,
+                "Content-Type": "application/json",
+                Version: "2021-07-28",
             },
             body: JSON.stringify({
-                email_address: email,
-                status: "subscribed",
-                merge_fields: {
-                    FNAME: name,
-                    PHONE: "",
-                },
+                "locationId": process.env.LOCATION_ID,
+                name,
+                email,
+                phone,
                 tags: ["Max Affordability", newCS],
+                customFields: [
+                    {
+                        id: "Q2V4KRcnsmEgNlAYBVS6",
+                        key: "contact.an",
+                        field_value: AN,
+                    },
+                    {
+                        id: "85u25DxpvkXfXN0tmy6g",
+                        key: "contact.mi",
+                        field_value: MI,
+                    },
+                    {
+                        id: "4hNzCw0ilqnnUNxr0OYb",
+                        key: "contact.md",
+                        field_value: MD,
+                    },
+                ],
             }),
         });
 
