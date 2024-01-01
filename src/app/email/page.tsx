@@ -118,7 +118,7 @@ const Email = () => {
 
                         <div className="flex w-full justify-between lg:justify-around ">
                             <a
-                                href="https://calendly.com/lucas-eu/one-on-one-phone-consultation"
+                                href="https://api.leadconnectorhq.com/widget/booking/Y0fBPK62Ip9kLvW40dsf"
                                 target="_blank"
                                 rel="noreferrer"
                                 className="w-32 h-10 bg-primary flex items-center justify-center text-white rounded shadow-md hover:shadow-lg active:shadow-lg hover:text-lg active:text-lg transition-all"
