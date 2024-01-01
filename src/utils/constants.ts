@@ -33,7 +33,7 @@ const values: IQuestion[] = [
     {
         value: "DP",
         question: "Down payment",
-        subtext: "3-5% minimum for conventional loans and 3.5% for FHA.",
+        subtext: "3-5% minimum for conventional loans and 3.5% for FHA.\n*Please put a dollar amount*",
         type: "tel",
         placeholder: "Enter down payment...",
         icon: TbPigMoney ,
