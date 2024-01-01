@@ -25,15 +25,25 @@ const Email = () => {
     const searchParams = useSearchParams();
     const router = useRouter();
 
-    const handleSubmit = (email: string, name: string) => {
+    const handleSubmit = (number: string, name: string, email: string) => {
         const creditScore = parseInt(searchParams.get("CS") || "0");
+        const monthlyIncome = parseInt(searchParams.get("MI") || "0");
+        const monthlyDebt = parseInt(searchParams.get("MD") || "0");
 
         fetch("/api/email", {
             method: "POST",
             body: JSON.stringify({
                 email,
+                phone: number.replace("(", "").replace(")", ""),
                 name,
                 creditScore,
+                MI: monthlyIncome,
+                MD: monthlyDebt,
+                AN: calculate(
+                    monthlyIncome,
+                    monthlyDebt,
+                    parseInt(searchParams.get("DP") || "0")
+                ).toLocaleString(),
             }),
         })
             .then((response) => response.json())
@@ -108,7 +118,7 @@ const Email = () => {
 
                         <div className="flex w-full justify-between lg:justify-around ">
                             <a
-                                href="https://calendly.com/lucas-eu/one-on-one-phone-consultation"
+                                href="https://api.leadconnectorhq.com/widget/booking/Y0fBPK62Ip9kLvW40dsf"
                                 target="_blank"
                                 rel="noreferrer"
                                 className="w-32 h-10 bg-primary flex items-center justify-center text-white rounded shadow-md hover:shadow-lg active:shadow-lg hover:text-lg active:text-lg transition-all"

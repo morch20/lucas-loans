@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { emailValidator } from "@/utils/constants";
+import { formatPhoneNumber, phoneValidator } from "@/utils/functions";
 
 const EmailModal = ({
     submit,
@@ -9,17 +10,20 @@ const EmailModal = ({
     submit: Function;
 }) => {
     const [email, setEmail] = useState("");
+    const [number, setNumber] = useState("");
     const [name, setName] = useState("");
 
     const handleSubmit = () => {
         if (
+            number &&
+            phoneValidator(number) &&
             email &&
             email.trim() &&
             email.match(emailValidator) &&
             name &&
             name.trim()
         ) {
-            submit(email, name);
+            submit(number, name.trim(), email.trim());
         }
     };
 
@@ -36,13 +40,25 @@ const EmailModal = ({
                     />
                 </div>
                 <h2 className="text-xl pl-5 sm:pl-10 md:pl-12 lg:text-2xl xl:text-3xl font-medium">
-                    Enter your email and name
+                    Enter your phone number and name
                 </h2>
             </div>
 
             <p className="text-gray-500 text-center xl:text-lg">
                 Enter the information below to get the max home affordability.
             </p>
+
+            <div className="w-4/5">
+                <label htmlFor="name">Name</label>
+                <input
+                    id="name"
+                    type="text"
+                    className=" outline-none w-full rounded py-1 px-2 bg-gray-200 focus:outline-primary"
+                    placeholder="Enter name..."
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                />
+            </div>
 
             <div className="w-4/5">
                 <label htmlFor="email">Email</label>
@@ -60,14 +76,16 @@ const EmailModal = ({
             </div>
 
             <div className="w-4/5">
-                <label htmlFor="name">Name</label>
+                <label htmlFor="number">Phone number</label>
                 <input
-                    id="name"
-                    type="text"
+                    id="number"
+                    type="tel"
                     className=" outline-none w-full rounded py-1 px-2 bg-gray-200 focus:outline-primary"
-                    placeholder="Enter name..."
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    placeholder="(xxx)-xxx-xxxx"
+                    value={number}
+                    onChange={(e) =>
+                        setNumber(formatPhoneNumber(e.target.value))
+                    }
                 />
             </div>
 
@@ -75,17 +93,19 @@ const EmailModal = ({
                 onClick={handleSubmit}
                 className={
                     " flex items-center justify-center w-16 h-9 transition-all rounded-md " +
-                    (email &&
-                    email.trim() &&
-                    email.match(emailValidator) &&
-                    name &&
-                    name.trim()
+                    (number && phoneValidator(number) && email && email.trim() && email.match(emailValidator) && name && name.trim()
                         ? " shadow-md hover:shadow-lg active:shadow-lg text-white hover:text-lg active:text-lg bg-primary "
                         : " cursor-default bg-gray-300")
                 }
             >
                 Send
             </button>
+            <p className=" text-xs text-gray-500 text-center">
+                Please note that by subscribing you are agreeing to receive
+                autodialed personal and marketing text messages to your mobile
+                number from us. Consent is not required for purchase. Message
+                and data rates may apply. Reply “STOP” by SMS to cancel.
+            </p>
         </div>
     );
 };

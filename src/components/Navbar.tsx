@@ -77,7 +77,7 @@ const Navbar = () => {
                                     className=" text-primary"
                                 />
                                 <a
-                                    href="https://calendly.com/lucas-eu/one-on-one-phone-consultation"
+                                    href="https://api.leadconnectorhq.com/widget/booking/Y0fBPK62Ip9kLvW40dsf"
                                     target="_blank"
                                     rel="noreferrer"
                                 >
@@ -132,7 +132,7 @@ const Navbar = () => {
                                         className=" text-primary"
                                     />
                                     <a
-                                        href="https://calendly.com/lucas-eu/one-on-one-phone-consultation"
+                                        href="https://api.leadconnectorhq.com/widget/booking/Y0fBPK62Ip9kLvW40dsf"
                                         target="_blank"
                                         rel="noreferrer"
                                     >
