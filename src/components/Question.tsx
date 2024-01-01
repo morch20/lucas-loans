@@ -103,9 +103,15 @@ const Question = ({
                         </h2>
                     </div>
                     {question.subtext && (
-                        <p className="text-gray-500 text-center xl:text-lg">
-                            {question.subtext}
-                        </p>
+                        <>
+                            {
+                                question.subtext.split("\n").map((i: String, index: number) => 
+                                    <p key={index* Math.PI} className="text-gray-500 text-center xl:text-lg">
+                                        {i}
+                                    </p>
+                                )
+                            }
+                        </>
                     )}
                     <input
                         type={question.type}
