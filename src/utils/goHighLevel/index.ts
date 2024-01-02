@@ -11,6 +11,7 @@ export async function callback(code: string) {
         const response = await fetch(
             "https://services.leadconnectorhq.com/oauth/token",
             {
+                cache: "no-store",
                 method: "POST",
                 headers: {
                     Accept: "application/json",
@@ -67,6 +68,7 @@ export async function refresh(refreshToken: string) {
         const response = await fetch(
             "https://services.leadconnectorhq.com/oauth/token",
             {
+                cache: "no-store",
                 method: "POST",
                 headers: {
                     Accept: "application/json",
@@ -83,8 +85,8 @@ export async function refresh(refreshToken: string) {
             }
         );
 
-        console.log("Refresh data");
         const data = await response.json();
+        console.log("Refresh data: ", data);
         return data;
 
     } 

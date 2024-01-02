@@ -31,6 +31,7 @@ const Email = () => {
         const monthlyDebt = parseInt(searchParams.get("MD") || "0");
 
         fetch("/api/email", {
+            cache: "no-store",
             method: "POST",
             body: JSON.stringify({
                 email,
@@ -61,7 +62,6 @@ const Email = () => {
                 !validateInput(searchParams.get(i.value)) ||
                 !isNumeric(searchParams.get(i.value))
             ) {
-                console.log("AHHHAHAHAHA!!!!", i.value);
                 router.push("/");
             }
         });

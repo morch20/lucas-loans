@@ -1,14 +1,10 @@
-'use client';
+"use client";
 import Image from "next/image";
 import { useState } from "react";
 import { emailValidator } from "@/utils/constants";
 import { formatPhoneNumber, phoneValidator } from "@/utils/functions";
 
-const EmailModal = ({
-    submit,
-}: {
-    submit: Function;
-}) => {
+const EmailModal = ({ submit }: { submit: Function }) => {
     const [email, setEmail] = useState("");
     const [number, setNumber] = useState("");
     const [name, setName] = useState("");
@@ -103,8 +99,8 @@ const EmailModal = ({
             <p className=" text-xs text-gray-500 text-center">
                 Please note that by subscribing you are agreeing to receive
                 autodialed personal and marketing text messages to your mobile
-                number from us. Consent is not required for purchase. Message
-                and data rates may apply. Reply “STOP” by SMS to cancel.
+                number from us. Message and data rates may apply. Reply “STOP”
+                by SMS to cancel.
             </p>
         </div>
     );
