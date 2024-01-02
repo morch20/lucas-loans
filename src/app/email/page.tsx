@@ -7,6 +7,7 @@ import Image from "next/image";
 import { values } from "@/utils/constants";
 import { validateInput, isNumeric, calculate } from "@/utils/functions";
 import { IQuestion } from "@/Interfaces";
+import { event } from "@/utils/fpixel";
 
 const mina = Mina({
     subsets: ["latin"],
@@ -29,6 +30,8 @@ const Email = () => {
         const creditScore = parseInt(searchParams.get("CS") || "0");
         const monthlyIncome = parseInt(searchParams.get("MI") || "0");
         const monthlyDebt = parseInt(searchParams.get("MD") || "0");
+
+        event("Lead");
 
         fetch("/api/email", {
             cache: "no-store",

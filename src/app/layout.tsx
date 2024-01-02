@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import FacebookPixel from "@/components/FacebookPixel";
 
 export const metadata: Metadata = {
     title: "Lucas Loans",
@@ -21,6 +22,7 @@ export default function RootLayout({
                     {children}
                 </div>
                 <Footer />
+                <FacebookPixel />
             </body>
         </html>
     );
