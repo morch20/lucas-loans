@@ -23,7 +23,7 @@ export async function callback(code: string) {
                     grant_type: "authorization_code",
                     code: code,
                     user_type: "Location",
-                    redirect_uri: "http://localhost:3000/api/oauth/callback",
+                    redirect_uri: "https://lucas-loans.com/api/oauth/callback",
                 })
             }
         );
@@ -42,7 +42,7 @@ export async function callback(code: string) {
 export function initiate() {
     const options = {
         requestType: "code",
-        redirectUri: "http://localhost:3000/api/oauth/callback",
+        redirectUri: "https://lucas-loans.com/api/oauth/callback",
         scopes: [
             "contacts.write",
             "locations/tags.readonly",
@@ -80,7 +80,7 @@ export async function refresh(refreshToken: string) {
                     grant_type: "refresh_token",
                     refresh_token: refreshToken,
                     user_type: "Location",
-                    redirect_uri: "http://localhost:3000/oauth/callback",
+                    redirect_uri: "https://lucas-loans.com/api/oauth/callback",
                 })
             }
         );
