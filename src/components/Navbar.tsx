@@ -7,6 +7,7 @@ import { SetStateAction, useState, useRef } from "react";
 import Link from "next/link";
 import { pause } from "@/utils/functions";
 import useOutsideClick from "@/hooks/useOutsideClick";
+import CustomLink from "./CustomLink";
 
 const roboto = Roboto({
     subsets: ["latin"],
@@ -68,7 +69,8 @@ const Navbar = () => {
                             </div>
                         </Link>
                         <ul className="hidden md:flex font-medium lg:text-lg T2xl:text-xl justify-between items-center max-w-sm w-2/5 2xl:max-w-md">
-                            <li
+                            <CustomLink
+                                path="/calendar"
                                 onClick={() => handleClose()}
                                 className="my-4 shake2 flex w-fit gap-x-2 items-center nav__links__animation"
                             >
@@ -76,14 +78,10 @@ const Navbar = () => {
                                     size={25}
                                     className=" text-primary"
                                 />
-                                <a
-                                    href="https://api.leadconnectorhq.com/widget/booking/Y0fBPK62Ip9kLvW40dsf"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
+                                <Link href={"/calendar"}>
                                     Book a free call
-                                </a>
-                            </li>
+                                </Link>
+                            </CustomLink>
                             <li
                                 onClick={() => handleClose()}
                                 className="my-4 shake2 flex w-fit gap-x-2 items-center nav__links__animation"
@@ -123,7 +121,8 @@ const Navbar = () => {
                         >
                             <hr className="w-full h-[1px] bg-gray-300" />
                             <ul className="p-5 sm:p-7 text-lg container w-full">
-                                <li
+                                <CustomLink
+                                    path="/calendar"
                                     onClick={() => handleClose()}
                                     className="my-4 shake2 flex w-fit gap-x-2 items-center nav__links__animation"
                                 >
@@ -131,14 +130,10 @@ const Navbar = () => {
                                         size={25}
                                         className=" text-primary"
                                     />
-                                    <a
-                                        href="https://api.leadconnectorhq.com/widget/booking/Y0fBPK62Ip9kLvW40dsf"
-                                        target="_blank"
-                                        rel="noreferrer"
-                                    >
+                                    <Link href={"/calendar"}>
                                         Book a free call
-                                    </a>
-                                </li>
+                                    </Link>
+                                </CustomLink>
                                 <li
                                     onClick={() => handleClose()}
                                     className="my-4 shake2 flex w-fit gap-x-2 items-center nav__links__animation"

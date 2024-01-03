@@ -8,6 +8,7 @@ import { values } from "@/utils/constants";
 import { validateInput, isNumeric, calculate } from "@/utils/functions";
 import { IQuestion } from "@/Interfaces";
 import { event } from "@/utils/fpixel";
+import Link from "next/link";
 
 const mina = Mina({
     subsets: ["latin"],
@@ -120,14 +121,12 @@ const Email = () => {
                         </h3>
 
                         <div className="flex w-full justify-between lg:justify-around ">
-                            <a
-                                href="https://api.leadconnectorhq.com/widget/booking/Y0fBPK62Ip9kLvW40dsf"
-                                target="_blank"
-                                rel="noreferrer"
+                            <Link
+                                href={"/calendar"}
                                 className="w-32 h-10 bg-primary flex items-center justify-center text-white rounded shadow-md hover:shadow-lg active:shadow-lg hover:text-lg active:text-lg transition-all"
                             >
                                 Book a free call
-                            </a>
+                            </Link>
                             <a
                                 href="https://lucas-loans.pos.yoursonar.com/?originator=lucas%40lucas-loans.com"
                                 target="_blank"
