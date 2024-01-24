@@ -78,9 +78,7 @@ const Navbar = () => {
                                     size={25}
                                     className=" text-primary"
                                 />
-                                <Link href={"/calendar"}>
-                                    Book a free call
-                                </Link>
+                                <Link href={"/calendar"}>Book a free call</Link>
                             </CustomLink>
                             <li
                                 onClick={() => handleClose()}
@@ -91,7 +89,7 @@ const Navbar = () => {
                                     className=" text-primary"
                                 />
                                 <a
-                                    href="https://lucas-loans.pos.yoursonar.com/?originator=lucas%40lucas-loans.com"
+                                    href="https://www.blink.mortgage/app/signup/p/lucasloansinc"
                                     target="_blank"
                                     rel="noreferrer"
                                 >
@@ -143,7 +141,7 @@ const Navbar = () => {
                                         className=" text-primary"
                                     />
                                     <a
-                                        href="https://lucas-loans.pos.yoursonar.com/?originator=lucas%40lucas-loans.com"
+                                        href="https://www.blink.mortgage/app/signup/p/lucasloansinc"
                                         target="_blank"
                                         rel="noreferrer"
                                     >
