@@ -128,7 +128,7 @@ const Email = () => {
                                 Book a free call
                             </Link>
                             <a
-                                href="https://lucas-loans.pos.yoursonar.com/?originator=lucas%40lucas-loans.com"
+                                href="https://www.blink.mortgage/app/signup/p/lucasloansinc"
                                 target="_blank"
                                 rel="noreferrer"
                                 className="w-32 h-10 bg-primary flex items-center justify-center text-white rounded shadow-md hover:shadow-lg active:shadow-lg hover:text-lg active:text-lg transition-all"
