@@ -8,9 +8,11 @@ const EmailModal = ({ submit }: { submit: Function }) => {
     const [email, setEmail] = useState("");
     const [number, setNumber] = useState("");
     const [name, setName] = useState("");
+    const [terms, setTerms] = useState(false);
 
     const handleSubmit = () => {
         if (
+            terms &&
             number &&
             phoneValidator(number) &&
             email &&
@@ -85,23 +87,49 @@ const EmailModal = ({ submit }: { submit: Function }) => {
                 />
             </div>
 
+            <div className="flex items-start gap-x-3 w-11/12">
+                <input
+                    type="checkbox"
+                    name="terms"
+                    id="terms"
+                    className=" cursor-pointer mt-1"
+                    checked={terms}
+                    onChange={e => setTerms(e.target.checked)}
+                />
+                <p className="text-xs leading-none">
+                    I agree to{" "}
+                    <a
+                        href="https://www.termsfeed.com/live/961d7319-fe7d-47c0-9329-0ca64a876fd5"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-blue-400"
+                    >
+                        terms & conditions
+                    </a>{" "}
+                    provided by Lucas Loans Inc. By providing my phone number, I
+                    agree to receive text messages from the business.
+                </p>
+            </div>
+
             <button
                 onClick={handleSubmit}
                 className={
                     " flex items-center justify-center w-16 h-9 transition-all rounded-md " +
-                    (number && phoneValidator(number) && email && email.trim() && email.match(emailValidator) && name && name.trim()
+                    (terms &&
+                    number &&
+                    phoneValidator(number) &&
+                    email &&
+                    email.trim() &&
+                    email.match(emailValidator) &&
+                    name &&
+                    name.trim()
                         ? " shadow-md hover:shadow-lg active:shadow-lg text-white hover:text-lg active:text-lg bg-primary "
                         : " cursor-default bg-gray-300")
                 }
             >
                 Send
             </button>
-            <p className=" text-xs text-gray-500 text-center">
-                Please note that by subscribing you are agreeing to receive
-                autodialed personal and marketing text messages to your mobile
-                number from us. Message and data rates may apply. Reply “STOP”
-                by SMS to cancel.
-            </p>
+            
         </div>
     );
 };
