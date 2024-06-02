@@ -7,7 +7,7 @@ import Image from "next/image";
 import { values } from "@/utils/constants";
 import { validateInput, isNumeric, calculate } from "@/utils/functions";
 import { IQuestion } from "@/Interfaces";
-import { GoogleTagManager, sendGTMEvent } from "@next/third-parties/google";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 const mina = Mina({
     subsets: ["latin"],
@@ -76,7 +76,6 @@ const Email = () => {
 
     return (
         <main className=" w-full h-full min-h-[90dvh] flex flex-col md:items-stretch md:py-6 md:flex-row md:justify-between ">
-            <GoogleTagManager gtmId="AW-16532080367" />
             <header className="max-h-[40rem] flex flex-col items-center md:justify-between md:w-2/5 my-4 md:my-0 h-1/5 md:h-auto left-to-middle">
                 <div className="text-center ">
                     <h2
