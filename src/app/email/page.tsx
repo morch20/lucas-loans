@@ -37,28 +37,28 @@ const Email = () => {
             value: "blah blah blah",
         });
 
-        // fetch("/api/email", {
-        //     cache: "no-store",
-        //     method: "POST",
-        //     body: JSON.stringify({
-        //         email,
-        //         phone: number.replace("(", "").replace(")", ""),
-        //         name,
-        //         creditScore,
-        //         MI: monthlyIncome,
-        //         MD: monthlyDebt,
-        //         AN: calculate(
-        //             monthlyIncome,
-        //             monthlyDebt,
-        //             parseInt(searchParams.get("DP") || "0")
-        //         ).toLocaleString(),
-        //     }),
-        // })
-        //     .then((response) => response.json())
-        //     .then((data) => {
-        //         console.log(data);
-        //     })
-        //     .catch((e) => console.log(e));
+        fetch("/api/email", {
+            cache: "no-store",
+            method: "POST",
+            body: JSON.stringify({
+                email,
+                phone: number.replace("(", "").replace(")", ""),
+                name,
+                creditScore,
+                MI: monthlyIncome,
+                MD: monthlyDebt,
+                AN: calculate(
+                    monthlyIncome,
+                    monthlyDebt,
+                    parseInt(searchParams.get("DP") || "0")
+                ).toLocaleString(),
+            }),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((e) => console.log(e));
 
         setShowVideo(true);
     };
