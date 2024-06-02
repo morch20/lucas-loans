@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@mailchimp/mailchimp_marketing": "^3.0.80",
+    "@next/third-parties": "^14.2.3",
     "hamburger-react": "^2.5.0",
     "mongoose": "^8.0.3",
     "next": "14.0.4",

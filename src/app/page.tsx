@@ -25,15 +25,22 @@ export default function Home() {
                             " text-2xl lg:text-3xl 2xl:text-4xl"
                         }
                     >
-                        Max Home Affordability
+                        Home Affordability Calculator
                     </h2>
                     <h3
                         className={
                             roboto.className +
-                            " md:text-xl lg:text-2xl mt-2 sm:mt-4"
+                            " md:text-xl 2xl:text-2xl mt-2 sm:mt-4"
                         }
                     >
-                        Find out how much house you can afford
+                        Find out your purchase power in 4 simple steps.
+                    </h3>
+                    <h3
+                        className={
+                            roboto.className + " md:text-xl 2xl:text-2xl"
+                        }
+                    >
+                        For the most accurate results, please answer honestly.
                     </h3>
                 </div>
 

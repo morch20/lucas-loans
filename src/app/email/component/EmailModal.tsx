@@ -43,7 +43,7 @@ const EmailModal = ({ submit }: { submit: Function }) => {
             </div>
 
             <p className="text-gray-500 text-center xl:text-lg">
-                Enter the information below to get the max home affordability.
+                Enter the information below to get the your home affordability.
             </p>
 
             <div className="w-4/5">
@@ -94,7 +94,7 @@ const EmailModal = ({ submit }: { submit: Function }) => {
                     id="terms"
                     className=" cursor-pointer mt-1"
                     checked={terms}
-                    onChange={e => setTerms(e.target.checked)}
+                    onChange={(e) => setTerms(e.target.checked)}
                 />
                 <p className="text-xs leading-none">
                     I agree to{" "}
@@ -129,7 +129,6 @@ const EmailModal = ({ submit }: { submit: Function }) => {
             >
                 Send
             </button>
-            
         </div>
     );
 };

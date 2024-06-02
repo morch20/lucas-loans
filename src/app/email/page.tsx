@@ -7,8 +7,7 @@ import Image from "next/image";
 import { values } from "@/utils/constants";
 import { validateInput, isNumeric, calculate } from "@/utils/functions";
 import { IQuestion } from "@/Interfaces";
-import { event } from "@/utils/fpixel";
-import Link from "next/link";
+import { GoogleTagManager, sendGTMEvent } from "@next/third-parties/google";
 
 const mina = Mina({
     subsets: ["latin"],
@@ -32,30 +31,34 @@ const Email = () => {
         const monthlyIncome = parseInt(searchParams.get("MI") || "0");
         const monthlyDebt = parseInt(searchParams.get("MD") || "0");
 
-        event("Lead");
+        // event("Lead");
+        sendGTMEvent({
+            event: "Testing events",
+            value: "blah blah blah",
+        });
 
-        fetch("/api/email", {
-            cache: "no-store",
-            method: "POST",
-            body: JSON.stringify({
-                email,
-                phone: number.replace("(", "").replace(")", ""),
-                name,
-                creditScore,
-                MI: monthlyIncome,
-                MD: monthlyDebt,
-                AN: calculate(
-                    monthlyIncome,
-                    monthlyDebt,
-                    parseInt(searchParams.get("DP") || "0")
-                ).toLocaleString(),
-            }),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-            })
-            .catch((e) => console.log(e));
+        // fetch("/api/email", {
+        //     cache: "no-store",
+        //     method: "POST",
+        //     body: JSON.stringify({
+        //         email,
+        //         phone: number.replace("(", "").replace(")", ""),
+        //         name,
+        //         creditScore,
+        //         MI: monthlyIncome,
+        //         MD: monthlyDebt,
+        //         AN: calculate(
+        //             monthlyIncome,
+        //             monthlyDebt,
+        //             parseInt(searchParams.get("DP") || "0")
+        //         ).toLocaleString(),
+        //     }),
+        // })
+        //     .then((response) => response.json())
+        //     .then((data) => {
+        //         console.log(data);
+        //     })
+        //     .catch((e) => console.log(e));
 
         setShowVideo(true);
     };
@@ -73,6 +76,7 @@ const Email = () => {
 
     return (
         <main className=" w-full h-full min-h-[90dvh] flex flex-col md:items-stretch md:py-6 md:flex-row md:justify-between ">
+            <GoogleTagManager gtmId="AW-16532080367" />
             <header className="max-h-[40rem] flex flex-col items-center md:justify-between md:w-2/5 my-4 md:my-0 h-1/5 md:h-auto left-to-middle">
                 <div className="text-center ">
                     <h2
@@ -81,7 +85,7 @@ const Email = () => {
                             " text-2xl lg:text-3xl 2xl:text-4xl"
                         }
                     >
-                        Max Home Affordability
+                        Home Affordability Calculator
                     </h2>
                     <h3
                         className={
@@ -93,11 +97,6 @@ const Email = () => {
                             ? "You can afford this much house upon approval*"
                             : "Find out how much house you can afford"}
                     </h3>
-                    {showVideo && (
-                        <p className="md:text-lg my-2">
-                            Please watch video to see full disclosures
-                        </p>
-                    )}
                 </div>
 
                 {showVideo ? (
@@ -111,7 +110,7 @@ const Email = () => {
                             ).toLocaleString()}
                         </p>
 
-                        <h3
+                        {/* <h3
                             className={
                                 roboto.className +
                                 " md:text-xl lg:text-2xl mb-4 mt-10 "
@@ -135,7 +134,13 @@ const Email = () => {
                             >
                                 Apply Now
                             </a>
-                        </div>
+                        </div> */}
+                        {showVideo && (
+                            <p className="2xl:text-lg mt-8">
+                                You will be contacted by a Lucas Loans
+                                representative shortly.
+                            </p>
+                        )}
                     </div>
                 ) : (
                     <div className=" relative hidden md:flex items-center justify-center w-full h-auto ">
@@ -159,10 +164,17 @@ const Email = () => {
 
             <div className="max-h-[40rem] min-h-[20rem] relative h-full md:w-1/2 md:h-auto flex flex-col md:flex-initial flex-auto">
                 {showVideo ? (
-                    <video controls className=" rounded shadow-md">
-                        <source src="/lucasVideo.mp4" type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
+                    // <video controls className=" rounded shadow-md">
+                    //     <source src="/lucasVideo.mp4" type="video/mp4" />
+                    //     Your browser does not support the video tag.
+                    // </video>
+                    <Image
+                        src={"/logo.svg"}
+                        alt="logo"
+                        width={50}
+                        height={50}
+                        className=" m-auto shadow-lg block w-44 h-44 lg:w-52 lg:h-52 xl:w-64 xl:h-64 2xl:w-72 2xl:h-72 rounded-full"
+                    />
                 ) : (
                     <EmailModal submit={handleSubmit} />
                 )}
