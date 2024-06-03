@@ -33,8 +33,9 @@ const Email = () => {
 
         // event("Lead");
         sendGTMEvent({
-            event: "Testing events",
-            value: "blah blah blah",
+            event: "conversion",
+            send_to: process.env.NEXT_PUBLIC_GOOGLE_TAG_SEND_TO,
+            event_callback: () => {},
         });
 
         fetch("/api/email", {
