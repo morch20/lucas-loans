@@ -33,7 +33,7 @@ const Email = () => {
 
         // event("Lead");
         sendGTMEvent({
-            event: "Testing events",
+            event: "New lead google",
             value: "blah blah blah",
         });
 
