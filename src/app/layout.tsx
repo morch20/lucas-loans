@@ -16,6 +16,8 @@ export default function RootLayout({
 }: {
     children: React.ReactNode;
 }) {
+    console.log("ENV: ", process.env.GOOGLE_TAG_MANAGER_ID);
+
     return (
         <html lang="en">
             <GoogleTagManager gtmId={process.env.GOOGLE_TAG_MANAGER_ID || ""} />
