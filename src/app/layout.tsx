@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import FacebookPixel from "@/components/FacebookPixel";
-import { GoogleTagManager } from "@next/third-parties/google";
+import GoogleTag from "@/components/GoogleTag";
 
 export const metadata: Metadata = {
     title: "Lucas Loans",
@@ -20,15 +19,17 @@ export default function RootLayout({
 
     return (
         <html lang="en">
-            <GoogleTagManager gtmId={"AW-16532080367"} />
             <body className="bg-[#eff4f7] text-tertiary w-full h-full flex flex-col items-center">
                 <Navbar />
                 <div className="container w-full h-full px-5 sm:px-7 overflow-x-clip">
                     {children}
                 </div>
                 <Footer />
-                <FacebookPixel />
+                {/* <FacebookPixel /> */}
             </body>
+            <head>
+                <GoogleTag />
+            </head>
         </html>
     );
 }
