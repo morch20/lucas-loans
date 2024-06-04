@@ -7,7 +7,6 @@ import Image from "next/image";
 import { values } from "@/utils/constants";
 import { validateInput, isNumeric, calculate } from "@/utils/functions";
 import { IQuestion } from "@/Interfaces";
-import { sendGTMEvent } from "@next/third-parties/google";
 
 const mina = Mina({
     subsets: ["latin"],
@@ -32,12 +31,23 @@ const Email = () => {
         const monthlyDebt = parseInt(searchParams.get("MD") || "0");
 
         // event("Lead");
-        console.log("send_to", process.env.NEXT_PUBLIC_GOOGLE_TAG_SEND_TO);
-        sendGTMEvent({
-            event: "conversion",
-            send_to: process.env.NEXT_PUBLIC_GOOGLE_TAG_SEND_TO,
-            event_callback: () => {},
-        });
+
+        function gtag_report_conversion(url?: any) {
+            var callback = function () {
+                if (typeof url != "undefined") {
+                    window.location = url;
+                }
+            };
+            // @ts-ignore
+            gtag("event", "conversion", {
+                send_to: "AW-16532080367/-vxDCMTdm7YZEO-Njss9",
+                event_callback: callback,
+            });
+
+            return false;
+        }
+
+        gtag_report_conversion();
 
         fetch("/api/email", {
             cache: "no-store",
