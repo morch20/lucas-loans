@@ -32,6 +32,7 @@ const Email = () => {
         const monthlyDebt = parseInt(searchParams.get("MD") || "0");
 
         // event("Lead");
+        console.log("send_to", process.env.NEXT_PUBLIC_GOOGLE_TAG_SEND_TO);
         sendGTMEvent({
             event: "conversion",
             send_to: process.env.NEXT_PUBLIC_GOOGLE_TAG_SEND_TO,
