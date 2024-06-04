@@ -32,6 +32,8 @@ const Email = () => {
 
         // event("Lead");
 
+        // @ts-ignore
+        console.log("gtag", gtag);
         function gtag_report_conversion(url?: any) {
             var callback = function () {
                 if (typeof url != "undefined") {
@@ -40,10 +42,9 @@ const Email = () => {
             };
             // @ts-ignore
             gtag("event", "conversion", {
-                send_to: "AW-16532080367/-vxDCMTdm7YZEO-Njss9",
+                send_to: "AW-16532080367/nsqrCN_AzLYZEO-Njss9",
                 event_callback: callback,
             });
-
             return false;
         }
 
