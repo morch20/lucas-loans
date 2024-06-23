@@ -44,7 +44,7 @@ const Navbar = () => {
     return (
         <>
             {open && (
-                <div className="md:hidden fixed top-0 left-0 h-[100dvh] w-full bg-gray-500/50"></div>
+                <div className="lg:hidden fixed top-0 left-0 h-[100dvh] w-full bg-gray-500/50"></div>
             )}
             <nav className="bg-white relative w-full flex h-20 2xl:h-24 justify-center items-center">
                 <div className=" px-5 sm:px-7 container w-full h-full flex items-center">
@@ -68,7 +68,17 @@ const Navbar = () => {
                                 </p>
                             </div>
                         </Link>
-                        <ul className="hidden md:flex font-medium lg:text-lg T2xl:text-xl justify-between items-center max-w-sm w-2/5 2xl:max-w-md">
+                        <ul className="hidden md:flex font-medium lg:text-lg justify-between items-center max-w-sm w-2/5 lg:w-3/5 lg:max-w-xl">
+                            <CustomLink
+                                path="/how-to-buy-a-house-in-8-steps"
+                                onClick={() => handleClose()}
+                                className="my-4 shake2 hidden lg:flex w-fit gap-x-2 items-center nav__links__animation"
+                            >
+                                <FaHome size={25} className=" text-primary" />
+                                <Link href={"/how-to-buy-a-house-in-8-steps"}>
+                                    How to buy a house
+                                </Link>
+                            </CustomLink>
                             <CustomLink
                                 path="/calendar"
                                 onClick={() => handleClose()}
@@ -97,7 +107,7 @@ const Navbar = () => {
                                 </a>
                             </li>
                         </ul>
-                        <div ref={ignoreRef} className="md:hidden">
+                        <div ref={ignoreRef} className="lg:hidden">
                             <Sling
                                 toggle={(value) => handleClose(value)}
                                 toggled={open}
@@ -108,7 +118,7 @@ const Navbar = () => {
                     </div>
                 </div>
 
-                <div className=" md:hidden">
+                <div className=" lg:hidden">
                     {open && (
                         <div
                             ref={outsideClickRef}
@@ -119,6 +129,21 @@ const Navbar = () => {
                         >
                             <hr className="w-full h-[1px] bg-gray-300" />
                             <ul className="p-5 sm:p-7 text-lg container w-full">
+                                <CustomLink
+                                    path="/how-to-buy-a-house-in-8-steps"
+                                    onClick={() => handleClose()}
+                                    className="my-4 shake2 flex w-fit gap-x-2 items-center nav__links__animation"
+                                >
+                                    <FaHome
+                                        size={25}
+                                        className=" text-primary"
+                                    />
+                                    <Link
+                                        href={"/how-to-buy-a-house-in-8-steps"}
+                                    >
+                                        How to buy a house
+                                    </Link>
+                                </CustomLink>
                                 <CustomLink
                                     path="/calendar"
                                     onClick={() => handleClose()}
