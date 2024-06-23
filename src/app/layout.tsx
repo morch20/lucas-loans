@@ -15,15 +15,11 @@ export default function RootLayout({
 }: {
     children: React.ReactNode;
 }) {
-    console.log("ENV: ", process.env.GOOGLE_TAG_MANAGER_ID);
-
     return (
         <html lang="en">
             <body className="bg-[#eff4f7] text-tertiary w-full h-full flex flex-col items-center">
                 <Navbar />
-                <div className="container w-full h-full px-5 sm:px-7 overflow-x-clip">
-                    {children}
-                </div>
+                {children}
                 <Footer />
                 {/* <FacebookPixel /> */}
             </body>
