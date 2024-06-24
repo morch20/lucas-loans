@@ -3,6 +3,7 @@ import { LuHome } from "react-icons/lu";
 import Image from "next/image";
 import Step from "./components/Step";
 import { howToBuyAHouseSteps } from "@/utils/constants";
+import Link from "next/link";
 
 const mina = Mina({
     subsets: ["latin"],
@@ -45,7 +46,12 @@ export default function HowToBuyAHouse() {
                             significant investment. We&apos;re committed to
                             providing personalized service and expert advice at
                             every stage. Let&apos;s start turning your
-                            homeownership dreams into reality!
+                            homeownership dreams into reality! Start by checking
+                            out our{" "}
+                            <Link className=" text-blue-400" href={"/"}>
+                                Home Affordability Calculator
+                            </Link>
+                            .
                         </p>
                     </div>
                     <Image
@@ -70,7 +76,11 @@ export default function HowToBuyAHouse() {
                         At Lucas Loans, we&apos;re here to support you every
                         step of the way with personalized service and expert
                         advice. Let&apos;s make your home buying experience
-                        smooth and stress-free!
+                        smooth and stress-free! Start by checking out our{" "}
+                        <Link className=" text-blue-400" href={"/"}>
+                            Home Affordability Calculator
+                        </Link>
+                        .
                     </p>
                 </div>
             </div>
