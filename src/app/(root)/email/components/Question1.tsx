@@ -10,7 +10,7 @@ const mina = Mina({
 
 export default function Question1({ HACValue }: { HACValue: string }) {
     return (
-        <div className="h-[90dvh] w-full py-6 flex flex-col justify-between">
+        <div className="h-[80dvh] w-full py-6 flex flex-col justify-between">
             <div className="text-center ">
                 <h2 className={mina.className + " text-2xl sm:text-3xl"}>
                     Thank you for using our calculator!
