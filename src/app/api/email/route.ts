@@ -12,13 +12,13 @@ export const POST = async (req: NextRequest) => {
         const name = body.name;
         const email = body.email;
         const phone = "+1 " + body.phone;
-        const { AN, MI, MD } = body;
+        const { AN, MI, MD, tags } = body;
 
         const newCS = generateCreditScoreTags(creditScore);
 
         await connectToDB();
         const token = await Token.findOne();
-        console.log(token)
+        console.log(token);
         let fetchingAccessToken = token.accessToken;
 
         const date = new Date(token.created);
@@ -51,11 +51,11 @@ export const POST = async (req: NextRequest) => {
                 Version: "2021-07-28",
             },
             body: JSON.stringify({
-                "locationId": process.env.LOCATION_ID,
+                locationId: process.env.LOCATION_ID,
                 name,
                 email,
                 phone,
-                tags: ["Max Affordability", newCS],
+                tags: ["Max Affordability", newCS, ...tags],
                 customFields: [
                     {
                         id: "Q2V4KRcnsmEgNlAYBVS6",
