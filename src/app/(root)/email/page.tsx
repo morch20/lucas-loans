@@ -23,7 +23,6 @@ export default function Email({
 }: {
     searchParams: SearchParams;
 }) {
-    console.log(searchParams);
     let MI = searchParams["MI"];
     let MD = searchParams["MD"];
     let DP = searchParams["DP"];
