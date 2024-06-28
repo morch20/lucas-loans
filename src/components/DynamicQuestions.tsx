@@ -8,19 +8,19 @@ import { values } from "@/utils/constants";
 const DynamicQuestions = ({
     buttonsTop = false,
     className = "",
-    strict = true
+    strict = true,
 }) => {
-
     const router = useRouter();
 
     const handleFinalStep = async (inputStates: IState[]) => {
-        let queries = '?';
+        let queries = "?";
         values.forEach((i: IQuestion, index: number) => {
-            if(index > 0) queries += "&"
-            queries += `${i.value}=${inputStates[index].state.split(",").join("")}`;
+            if (index > 0) queries += "&";
+            queries += `${i.value}=${inputStates[index].state
+                .split(",")
+                .join("")}`;
         });
-        console.log(queries)
-        router.push('/email' + queries);
+        router.push("/email" + queries);
     };
 
     const generateAnimationsStates = (): IAnimationNode[] => {
@@ -37,8 +37,7 @@ const DynamicQuestions = ({
                     value: { state, setState },
                     child: null,
                 });
-            } 
-            else {
+            } else {
                 if (index < values.length) {
                     animations[index - 1].child = { state, setState };
                 }
@@ -84,7 +83,6 @@ const DynamicQuestions = ({
                     buttonsTop={buttonsTop}
                     currentIndex={{ state, setState }}
                     limit={i?.limit}
-
                 />
             ))}
         </>

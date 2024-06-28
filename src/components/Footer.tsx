@@ -21,29 +21,45 @@ const Footer = () => {
                 <div className="text-center w-80">
                     <h3 className="text-xl font-medium ">About Us</h3>
                     <div className="my-4 flex flex-col gap-y-2 text-gray-300">
-                        <p>
-                            For numerous years, we{"'"}ve been assisting clients
-                            in realizing their aspirations of owning their ideal
-                            homes, and we are passionate about our work.
+                        <p className="text-sm">
+                            At Lucas Loans, we understand that buying a home is
+                            one of your most significant decisions. Unlike big
+                            corporations, we offer a personalized touch with our
+                            team of dedicated mortgage experts who genuinely
+                            care about your journey. We are a faith based
+                            organization and we are here to support you every
+                            step of the way with personalized service and expert
+                            advice. Let&#39;s make your home-buying experience
+                            smooth and stress-free!
                         </p>
                         <p>Company NMLS: 2556582</p>
+                        <a
+                            href="https://www.nmlsconsumeraccess.org"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-blue-400"
+                        >
+                            www.nmlsconsumeraccess.org
+                        </a>
                     </div>
                 </div>
 
                 <div className="text-center w-80">
                     <h3 className="text-xl font-medium ">Contact Us</h3>
                     <div className="my-2 flex flex-col gap-y-2 text-gray-300">
-                        <p>Individual NMLS: 2171747</p>
-                        <p>32543 Hawks lake ln, Sorrento FL, 32776</p>
-                        <p>954-495-6135</p>
-                        <a
-                            className="text-blue-400"
-                            href="mailto:lucas@lucas-loans.com"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            lucas@lucas-loans.com
-                        </a>
+                        <p>104 Angel Lane Panama City Beach, Fl 32407</p>
+                        <p>Phone: 833-954-1998</p>
+                        <div>
+                            <span>Email: </span>
+                            <a
+                                className="text-blue-400"
+                                href="mailto:lucas@lucas-loans.com"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                lucas@lucas-loans.com
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -62,7 +78,27 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className="text-center w-80">
+                <div className="text-center w-80 2xl:hidden">
+                    <div className="flex justify-around items-center">
+                        <a
+                            href="https://www.instagram.com/lucasloans/"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            <FaInstagram size={50} className="text-[#d03f77]" />
+                        </a>
+                        <Image
+                            src={"/equalhousing.png"}
+                            alt="Equal Housing Lender"
+                            width={50}
+                            height={50}
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div className="w-full container p-5 hidden 2xl:block">
+                <div className="text-center w-80 mx-auto">
                     <div className="flex justify-around items-center">
                         <a
                             href="https://www.instagram.com/lucasloans/"
