@@ -81,13 +81,12 @@ export default function Question11({
                         monthlyIncome,
                         monthlyDebt,
                         downPayment,
-                        name,
                         email,
                         phone,
+                        name,
                         tags
                     );
 
-                    console.log(tags);
                     return true;
                 }
 
