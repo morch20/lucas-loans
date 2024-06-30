@@ -7,7 +7,7 @@ import GoogleTag from "@/components/GoogleTag";
 export const metadata: Metadata = {
     title: "Lucas Loans",
     description:
-        "Home Affordability Calculator. Find out how much house you can afford.",
+        "Pre-approval Calculator. Find out how much house you can afford.",
 };
 
 export default function RootLayout({

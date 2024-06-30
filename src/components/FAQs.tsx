@@ -11,7 +11,7 @@ export default function FAQs() {
         <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1" className={accordionItemClass}>
                 <AccordionTrigger>
-                    1. How does the Home Affordability Calculator work?
+                    1. How does the Pre-Approval Calculator work?
                 </AccordionTrigger>
                 <AccordionContent>
                     <p>

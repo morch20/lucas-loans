@@ -27,7 +27,7 @@ export default function Home() {
                                 " text-2xl lg:text-3xl 2xl:text-4xl"
                             }
                         >
-                            Home Affordability Calculator
+                            Pre-approval Calculator
                         </h2>
                         <h3
                             className={

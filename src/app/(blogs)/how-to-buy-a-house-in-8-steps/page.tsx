@@ -49,7 +49,7 @@ export default function HowToBuyAHouse() {
                             homeownership dreams into reality! Start by checking
                             out our{" "}
                             <Link className=" text-blue-400" href={"/"}>
-                                Home Affordability Calculator
+                                Pre-approval Calculator
                             </Link>
                             .
                         </p>
@@ -78,7 +78,7 @@ export default function HowToBuyAHouse() {
                         advice. Let&apos;s make your home buying experience
                         smooth and stress-free! Start by checking out our{" "}
                         <Link className=" text-blue-400" href={"/"}>
-                            Home Affordability Calculator
+                            Pre-approval Calculator
                         </Link>
                         .
                     </p>
