@@ -24,13 +24,23 @@ export default function Question10() {
 
     useEffect(() => {
         dispatch({
+            type: "setIndex",
+            keyword: "10",
+            validation: (validationValue: string) => {
+                return validateEmail(validationValue);
+            },
+            validationValues: value || "",
+        });
+    }, []);
+
+    useEffect(() => {
+        dispatch({
             type: "changeValidationValues",
             keyword: "10",
-            validation: (args: any[]) => {
-                if (typeof args[0] !== "string") return false;
-                return validateEmail(args[0]);
+            validation: (validationValue: string) => {
+                return validateEmail(validationValue);
             },
-            validationValues: [value],
+            validationValues: value || "",
         });
     }, [dispatch, value]);
 

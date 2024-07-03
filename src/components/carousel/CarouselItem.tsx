@@ -7,18 +7,25 @@ import { useCarouselContext } from "./Carousel";
 export type CarouselItemProps = {
     keyword: string;
     children: React.ReactNode;
+    server?: boolean;
 };
 
-export default function CarouselItem({ keyword, children }: CarouselItemProps) {
+export default function CarouselItem({
+    keyword,
+    children,
+    server = false,
+}: CarouselItemProps) {
     const { state, dispatch } = useCarouselContext();
 
     useEffect(() => {
-        dispatch({
-            type: "setIndex",
-            key: keyword,
-            validation: () => true,
-            validationValues: [],
-        });
+        if (server) {
+            dispatch({
+                type: "setIndex",
+                keyword,
+                validation: () => true,
+                validationValues: "",
+            });
+        }
     }, []);
 
     return (

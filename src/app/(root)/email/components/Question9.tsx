@@ -23,13 +23,23 @@ export default function Question9() {
 
     useEffect(() => {
         dispatch({
+            type: "setIndex",
+            keyword: "9",
+            validation: (validationValue: string) => {
+                return validateName(validationValue);
+            },
+            validationValues: value || "",
+        });
+    }, []);
+
+    useEffect(() => {
+        dispatch({
             type: "changeValidationValues",
             keyword: "9",
-            validation: (args: any[]) => {
-                if (typeof args[0] !== "string") return false;
-                return validateName(args[0]);
+            validation: (validationValue: string) => {
+                return validateName(validationValue);
             },
-            validationValues: [value],
+            validationValues: value || "",
         });
     }, [dispatch, value]);
 

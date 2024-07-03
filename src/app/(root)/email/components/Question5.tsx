@@ -25,12 +25,23 @@ export default function Question5() {
 
     useEffect(() => {
         dispatch({
+            type: "setIndex",
+            keyword: "5",
+            validation: (validationValue: string) => {
+                return validationValue ? true : false;
+            },
+            validationValues: value || "",
+        });
+    }, []);
+
+    useEffect(() => {
+        dispatch({
             type: "changeValidationValues",
             keyword: "5",
-            validation: (args: any[]) => {
-                return typeof args[0] === "string";
+            validation: (validationValue: string) => {
+                return validationValue ? true : false;
             },
-            validationValues: [value],
+            validationValues: value || "",
         });
     }, [dispatch, value]);
 

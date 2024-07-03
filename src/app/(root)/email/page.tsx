@@ -45,7 +45,7 @@ export default function Email({
                 <Carousel>
                     <ProgressBar />
                     <CarouselContent className="h-full flex-auto">
-                        <CarouselItem keyword="1">
+                        <CarouselItem keyword="1" server>
                             <Question1
                                 HACValue={calculate(
                                     parseInt(MI || "0"),

@@ -21,12 +21,23 @@ export default function Question8() {
 
     useEffect(() => {
         dispatch({
+            type: "setIndex",
+            keyword: "8",
+            validation: (validationValue: string) => {
+                return validationValue ? true : false;
+            },
+            validationValues: value || "",
+        });
+    }, []);
+
+    useEffect(() => {
+        dispatch({
             type: "changeValidationValues",
             keyword: "8",
-            validation: (args: any[]) => {
-                return typeof args[0] === "string";
+            validation: (validationValue: string) => {
+                return validationValue ? true : false;
             },
-            validationValues: [value],
+            validationValues: value || "",
         });
     }, [dispatch, value]);
 
