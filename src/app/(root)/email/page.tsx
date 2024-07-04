@@ -87,7 +87,7 @@ export default function Email({
                                 creditScore={parseInt(CS || "0")}
                             />
                         </CarouselItem>
-                        <CarouselItem keyword="12">
+                        <CarouselItem keyword="12" server>
                             <ThankYou />
                         </CarouselItem>
                     </CarouselContent>

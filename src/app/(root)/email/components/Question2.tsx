@@ -24,7 +24,6 @@ export default function Question2() {
             type: "setIndex",
             keyword: "2",
             validation: (validationValue: string) => {
-                console.log(validationValue);
                 return validationValue ? true : false;
             },
             validationValues: value || "",
@@ -36,7 +35,6 @@ export default function Question2() {
             type: "changeValidationValues",
             keyword: "2",
             validation: (validationValue: string) => {
-                console.log(validationValue);
                 return validationValue ? true : false;
             },
             validationValues: value || "",
