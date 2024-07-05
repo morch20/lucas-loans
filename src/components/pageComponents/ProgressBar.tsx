@@ -5,7 +5,7 @@ import { Progress } from "@/components/ui/Progress";
 
 export default function ProgressBar() {
     const { state } = useCarouselContext();
-    const percent = Math.floor(((state.currentIndex + 5) / 15) * 100);
+    const percent = Math.floor((state.currentIndex / 15) * 100);
 
     return (
         <div className=" flex items-center w-5/6 max-w-3xl mx-auto">

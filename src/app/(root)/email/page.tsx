@@ -45,7 +45,7 @@ export default function Email({
                 <Carousel>
                     <ProgressBar />
                     <CarouselContent className="h-full flex-auto">
-                        <CarouselItem keyword="1">
+                        <CarouselItem keyword="1" server>
                             <Question1
                                 HACValue={calculate(
                                     parseInt(MI || "0"),
@@ -87,7 +87,7 @@ export default function Email({
                                 creditScore={parseInt(CS || "0")}
                             />
                         </CarouselItem>
-                        <CarouselItem keyword="12">
+                        <CarouselItem keyword="12" server>
                             <ThankYou />
                         </CarouselItem>
                     </CarouselContent>

@@ -3,9 +3,8 @@
 import { useEffect, useState } from "react";
 import { CarouselBack, CarouselNext } from "@/components/carousel";
 import { Mina } from "next/font/google";
-import { cn } from "@/utils/functions";
+import { cn, isNumeric } from "@/utils/functions";
 import { useCarouselContext } from "@/components/carousel/Carousel";
-import SelectButton from "./SelectButton";
 
 const mina = Mina({
     subsets: ["latin"],
@@ -13,18 +12,21 @@ const mina = Mina({
     variable: "--font-mina",
 });
 
-type Value = "Yes" | "No";
-
-export default function Question6() {
-    const [value, setValue] = useState<Value>();
+export default function Question4() {
+    const [value, setValue] = useState("");
     const { dispatch } = useCarouselContext();
+
+    const handleValidation = (val: string) => {
+        if (!val || val === "0") return false;
+        return true;
+    };
 
     useEffect(() => {
         dispatch({
             type: "setIndex",
-            keyword: "6",
+            keyword: "4",
             validation: (validationValue: string) => {
-                return validationValue ? true : false;
+                return handleValidation(validationValue);
             },
             validationValues: value || "",
         });
@@ -33,40 +35,55 @@ export default function Question6() {
     useEffect(() => {
         dispatch({
             type: "changeValidationValues",
-            keyword: "6",
+            keyword: "4",
             validation: (validationValue: string) => {
-                return validationValue ? true : false;
+                return handleValidation(validationValue);
             },
             validationValues: value || "",
         });
     }, [dispatch, value]);
 
-    const handleClick = (newValue: Value) => {
-        setValue(newValue);
-    };
-
     return (
         <div className="w-full h-[90dvh] py-6 flex flex-col items-center justify-between ">
             <div className="text-center ">
                 <h2 className={mina.className + " text-2xl sm:text-3xl"}>
-                    Are you currently working with a realtor?
+                    Estimated Credit score
                 </h2>
+                <h4 className={" text-xl xl:text-2xl"}>300-850</h4>
             </div>
 
             <div className="flex flex-col items-center md:justify-center md:flex-row gap-5 md:gap-10 w-full">
-                <SelectButton<Value>
-                    handleClick={() => handleClick("Yes")}
-                    value="Yes"
-                    selected={value === "Yes"}
-                    lordIcon="https://cdn.lordicon.com/xzybfbcm.json"
-                    lordIconClassName="rotate-180"
+                <lord-icon
+                    src="https://cdn.lordicon.com/ofdfurqa.json"
+                    trigger="hover"
+                    colors="primary:#073944,secondary:#1560bd"
+                    class="w-20 h-20 md:w-28 md:h-28"
                 />
-                <SelectButton<Value>
-                    handleClick={() => handleClick("No")}
-                    value="No"
-                    selected={value === "No"}
-                    lordIcon="https://cdn.lordicon.com/xzybfbcm.json"
-                />
+                <div className="w-full max-w-xs">
+                    <input
+                        id="CS"
+                        type="tel"
+                        className=" outline-none w-full max-w-xs rounded p-2 border bg-white focus:outline-primary"
+                        placeholder="Enter credit score..."
+                        value={value}
+                        // onKeyDownCapture={(e) => {
+                        //     if (e.key === "Enter") handleNext();
+                        // }}
+                        onChange={(e) => {
+                            if (e.target.value === "") {
+                                setValue("0");
+                                return;
+                            }
+
+                            if (e.target.value.length > 8) return;
+                            let value = e.target.value.replaceAll(",", "");
+                            if (!isNumeric(value)) return;
+                            const newValue = parseInt(value);
+                            if (newValue > 850) return;
+                            setValue(newValue.toLocaleString());
+                        }}
+                    />
+                </div>
             </div>
 
             <div className="flex items-center justify-around w-full max-w-sm">

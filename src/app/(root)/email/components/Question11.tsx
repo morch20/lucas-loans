@@ -45,36 +45,27 @@ export default function Question11({
 
     useEffect(() => {
         dispatch({
-            type: "changeValidationValues",
+            type: "setIndex",
             keyword: "11",
-            validation: (args: any[]) => {
-                if (typeof args[0] !== "string") return false;
-                if (validatePhoneNumber(args[0])) {
+            validation: (validationValue: string) => {
+                if (validatePhoneNumber(validationValue)) {
                     const tags: string[] = [];
 
                     // TODO: improve this hardcoded code
                     tags.push(
-                        `First time home buyer: ${state.keys[1].validationValues.join(
-                            "-"
-                        )}`
+                        `First time home buyer: ${state.keys[1].validationValues}`
                     );
-                    tags.push(state.keys[2].validationValues.join("-"));
-                    tags.push(state.keys[3].validationValues.join("-"));
+                    tags.push(state.keys[2].validationValues);
+                    tags.push(state.keys[3].validationValues);
+                    tags.push(`Has realtor: ${state.keys[4].validationValues}`);
+                    tags.push(state.keys[5].validationValues);
                     tags.push(
-                        `Has realtor: ${state.keys[4].validationValues.join(
-                            "-"
-                        )}`
-                    );
-                    tags.push(state.keys[5].validationValues.join("-"));
-                    tags.push(
-                        `Bankruptcy in 3 last 3 years: ${state.keys[6].validationValues.join(
-                            "-"
-                        )}`
+                        `Bankruptcy in 3 last 3 years: ${state.keys[6].validationValues}`
                     );
 
-                    const name = state.keys[7].validationValues.join("-");
-                    const email = state.keys[8].validationValues.join("-");
-                    const phone = state.keys[9].validationValues.join("-");
+                    const name = state.keys[7].validationValues;
+                    const email = state.keys[8].validationValues;
+                    const phone = state.keys[9].validationValues;
 
                     mainService(
                         creditScore,
@@ -92,7 +83,51 @@ export default function Question11({
 
                 return false;
             },
-            validationValues: [value],
+            validationValues: value,
+        });
+    }, []);
+
+    useEffect(() => {
+        dispatch({
+            type: "changeValidationValues",
+            keyword: "11",
+            validation: (validationValue: string) => {
+                if (validatePhoneNumber(validationValue)) {
+                    const tags: string[] = [];
+
+                    // TODO: improve this hardcoded code
+                    tags.push(
+                        `First time home buyer: ${state.keys[1].validationValues}`
+                    );
+                    tags.push(state.keys[2].validationValues);
+                    tags.push(state.keys[3].validationValues);
+                    tags.push(`Has realtor: ${state.keys[4].validationValues}`);
+                    tags.push(state.keys[5].validationValues);
+                    tags.push(
+                        `Bankruptcy in 3 last 3 years: ${state.keys[6].validationValues}`
+                    );
+
+                    const name = state.keys[7].validationValues;
+                    const email = state.keys[8].validationValues;
+                    const phone = state.keys[9].validationValues;
+
+                    mainService(
+                        creditScore,
+                        monthlyIncome,
+                        monthlyDebt,
+                        downPayment,
+                        email,
+                        phone,
+                        name,
+                        tags
+                    );
+
+                    return true;
+                }
+
+                return false;
+            },
+            validationValues: value,
         });
     }, [dispatch, value]);
 

@@ -11,8 +11,8 @@ import {
 type State = {
     keys: {
         key: string;
-        validationValues: any[];
-        validation: (args: any[]) => boolean;
+        validationValues: string;
+        validation: (validationValue: string) => boolean;
     }[];
     currentIndex: number;
 };
@@ -22,15 +22,15 @@ type Action =
     | { type: "decrement" }
     | {
           type: "setIndex";
-          key: string;
-          validation: () => boolean;
-          validationValues: any[];
+          keyword: string;
+          validation: (validationValue: string) => boolean;
+          validationValues: string;
       }
     | {
           type: "changeValidationValues";
           keyword: string;
-          validation: (args: any[]) => boolean;
-          validationValues: any[];
+          validation: (validationValue: string) => boolean;
+          validationValues: string;
       };
 
 type CarouselContextType = {
@@ -60,10 +60,10 @@ const reducer = (state: State, action: Action): State => {
 
         case "setIndex":
             // if (state.currentIndex > 0) return state;
-            if (state.keys.find((current) => current.key === action.key)) {
+            if (state.keys.find((current) => current.key === action.keyword)) {
                 console.warn(
                     "Key '" +
-                        action.key +
+                        action.keyword +
                         "' already exists.\n If all your keys are unique, you can ignore this warning in development."
                 );
                 return state;
@@ -71,7 +71,7 @@ const reducer = (state: State, action: Action): State => {
 
             const setIndexKeys = state.keys;
             setIndexKeys.push({
-                key: action.key,
+                key: action.keyword,
                 validation: action.validation,
                 validationValues: action.validationValues,
             });
