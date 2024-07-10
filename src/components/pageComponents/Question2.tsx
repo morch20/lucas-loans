@@ -13,6 +13,7 @@ const mina = Mina({
 });
 
 export default function Question2() {
+    const [isInputFocused, setIsInputFocused] = useState(false);
     const [value, setValue] = useState("");
     const { dispatch } = useCarouselContext();
 
@@ -44,7 +45,15 @@ export default function Question2() {
     }, [dispatch, value]);
 
     return (
-        <div className="w-full h-[90dvh] py-6 flex flex-col items-center justify-between ">
+        <div
+            className={cn(
+                "w-full h-[90dvh] py-6 flex flex-col items-center sm:justify-between",
+                {
+                    " justify-between to-between": !isInputFocused,
+                    " to-normal": isInputFocused,
+                }
+            )}
+        >
             <div className="text-center ">
                 <h2 className={mina.className + " text-2xl sm:text-3xl"}>
                     Monthly income before taxes
@@ -63,6 +72,8 @@ export default function Question2() {
                 />
                 <div className="w-full max-w-xs">
                     <input
+                        onFocus={() => setIsInputFocused(true)}
+                        onBlur={() => setIsInputFocused(false)}
                         id="MI"
                         type="tel"
                         className=" outline-none w-full max-w-xs rounded p-2 border bg-white focus:outline-primary"
