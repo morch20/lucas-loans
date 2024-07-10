@@ -58,7 +58,7 @@ export default function Question2() {
                 <h2 className={mina.className + " text-2xl sm:text-3xl"}>
                     Monthly income before taxes
                 </h2>
-                <h4 className={" text-xl xl:text-2xl"}>
+                <h4 className={"text-lg sm:text-xl xl:text-2xl"}>
                     Please put in the amount you make per month before taxes.
                 </h4>
             </div>
