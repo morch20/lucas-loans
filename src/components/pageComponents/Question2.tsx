@@ -70,7 +70,7 @@ export default function Question2() {
                     colors="primary:#073944,secondary:#1560bd"
                     class="w-20 h-20 md:w-28 md:h-28"
                 />
-                <div className="w-full max-w-xs">
+                <div className="w-full max-w-xs mb-6 sm:mb-0">
                     <input
                         onFocus={() => setIsInputFocused(true)}
                         onBlur={() => setIsInputFocused(false)}
