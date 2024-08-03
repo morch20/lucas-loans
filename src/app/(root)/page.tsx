@@ -51,19 +51,11 @@ export default function Home() {
                             Effortlessly find your Home-Buying Power in under 60
                             seconds.
                         </h2>
-                        <p
-                            className={
-                                "text-sm lg:text-base xl:text-lg mx-auto xl:w-3/4 "
-                            }
-                        >
+                        <p className={" lg:text-lg mx-auto xl:w-3/4 "}>
                             Instantly know how much you can afford. We will find
                             the best rates from our trusted partners risk free.
                         </p>
-                        <p
-                            className={
-                                "text-sm lg:text-base xl:text-lg font-semibold"
-                            }
-                        >
+                        <p className={" lg:text-lg font-semibold"}>
                             We guarantee it.
                         </p>
                     </div>
