@@ -1,15 +1,10 @@
-// import DynamicQuestions from "@/components/DynamicQuestions";
 import FAQs from "@/components/FAQs";
-import { Carousel, CarouselContent, CarouselItem } from "@/components/carousel";
-import ProgressBar from "@/components/pageComponents/ProgressBar";
-import Question1 from "@/components/pageComponents/Question1";
-import Question2 from "@/components/pageComponents/Question2";
-import Question3 from "@/components/pageComponents/Question3";
-import { Mina, Roboto } from "next/font/google";
+import { Mina } from "next/font/google";
 import Image from "next/image";
-import Script from "next/script";
-import Question4 from "@/components/pageComponents/Question4";
-import Question5 from "@/components/pageComponents/Question5";
+import InfiniteCarousel from "@/components/infiniteCarousel/InfiniteCarousel";
+import { EmblaOptionsType } from "embla-carousel";
+import { Progress } from "@/components/ui/Progress";
+import Link from "next/link";
 
 const mina = Mina({
     subsets: ["latin"],
@@ -17,82 +12,85 @@ const mina = Mina({
     variable: "--font-mina",
 });
 
-const roboto = Roboto({
-    subsets: ["latin"],
-    weight: "500",
-    variable: "--font-roboto",
-});
-
 export default function Home() {
+    const OPTIONS: EmblaOptionsType = { loop: true, align: "start" };
+    const SLIDES = [
+        "lending-logo.webp",
+        "rocket-mortgage-review.png",
+        "penny mac logo.jpeg",
+        "united-wholesale-mortgage.png",
+        "visio lending.jpeg",
+    ];
+
     return (
         <>
-            <Script src="https://cdn.lordicon.com/lordicon.js" />
             <main className=" w-full h-full ">
-                {/* <div className="w-full min-h-[90dvh] h-full flex flex-col md:items-stretch md:py-6 md:flex-row md:justify-between">
-                    <header className="max-h-[40rem] flex flex-col items-center md:justify-between md:w-2/5 my-4 md:my-0 h-1/5 md:h-auto left-to-middle">
-                        <div className="text-center">
-                            <h2
-                                className={
-                                    mina.className +
-                                    " text-2xl lg:text-3xl 2xl:text-4xl"
-                                }
-                            >
-                                Pre-approval Calculator
-                            </h2>
-                            <h3
-                                className={
-                                    roboto.className +
-                                    " md:text-xl 2xl:text-2xl mt-2 sm:mt-4"
-                                }
-                            >
-                                Find out your purchase power in 4 simple steps.
-                            </h3>
-                            <h3
-                                className={
-                                    roboto.className + " md:text-xl 2xl:text-2xl"
-                                }
-                            >
-                                For the most accurate results, please answer
-                                honestly.
-                            </h3>
-                        </div>
-
-                        <Image
-                            src={"/logo.svg"}
-                            alt="logo"
-                            width={50}
-                            height={50}
-                            className=" shadow-lg hidden md:block w-44 h-44 lg:w-52 lg:h-52 xl:w-64 xl:h-64 2xl:w-72 2xl:h-72 rounded-full"
-                        />
-                    </header>
-                    <DynamicQuestions
-                        buttonsTop
-                        className="bg-white my-2 flex-col items-center justify-around flex h-full flex-auto rounded-md shadow-md"
+                <div className=" flex items-center w-5/6 max-w-3xl mx-auto">
+                    <Progress
+                        value={0}
+                        className="w-full h-2 bg-white border"
                     />
-                </div> */}
-                <div className=" min-h-[90dvh] h-full flex flex-col items-stretch">
-                    <Carousel>
-                        <ProgressBar />
-                        <CarouselContent>
-                            <CarouselItem keyword="1" server>
-                                <Question1 />
-                            </CarouselItem>
-                            <CarouselItem keyword="2">
-                                <Question2 />
-                            </CarouselItem>
-                            <CarouselItem keyword="3">
-                                <Question3 />
-                            </CarouselItem>
-                            <CarouselItem keyword="4">
-                                <Question4 />
-                            </CarouselItem>
-                            <CarouselItem keyword="5">
-                                <Question5 />
-                            </CarouselItem>
-                        </CarouselContent>
-                    </Carousel>
+                    <p className=" text-sm ml-2">0%</p>
                 </div>
-                <div className="my-12 flex justify-between">
+                <div className="h-[85dvh] w-full pt-2 flex flex-col justify-between container mx-auto px-5 sm:px-7">
+                    <div className="text-center ">
+                        <h2
+                            className={mina.className + " text-2xl sm:text-3xl"}
+                        >
+                            Effortlessly find your Home-Buying Power in under 60
+                            seconds.
+                        </h2>
+                        <p
+                            className={
+                                "text-sm lg:text-base xl:text-lg mx-auto xl:w-3/4 "
+                            }
+                        >
+                            Instantly know how much you can afford with our
+                            easy-to-use-calculator. We will find you the best
+                            options and rates from trusted lending partners,
+                            risk free.
+                        </p>
+                        <p
+                            className={
+                                "text-sm lg:text-base xl:text-lg font-semibold"
+                            }
+                        >
+                            We guarantee it.
+                        </p>
+                    </div>
+
+                    <video
+                        controls
+                        className=" rounded shadow-md h-[10rem] md:h-[14rem] 2xl:h-[20rem] mx-auto bg-black"
+                    >
+                        <source src="/lucasVideo.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+
+                    <div className="text-center">
+                        <Link
+                            href={"/email"}
+                            className="bg-primary max-w-xs w-full text-white text-lg px-4 py-2 rounded-md shadow-md"
+                        >
+                            Calculate Now!
+                        </Link>
+                        <p className="text-xs mt-2 text-gray-500">
+                            Your info is private and stays with us
+                        </p>
+                    </div>
+                </div>
+                <div className="w-full h-full bg-white my-12">
+                    <h2
+                        className={
+                            mina.className +
+                            " container mx-auto px-5 sm:px-7 pt-5 text-2xl sm:text-3xl text-center"
+                        }
+                    >
+                        Our Partners
+                    </h2>
+                    <InfiniteCarousel slides={SLIDES} options={OPTIONS} />
+                </div>
+                <div className="my-12 flex justify-between container mx-auto px-5 sm:px-7">
                     <div className="w-full lg:w-[60%]">
                         <h2
                             className={
@@ -113,6 +111,18 @@ export default function Home() {
                             className=" mx-auto max-w-[18rem] w-full h-auto shadow-lg rounded-full"
                         />
                     </div>
+                </div>
+
+                <div className="text-center">
+                    <Link
+                        href={"/email"}
+                        className="bg-primary max-w-xs w-full text-white text-lg px-4 py-2 rounded-md shadow-md"
+                    >
+                        Calculate Now!
+                    </Link>
+                    <p className="text-xs mt-2 text-gray-500">
+                        Your info is private and stays with us
+                    </p>
                 </div>
             </main>
         </>
