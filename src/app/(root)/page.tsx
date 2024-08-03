@@ -37,8 +37,12 @@ export default function Home() {
                         <h2
                             className={mina.className + " text-2xl sm:text-3xl"}
                         >
-                            Effortlessly find your Home-Buying Power in under 60
-                            seconds.
+                            Effortlessly find your Home-Buying Power
+                        </h2>
+                        <h2
+                            className={mina.className + " text-2xl sm:text-3xl"}
+                        >
+                            in under 60 seconds.
                         </h2>
                         <p
                             className={
