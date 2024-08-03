@@ -34,21 +34,30 @@ export default function Home() {
                 </div>
                 <div className="h-[85dvh] w-full pt-2 flex flex-col justify-between container mx-auto px-5 sm:px-7">
                     <div className="text-center ">
-                        <h2 className={mina.className + " text-4xl"}>
-                            Effortlessly find your Home-Buying Power
+                        <h2 className={mina.className + " text-3xl sm:hidden"}>
+                            Effortlessly find your
                         </h2>
-                        <h2 className={mina.className + " text-4xl"}>
+                        <h2 className={mina.className + " text-3xl sm:hidden"}>
+                            Home-Buying Power
+                        </h2>
+                        <h2 className={mina.className + " text-3xl sm:hidden"}>
                             in under 60 seconds.
+                        </h2>
+                        <h2
+                            className={
+                                mina.className + " hidden sm:block text-3xl"
+                            }
+                        >
+                            Effortlessly find your Home-Buying Power in under 60
+                            seconds.
                         </h2>
                         <p
                             className={
                                 "text-sm lg:text-base xl:text-lg mx-auto xl:w-3/4 "
                             }
                         >
-                            Instantly know how much you can afford with our
-                            easy-to-use-calculator. We will find you the best
-                            options and rates from trusted lending partners,
-                            risk free.
+                            Instantly know how much you can afford. We will find
+                            the best rates from our trusted partners risk free.
                         </p>
                         <p
                             className={
