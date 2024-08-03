@@ -50,12 +50,6 @@
     padding-left: var(--slide-spacing);
 }
 
-html,
-body {
-    -webkit-overflow-scrolling: touch !important;
-    overflow: auto !important;
-}
-
 .nav__links__animation {
     position: relative;
 }

@@ -53,39 +53,38 @@ export default function Question1() {
                 <h4 className={"text-lg sm:text-xl xl:text-2xl"}>
                     Please put in the amount you make per month before taxes.
                 </h4>
-            </div>
-
-            <div className="flex flex-col items-center md:justify-center md:flex-row gap-5 md:gap-10 w-full">
-                <lord-icon
-                    src="https://cdn.lordicon.com/wyqtxzeh.json"
-                    trigger="hover"
-                    colors="primary:#073944,secondary:#1560bd"
-                    class="w-20 h-20 md:w-28 md:h-28"
-                />
-                <div className="w-full max-w-xs mb-6 sm:mb-0">
-                    <input
-                        id="MI"
-                        type="tel"
-                        className=" outline-none w-full max-w-xs rounded p-2 border bg-white focus:outline-primary"
-                        placeholder="Enter your monthly income..."
-                        value={value}
-                        // onKeyDownCapture={(e) => {
-                        //     if (e.key === "Enter") handleNext();
-                        // }}
-                        onChange={(e) => {
-                            if (e.target.value === "") {
-                                setValue("0");
-                                return;
-                            }
-
-                            if (e.target.value.length > 8) return;
-                            let value = e.target.value.replaceAll(",", "");
-                            if (!isNumeric(value)) return;
-                            const newValue = parseInt(value);
-                            // if (limit && newValue > 850) return;
-                            setValue(newValue.toLocaleString());
-                        }}
+                <div className="flex mt-5 flex-col items-center md:justify-center md:flex-row gap-5 md:gap-10 w-full">
+                    <lord-icon
+                        src="https://cdn.lordicon.com/wyqtxzeh.json"
+                        trigger="hover"
+                        colors="primary:#073944,secondary:#1560bd"
+                        class="w-20 h-20 md:w-28 md:h-28"
                     />
+                    <div className="w-full max-w-xs mb-6 sm:mb-0">
+                        <input
+                            id="MI"
+                            type="tel"
+                            className=" outline-none w-full max-w-xs rounded p-2 border bg-white focus:outline-primary"
+                            placeholder="Enter your monthly income..."
+                            value={value}
+                            // onKeyDownCapture={(e) => {
+                            //     if (e.key === "Enter") handleNext();
+                            // }}
+                            onChange={(e) => {
+                                if (e.target.value === "") {
+                                    setValue("0");
+                                    return;
+                                }
+
+                                if (e.target.value.length > 8) return;
+                                let value = e.target.value.replaceAll(",", "");
+                                if (!isNumeric(value)) return;
+                                const newValue = parseInt(value);
+                                // if (limit && newValue > 850) return;
+                                setValue(newValue.toLocaleString());
+                            }}
+                        />
+                    </div>
                 </div>
             </div>
 
