@@ -50,8 +50,10 @@
     padding-left: var(--slide-spacing);
 }
 
-input {
-    pointer-events: auto !important;
+html,
+body {
+    -webkit-overflow-scrolling: touch !important;
+    overflow: auto !important;
 }
 
 .nav__links__animation {
