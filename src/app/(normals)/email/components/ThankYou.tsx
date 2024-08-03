@@ -44,37 +44,27 @@ export default function ThankYou() {
     return (
         <div className="w-full h-[90dvh] py-6 flex flex-col items-center justify-between ">
             <div className="text-center ">
-                <h2 className={mina.className + " text-2xl sm:text-3xl"}>
+                <h2 className={mina.className + " text-3xl"}>
                     You can afford up to:
                 </h2>
-                <h2 className={mina.className + " text-2xl sm:text-3xl"}>
-                    {number}
-                </h2>
+                <h2 className={mina.className + " text-3xl"}>{number}</h2>
                 {/* <h3 className="text-xl sm:text-2xl mb-6">
                     Thank you for using our calculator!
                 </h3> */}
-                <p
-                    className={
-                        "text-sm lg:text-base xl:text-lg mx-auto xl:w-3/4 "
-                    }
-                >
+                <p className={" text-lg mx-auto xl:w-3/4 "}>
                     We are going to make our partners compete for your home
                     purchase to get you the best rate possible.
                 </p>
             </div>
 
-            <div className="flex flex-col items-center gap-y-2 w-full max-w-sm">
-                <p
-                    className={
-                        "text-sm lg:text-base 2xl:text-lg mx-auto xl:w-3/4 text-center "
-                    }
-                >
+            <div className="flex flex-col items-center gap-y-2 w-full max-w-">
+                <p className={" text-lg mx-auto text-center "}>
                     We will be in touch with your shortly. Call us now with any
                     questions:
                 </p>
                 <p
                     className={
-                        "text-sm lg:text-base 2xl:text-lg mx-auto xl:w-3/4 text-center text-primary "
+                        " text-2xl font-medium mx-auto xl:w-3/4 text-center text-primary "
                     }
                 >
                     (833)-954-1998
@@ -88,12 +78,8 @@ export default function ThankYou() {
                 /> */}
             </div>
 
-            <div className="flex flex-col items-center gap-y-2 w-full max-w-sm">
-                <p
-                    className={
-                        "text-sm lg:text-base 2xl:text-lg mx-auto xl:w-3/4 text-center "
-                    }
-                >
+            <div className="flex flex-col items-center gap-y-2 w-full max-w-md">
+                <p className={"text-lg mx-auto text-center "}>
                     Not what you expected? Calculate your Affordability with a
                     Partner - Go back and Recalculate!
                 </p>

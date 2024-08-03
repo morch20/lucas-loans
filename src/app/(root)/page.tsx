@@ -121,14 +121,16 @@ export default function Home() {
                     </div>
                 </div>
 
-                <div className="text-center">
-                    <Link
-                        href={"/email"}
-                        className="bg-primary max-w-xs w-full text-white text-lg px-4 py-2 rounded-md shadow-md"
-                    >
-                        Calculate Now!
-                    </Link>
-                    <p className="text-xs mt-2 text-gray-500">
+                <div className="text-center w-full">
+                    <button className="max-w-xs w-full bg-primary h-14 text-white text-lg rounded-md shadow-md">
+                        <Link
+                            href={"/email"}
+                            className="w-full flex h-full justify-center items-center py-4"
+                        >
+                            Calculate Now!
+                        </Link>
+                    </button>
+                    <p className=" mt-2 text-gray-500">
                         Your info is private and stays with us
                     </p>
                 </div>
