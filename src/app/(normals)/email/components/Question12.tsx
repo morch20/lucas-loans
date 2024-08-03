@@ -21,7 +21,7 @@ export default function Question12() {
         return false;
     };
 
-    const handleNext = async () => {
+    const handleNext = () => {
         dispatch({ type: "increment" });
     };
 

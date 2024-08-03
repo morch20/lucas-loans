@@ -34,14 +34,10 @@ export default function Home() {
                 </div>
                 <div className="h-[85dvh] w-full pt-2 flex flex-col justify-between container mx-auto px-5 sm:px-7">
                     <div className="text-center ">
-                        <h2
-                            className={mina.className + " text-2xl sm:text-3xl"}
-                        >
+                        <h2 className={mina.className + " text-3xl"}>
                             Effortlessly find your Home-Buying Power
                         </h2>
-                        <h2
-                            className={mina.className + " text-2xl sm:text-3xl"}
-                        >
+                        <h2 className={mina.className + " text-3xl"}>
                             in under 60 seconds.
                         </h2>
                         <p

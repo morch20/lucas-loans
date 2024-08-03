@@ -31,7 +31,7 @@ export default function Question14() {
         return false;
     };
 
-    const handleNext = async () => {
+    const handleNext = () => {
         dispatch({ type: "increment" });
     };
 

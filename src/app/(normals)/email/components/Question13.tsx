@@ -22,7 +22,7 @@ export default function Question13() {
         return false;
     };
 
-    const handleNext = async () => {
+    const handleNext = () => {
         dispatch({ type: "increment" });
     };
 
