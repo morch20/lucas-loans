@@ -63,15 +63,6 @@ export default function Home() {
                         </p>
                     </div>
 
-                    <video
-                        poster="/videoPoster.jpg"
-                        controls
-                        className=" rounded shadow-md h-[10rem] md:h-[14rem] 2xl:h-[20rem] mx-auto bg-black"
-                    >
-                        <source src="/lucasVideo.mp4" type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
-
                     <div className="text-center">
                         <Link
                             href={"/email"}
@@ -83,6 +74,15 @@ export default function Home() {
                             Your info is private and stays with us
                         </p>
                     </div>
+
+                    <video
+                        poster="/videoPoster.jpg"
+                        controls
+                        className=" rounded shadow-md h-[10rem] md:h-[14rem] 2xl:h-[20rem] mx-auto bg-black"
+                    >
+                        <source src="/lucasVideo.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
                 <div className="w-full h-full bg-white my-12">
                     <h2

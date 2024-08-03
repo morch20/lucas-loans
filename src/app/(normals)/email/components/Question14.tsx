@@ -31,6 +31,10 @@ export default function Question14() {
         return false;
     };
 
+    const handleNext = async () => {
+        dispatch({ type: "increment" });
+    };
+
     useEffect(() => {
         dispatch({
             type: "setIndex",
@@ -153,33 +157,36 @@ export default function Question14() {
                 <h2 className={mina.className + " text-2xl sm:text-3xl"}>
                     What is your phone number?
                 </h2>
-            </div>
-
-            <div className="flex flex-col items-center md:justify-center md:flex-row gap-5 md:gap-10 w-full">
-                <lord-icon
-                    src="https://cdn.lordicon.com/rbztokoj.json"
-                    trigger="hover"
-                    colors="primary:#073944,secondary:#1560bd"
-                    class="w-20 h-20 md:w-28 md:h-28"
-                />
-                <div className="w-full max-w-xs">
-                    <input
-                        id="number"
-                        type="tel"
-                        className=" outline-none w-full rounded p-2 bg-white focus:outline-primary border"
-                        placeholder="(xxx)-xxx-xxxx"
-                        value={value}
-                        onChange={(e) =>
-                            setValue(formatPhoneNumber(e.target.value))
-                        }
+                <div className="flex flex-col mt-5 md:mt16 items-center md:justify-center md:flex-row gap-5 md:gap-10 w-full">
+                    <lord-icon
+                        src="https://cdn.lordicon.com/rbztokoj.json"
+                        trigger="hover"
+                        colors="primary:#073944,secondary:#1560bd"
+                        class="w-20 h-20 md:w-28 md:h-28"
                     />
-                    {!validatePhoneNumber(value) && (
-                        <p className=" text-red-400">
-                            Please enter a valid US phone number *
-                        </p>
-                    )}
+                    <div className="w-full max-w-xs">
+                        <input
+                            id="number"
+                            type="tel"
+                            className=" outline-none w-full rounded p-2 bg-white focus:outline-primary border"
+                            placeholder="(xxx)-xxx-xxxx"
+                            value={value}
+                            onChange={(e) =>
+                                setValue(formatPhoneNumber(e.target.value))
+                            }
+                            onKeyDownCapture={(e) => {
+                                if (e.key === "Enter") handleNext();
+                            }}
+                        />
+                        {!validatePhoneNumber(value) && (
+                            <p className=" text-red-400">
+                                Please enter a valid US phone number *
+                            </p>
+                        )}
+                    </div>
                 </div>
             </div>
+
             <CarouselNext
                 className={cn(
                     " text-white text-lg px-8 md:px-10 py-2 md:py-4 rounded-md",

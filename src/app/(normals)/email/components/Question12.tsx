@@ -21,6 +21,10 @@ export default function Question12() {
         return false;
     };
 
+    const handleNext = async () => {
+        dispatch({ type: "increment" });
+    };
+
     useEffect(() => {
         dispatch({
             type: "setIndex",
@@ -49,29 +53,31 @@ export default function Question12() {
                 <h2 className={mina.className + " text-2xl sm:text-3xl"}>
                     What is your name?
                 </h2>
-            </div>
-
-            <div className="flex flex-col items-center md:justify-center md:flex-row gap-5 md:gap-10 w-full">
-                <lord-icon
-                    src="https://cdn.lordicon.com/qitvuzec.json"
-                    trigger="hover"
-                    colors="primary:#073944,secondary:#1560bd"
-                    class="w-20 h-20 md:w-28 md:h-28"
-                />
-                <div className="w-full max-w-xs">
-                    <input
-                        id="name"
-                        type="text"
-                        className=" outline-none w-full max-w-xs border rounded p-2 bg-white focus:outline-primary"
-                        placeholder="Enter name..."
-                        value={value}
-                        onChange={(e) => setValue(e.target.value)}
+                <div className="flex flex-col mt-5 md:mt-16 items-center md:justify-center md:flex-row gap-5 md:gap-10 w-full">
+                    <lord-icon
+                        src="https://cdn.lordicon.com/qitvuzec.json"
+                        trigger="hover"
+                        colors="primary:#073944,secondary:#1560bd"
+                        class="w-20 h-20 md:w-28 md:h-28"
                     />
-                    {!validateName(value) && (
-                        <p className=" text-red-400">
-                            Please enter a valid name *
-                        </p>
-                    )}
+                    <div className="w-full max-w-xs">
+                        <input
+                            id="name"
+                            type="text"
+                            className=" outline-none w-full max-w-xs border rounded p-2 bg-white focus:outline-primary"
+                            placeholder="Enter name..."
+                            value={value}
+                            onChange={(e) => setValue(e.target.value)}
+                            onKeyDownCapture={(e) => {
+                                if (e.key === "Enter") handleNext();
+                            }}
+                        />
+                        {!validateName(value) && (
+                            <p className=" text-red-400">
+                                Please enter a valid name *
+                            </p>
+                        )}
+                    </div>
                 </div>
             </div>
 

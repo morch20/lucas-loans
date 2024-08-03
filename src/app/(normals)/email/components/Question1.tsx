@@ -22,6 +22,10 @@ export default function Question1() {
         return true;
     };
 
+    const handleNext = async () => {
+        dispatch({ type: "increment" });
+    };
+
     useEffect(() => {
         dispatch({
             type: "setIndex",
@@ -53,7 +57,7 @@ export default function Question1() {
                 <h4 className={"text-lg sm:text-xl xl:text-2xl"}>
                     Please put in the amount you make per month before taxes.
                 </h4>
-                <div className="flex mt-5 flex-col items-center md:justify-center md:flex-row gap-5 md:gap-10 w-full">
+                <div className="flex mt-5 md:mt-16 flex-col items-center md:justify-center md:flex-row gap-5 md:gap-10 w-full">
                     <lord-icon
                         src="https://cdn.lordicon.com/wyqtxzeh.json"
                         trigger="hover"
@@ -67,9 +71,9 @@ export default function Question1() {
                             className=" outline-none w-full max-w-xs rounded p-2 border bg-white focus:outline-primary"
                             placeholder="Enter your monthly income..."
                             value={value}
-                            // onKeyDownCapture={(e) => {
-                            //     if (e.key === "Enter") handleNext();
-                            // }}
+                            onKeyDownCapture={(e) => {
+                                if (e.key === "Enter") handleNext();
+                            }}
                             onChange={(e) => {
                                 if (e.target.value === "") {
                                     setValue("0");
