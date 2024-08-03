@@ -77,7 +77,7 @@ export default function Home() {
                                 width={10}
                                 height={10}
                                 alt="arrow"
-                                className="text-black absolute -top-8 -left-4  animate-bounce"
+                                className="text-black absolute -top-8 left-3 animate-bounce"
                             />
                         </button>
                         <p className=" mt-2 text-gray-500">
