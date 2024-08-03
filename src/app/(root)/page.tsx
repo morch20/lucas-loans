@@ -65,13 +65,20 @@ export default function Home() {
                     </div>
 
                     <div className="text-center w-full">
-                        <button className="max-w-xs w-full bg-primary h-14 text-white text-lg rounded-md shadow-md">
+                        <button className="max-w-xs w-full bg-primary h-14 text-white text-lg rounded-md shadow-md relative">
                             <Link
                                 href={"/email"}
                                 className="w-full flex h-full justify-center items-center py-4"
                             >
                                 Calculate Now!
                             </Link>
+                            <Image
+                                src={"/arrow.svg"}
+                                width={10}
+                                height={10}
+                                alt="arrow"
+                                className="text-black absolute -top-8 -left-4  animate-bounce"
+                            />
                         </button>
                         <p className=" mt-2 text-gray-500">
                             Your info is private and stays with us
