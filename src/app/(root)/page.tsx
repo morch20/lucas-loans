@@ -51,23 +51,29 @@ export default function Home() {
                             Effortlessly find your Home-Buying Power in under 60
                             seconds.
                         </h2>
-                        <p className={" lg:text-lg mx-auto xl:w-3/4 "}>
+                        <p
+                            className={
+                                " text-lg lg:text-xl mx-auto mt-2 xl:w-3/4 "
+                            }
+                        >
                             Instantly know how much you can afford. We will find
                             the best rates from our trusted partners risk free.
                         </p>
-                        <p className={" lg:text-lg font-semibold"}>
+                        <p className={" text-lg lg:text-xl font-semibold"}>
                             We guarantee it.
                         </p>
                     </div>
 
-                    <div className="text-center">
-                        <Link
-                            href={"/email"}
-                            className="bg-primary max-w-xs w-full text-white text-lg px-4 py-2 rounded-md shadow-md"
-                        >
-                            Calculate Now!
-                        </Link>
-                        <p className="text-xs mt-2 text-gray-500">
+                    <div className="text-center w-full">
+                        <button className="max-w-xs w-full bg-primary h-14 text-white text-lg rounded-md shadow-md">
+                            <Link
+                                href={"/email"}
+                                className="w-full flex h-full justify-center items-center py-4"
+                            >
+                                Calculate Now!
+                            </Link>
+                        </button>
+                        <p className=" mt-2 text-gray-500">
                             Your info is private and stays with us
                         </p>
                     </div>
