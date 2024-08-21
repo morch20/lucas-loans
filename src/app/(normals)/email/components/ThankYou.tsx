@@ -78,6 +78,7 @@ export default function ThankYou() {
 
                 {state.currentIndex >= state.keys.length - 1 && (
                     <video
+                        playsInline
                         autoPlay
                         controls
                         className=" rounded shadow-md h-[10rem] md:h-[14rem] 2xl:h-[20rem] mx-auto bg-black"
