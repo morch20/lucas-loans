@@ -43,6 +43,11 @@ export default function Email({
     }
     return (
         <>
+            <Script
+                type="module"
+                defer
+                src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/helix.js"
+            />
             <Script src="https://cdn.lordicon.com/lordicon.js" />
             <main className=" min-h-[90dvh] h-full flex flex-col items-stretch">
                 <Carousel>
