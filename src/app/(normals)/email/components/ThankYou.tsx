@@ -15,7 +15,6 @@ const mina = Mina({
 export default function ThankYou() {
     const { state, dispatch } = useCarouselContext();
     const [number, setNumber] = useState("0");
-    const [loadingNumber, setLoadingNumber] = useState(true);
 
     useEffect(() => {
         dispatch({
@@ -25,19 +24,6 @@ export default function ThankYou() {
             validationValues: number,
         });
     }, []);
-
-    useEffect(() => {
-        let timer: NodeJS.Timeout;
-
-        if (state.currentIndex >= state.keys.length - 1) {
-            timer = setTimeout(() => {
-                setLoadingNumber(false);
-            }, 10000);
-        }
-
-        // Cleanup timer if the component unmounts before the timeout
-        return () => clearTimeout(timer);
-    }, [state]);
 
     useEffect(() => {
         const monthlyIncome = Number(
@@ -56,7 +42,7 @@ export default function ThankYou() {
 
     return (
         <>
-            <div className="w-full min-h-[75dvh] py-6 flex flex-col items-center justify-between ">
+            <div className="w-full min-h-[65dvh] py-6 flex flex-col gap-y-10 items-center justify-between ">
                 <div className="text-center ">
                     <h2 className={mina.className + " text-3xl"}>Next Step:</h2>
                     <h2 className={mina.className + " text-3xl"}>
@@ -79,20 +65,6 @@ export default function ThankYou() {
                         Your browser does not support the video tag.
                     </video>
                 )}
-
-                {/* <div className="flex flex-col items-center gap-y-1 w-full max-w-md">
-                    <p className="text-lg">
-                        Loading Home affordability estimate:
-                    </p>
-                    {loadingNumber ? (
-                        <l-helix size="30" speed="2.5" color="black" />
-                    ) : (
-                        <p className="text-xl font-semibold text-center text-primary">
-                            You will getting a text message with the number
-                            soon!
-                        </p>
-                    )}
-                </div> */}
             </div>
             {state.currentIndex >= state.keys.length - 1 && (
                 <div className="min-h-screen flex h-full w-full">
