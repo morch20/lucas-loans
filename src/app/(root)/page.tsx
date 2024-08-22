@@ -86,7 +86,7 @@ export default function Home() {
                     </div>
 
                     <video
-                        playsInline
+                        // playsInline
                         poster="/videoPoster.jpg"
                         controls
                         className=" rounded shadow-md h-[10rem] md:h-[14rem] 2xl:h-[20rem] mx-auto bg-black"

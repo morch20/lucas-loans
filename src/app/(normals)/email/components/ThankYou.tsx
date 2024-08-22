@@ -56,7 +56,7 @@ export default function ThankYou() {
 
     return (
         <>
-            <div className="w-full min-h-[85dvh] py-6 flex flex-col items-center justify-between ">
+            <div className="w-full min-h-[75dvh] py-6 flex flex-col items-center justify-between ">
                 <div className="text-center ">
                     <h2 className={mina.className + " text-3xl"}>Next Step:</h2>
                     <h2 className={mina.className + " text-3xl"}>
@@ -70,8 +70,8 @@ export default function ThankYou() {
 
                 {state.currentIndex >= state.keys.length - 1 && (
                     <video
-                        playsInline
                         autoPlay
+                        // playsInline
                         controls
                         className=" rounded shadow-md h-[12rem] md:h-[14rem] 2xl:h-[20rem] mx-auto bg-black"
                     >
