@@ -61,15 +61,7 @@ export default function ThankYou() {
                     <h2 className={mina.className + " text-3xl"}>Next Step:</h2>
                     <h2 className={mina.className + " text-3xl"}>
                         Guarantee your results by booking a call
-                        {/* {number} */}
                     </h2>
-                    {/* <h3 className="text-xl sm:text-2xl mb-6">
-                    Thank you for using our calculator!
-                </h3> */}
-                    {/* <p className={" text-lg mx-auto xl:w-3/4 "}>
-                    We are going to make our partners compete for your home
-                    purchase to get you the best rate possible.
-                </p> */}
                     <p className={" text-lg mx-auto xl:w-3/4 "}>
                         Plus qualify for our no money down program, and get 5%
                         towards closing cost
@@ -81,14 +73,14 @@ export default function ThankYou() {
                         playsInline
                         autoPlay
                         controls
-                        className=" rounded shadow-md h-[10rem] md:h-[14rem] 2xl:h-[20rem] mx-auto bg-black"
+                        className=" rounded shadow-md h-[12rem] md:h-[14rem] 2xl:h-[20rem] mx-auto bg-black"
                     >
                         <source src="/thankYou.mp4" type="video/mp4" />
                         Your browser does not support the video tag.
                     </video>
                 )}
 
-                <div className="flex flex-col items-center gap-y-1 w-full max-w-md">
+                {/* <div className="flex flex-col items-center gap-y-1 w-full max-w-md">
                     <p className="text-lg">
                         Loading Home affordability estimate:
                     </p>
@@ -100,26 +92,20 @@ export default function ThankYou() {
                             soon!
                         </p>
                     )}
-                </div>
+                </div> */}
             </div>
             {state.currentIndex >= state.keys.length - 1 && (
-                <div>
-                    <h2 className={mina.className + " text-3xl text-center"}>
-                        15 minute phone consultation
-                    </h2>
-
-                    <div className="min-h-screen mt-5 flex h-fit w-full">
-                        <iframe
-                            src="https://api.leadconnectorhq.com/widget/booking/Y0fBPK62Ip9kLvW40dsf"
-                            className=" w-full flex-grow border-none overflow-hidden "
-                            // scrolling="no"
-                            id="Y0fBPK62Ip9kLvW40dsf_1704239607905"
-                        ></iframe>
-                        <Script
-                            src="https://link.msgsndr.com/js/form_embed.js"
-                            type="text/javascript"
-                        ></Script>
-                    </div>
+                <div className="min-h-screen flex h-full w-full">
+                    <iframe
+                        src="https://api.leadconnectorhq.com/widget/booking/Y0fBPK62Ip9kLvW40dsf"
+                        className=" w-full flex-grow border-none overflow-hidden "
+                        // scrolling="no"
+                        id="Y0fBPK62Ip9kLvW40dsf_1704239607905"
+                    ></iframe>
+                    <Script
+                        src="https://link.msgsndr.com/js/form_embed.js"
+                        type="text/javascript"
+                    ></Script>
                 </div>
             )}
         </>
