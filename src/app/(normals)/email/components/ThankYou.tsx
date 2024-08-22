@@ -3,7 +3,7 @@
 import { useCarouselContext } from "@/components/carousel/Carousel";
 import { calculate } from "@/utils/functions";
 import { Mina } from "next/font/google";
-import Link from "next/link";
+import Script from "next/script";
 import { useEffect, useState } from "react";
 
 const mina = Mina({
@@ -35,61 +35,51 @@ export default function ThankYou() {
         const downPayment = Number(
             state.keys[3]?.validationValues.split(",").join("")
         );
-        console.log(state);
         setNumber(
             calculate(monthlyIncome, monthlyDebt, downPayment).toLocaleString()
         );
     }, [state]);
 
     return (
-        <div className="w-full h-[90dvh] py-6 flex flex-col items-center justify-between ">
-            <div className="text-center ">
-                <h2 className={mina.className + " text-3xl"}>
-                    You can afford up to:
-                </h2>
-                <h2 className={mina.className + " text-3xl"}>{number}</h2>
-                {/* <h3 className="text-xl sm:text-2xl mb-6">
-                    Thank you for using our calculator!
-                </h3> */}
-                <p className={" text-lg mx-auto xl:w-3/4 "}>
-                    We are going to make our partners compete for your home
-                    purchase to get you the best rate possible.
-                </p>
-            </div>
+        <>
+            <div className="w-full min-h-[65dvh] py-6 flex flex-col gap-y-10 items-center justify-between ">
+                <div className="text-center ">
+                    <h2 className={mina.className + " text-3xl"}>Next Step:</h2>
+                    <h2 className={mina.className + " text-3xl"}>
+                        Guarantee your results by booking a call
+                    </h2>
+                    <p className={" text-lg mx-auto xl:w-3/4 "}>
+                        Plus qualify for our no money down program, and get 5%
+                        towards closing cost
+                    </p>
+                </div>
 
-            <div className="flex flex-col items-center gap-y-2 w-full max-w-">
-                <p className={" text-lg mx-auto text-center "}>
-                    We will be in touch with your shortly. Call us now with any
-                    questions:
-                </p>
-                <p
-                    className={
-                        " text-2xl font-medium mx-auto xl:w-3/4 text-center text-primary "
-                    }
-                >
-                    (833)-954-1998
-                </p>
-
-                {/* <lord-icon
-                    src="https://cdn.lordicon.com/jjoolpwc.json"
-                    trigger="hover"
-                    colors="primary:#073944,secondary:#1560bd"
-                    class="w-20 h-20 2xl:w-28 2xl:h-28"
-                /> */}
+                {state.currentIndex >= state.keys.length - 1 && (
+                    <video
+                        autoPlay
+                        playsInline
+                        controls
+                        className=" rounded shadow-md h-[12rem] md:h-[14rem] 2xl:h-[20rem] mx-auto bg-black"
+                    >
+                        <source src="/thankYou.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                )}
             </div>
-
-            <div className="flex flex-col items-center gap-y-2 w-full max-w-md">
-                <p className={"text-lg mx-auto text-center "}>
-                    Not what you expected? Calculate your Affordability with a
-                    Partner - Go back and Recalculate!
-                </p>
-                <Link
-                    href={"/"}
-                    className="bg-white text-black text-lg px-8 md:px-10 py-2 md:py-4 rounded-md hover:shadow-md"
-                >
-                    Back
-                </Link>
-            </div>
-        </div>
+            {state.currentIndex >= state.keys.length - 1 && (
+                <div className="min-h-screen flex h-full w-full">
+                    <iframe
+                        src="https://api.leadconnectorhq.com/widget/booking/Y0fBPK62Ip9kLvW40dsf"
+                        className=" w-full flex-grow border-none overflow-hidden "
+                        // scrolling="no"
+                        id="Y0fBPK62Ip9kLvW40dsf_1704239607905"
+                    ></iframe>
+                    <Script
+                        src="https://link.msgsndr.com/js/form_embed.js"
+                        type="text/javascript"
+                    ></Script>
+                </div>
+            )}
+        </>
     );
 }

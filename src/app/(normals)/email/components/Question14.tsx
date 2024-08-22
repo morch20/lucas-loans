@@ -196,7 +196,7 @@ export default function Question14() {
                     }
                 )}
             >
-                Click to see results!
+                Click to text me my results!
             </CarouselNext>
             <div className="text-xs max-w-2xl my-3">
                 <p className="inline">

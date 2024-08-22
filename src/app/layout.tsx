@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import GoogleTag from "@/components/GoogleTag";
+import GoogleTagAnalytics from "@/components/GoogleTagAnalytics";
 
 export const metadata: Metadata = {
     title: "Lucas Loans",
@@ -25,6 +26,7 @@ export default function RootLayout({
             </body>
             <head>
                 <GoogleTag />
+                <GoogleTagAnalytics />
             </head>
         </html>
     );
