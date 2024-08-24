@@ -44,13 +44,12 @@ export default function ThankYou() {
         <>
             <div className="w-full min-h-[65dvh] py-6 flex flex-col gap-y-10 items-center justify-between ">
                 <div className="text-center ">
-                    <h2 className={mina.className + " text-3xl"}>Next Step:</h2>
                     <h2 className={mina.className + " text-3xl"}>
-                        Guarantee your results by booking a call
+                        Sending now! Get up to $23,435 for down payment! Book
+                        now.
                     </h2>
-                    <p className={" text-lg mx-auto xl:w-3/4 "}>
-                        Plus qualify for our no money down program, and get 5%
-                        towards closing cost
+                    <p className={" text-lg font-medium mx-auto xl:w-3/4 "}>
+                        See if you qualify. Limited availability.
                     </p>
                 </div>
 
@@ -59,7 +58,7 @@ export default function ThankYou() {
                         autoPlay
                         playsInline
                         controls
-                        className=" rounded shadow-md h-[12rem] md:h-[14rem] 2xl:h-[20rem] mx-auto bg-black"
+                        className="rounded shadow-md h-[12rem] md:h-[14rem] 2xl:h-[20rem] mx-auto bg-black"
                     >
                         <source src="/thankYou.mp4" type="video/mp4" />
                         Your browser does not support the video tag.
