@@ -157,6 +157,10 @@
     }
 }
 
+.sayHi:hover span {
+    animation: tilt-shaking 0.25s infinite;
+}
+
 .shake {
     animation: tilt-shaking 0.75s 0s;
 }

@@ -3,3 +3,10 @@ export type User = {
     email: string;
     password: string;
 };
+
+export type BoostAvailability = {
+    _id: string;
+    amount: string;
+    createdAt: Date;
+    updatedAt: Date;
+};
