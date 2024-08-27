@@ -2,6 +2,7 @@ import { Roboto } from "next/font/google";
 import { FaInstagram } from "react-icons/fa";
 import Image from "next/image";
 import Disclaimer from "./Disclaimer";
+import Link from "next/link";
 
 const roboto = Roboto({
     subsets: ["latin"],
@@ -75,6 +76,9 @@ const Footer = () => {
                         >
                             Privacy Policy
                         </a>
+                        <Link className="text-blue-400" href={"/settings"}>
+                            Settings
+                        </Link>
                     </div>
                 </div>
 
