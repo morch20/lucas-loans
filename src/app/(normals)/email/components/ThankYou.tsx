@@ -12,7 +12,7 @@ const mina = Mina({
     variable: "--font-mina",
 });
 
-export default function ThankYou() {
+export default function ThankYou({ amount }: { amount: number }) {
     const { state, dispatch } = useCarouselContext();
     const [number, setNumber] = useState("0");
 
@@ -45,11 +45,21 @@ export default function ThankYou() {
             <div className="w-full min-h-[65dvh] py-6 flex flex-col gap-y-10 items-center justify-between ">
                 <div className="text-center ">
                     <h2 className={mina.className + " text-3xl"}>
-                        Sending now! Get up to $23,435 for down payment! Book
-                        now.
+                        You are pre-qualified to our{" "}
+                        <span className="text-primary">
+                            boost program giving you $23,435
+                        </span>{" "}
+                        towards your home purchase
                     </h2>
                     <p className={" text-lg font-medium mx-auto xl:w-3/4 "}>
-                        See if you qualify. Limited availability.
+                        Limited time offer we only have:{" "}
+                    </p>
+                    <p
+                        className={
+                            " text-lg font-medium mx-auto xl:w-3/4 text-red-500 "
+                        }
+                    >
+                        {amount} spots left
                     </p>
                 </div>
 
