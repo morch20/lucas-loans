@@ -38,17 +38,17 @@ export default function ThankYou({ amount }: { amount: number }) {
         }
     }, [state.currentIndex]);
 
-    useEffect(() => {
-        // console.log(animationState);
-        if (animationState === "finished") {
-            // console.log(videoRef.current);
-            // videoRef.current?.play();
-            const video = document.getElementById(
-                "lastVideo"
-            ) as HTMLVideoElement;
-            video.play();
-        }
-    }, [animationState]);
+    // useEffect(() => {
+    //     // console.log(animationState);
+    //     if (animationState === "finished") {
+    //         // console.log(videoRef.current);
+    //         // videoRef.current?.play();
+    //         const video = document.getElementById(
+    //             "lastVideo"
+    //         ) as HTMLVideoElement;
+    //         video.play();
+    //     }
+    // }, [animationState]);
 
     useEffect(() => {
         const monthlyIncome = Number(
@@ -87,18 +87,18 @@ export default function ThankYou({ amount }: { amount: number }) {
                         {amount} spots left
                     </p>
                 </div>
-                {/* {state.currentIndex >= state.keys.length - 1 &&
-                    animationState === "finished" && ( */}
-                <video
-                    id="lastVideo"
-                    playsInline
-                    controls
-                    className="rounded shadow-md h-[12rem] md:h-[14rem] 2xl:h-[20rem] mx-auto bg-black"
-                >
-                    <source src="/thankYou.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
-                {/* )} */}
+                {state.currentIndex >= state.keys.length - 1 &&
+                    animationState === "finished" && (
+                        <video
+                            autoPlay
+                            playsInline
+                            controls
+                            className="rounded shadow-md h-[12rem] md:h-[14rem] 2xl:h-[20rem] mx-auto bg-black"
+                        >
+                            <source src="/thankYou.mp4" type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+                    )}
             </div>
             {state.currentIndex >= state.keys.length - 1 && (
                 <div className="min-h-screen flex h-full w-full">
