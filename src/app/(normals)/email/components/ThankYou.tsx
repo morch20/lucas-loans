@@ -1,5 +1,6 @@
 "use client";
 
+import { useBackPageAnimation } from "@/components/BackPageAnimation";
 import { useCarouselContext } from "@/components/carousel/Carousel";
 import { calculate } from "@/utils/functions";
 import { Mina } from "next/font/google";
@@ -12,9 +13,12 @@ const mina = Mina({
     variable: "--font-mina",
 });
 
-export default function ThankYou() {
+export default function ThankYou({ amount }: { amount: number }) {
     const { state, dispatch } = useCarouselContext();
     const [number, setNumber] = useState("0");
+    // const videoRef = useRef<HTMLVideoElement | null>(null);
+
+    const { animationState, setAnimationState } = useBackPageAnimation();
 
     useEffect(() => {
         dispatch({
@@ -24,6 +28,27 @@ export default function ThankYou() {
             validationValues: number,
         });
     }, []);
+
+    useEffect(() => {
+        if (
+            state.currentIndex > 0 &&
+            state.currentIndex >= state.keys.length - 1
+        ) {
+            setAnimationState("inProgress");
+        }
+    }, [state.currentIndex]);
+
+    // useEffect(() => {
+    //     // console.log(animationState);
+    //     if (animationState === "finished") {
+    //         // console.log(videoRef.current);
+    //         // videoRef.current?.play();
+    //         const video = document.getElementById(
+    //             "lastVideo"
+    //         ) as HTMLVideoElement;
+    //         video.play();
+    //     }
+    // }, [animationState]);
 
     useEffect(() => {
         const monthlyIncome = Number(
@@ -45,25 +70,35 @@ export default function ThankYou() {
             <div className="w-full min-h-[65dvh] py-6 flex flex-col gap-y-10 items-center justify-between ">
                 <div className="text-center ">
                     <h2 className={mina.className + " text-3xl"}>
-                        Sending now! Get up to $23,435 for down payment! Book
-                        now.
+                        You are pre-qualified to our{" "}
+                        <span className="text-primary">
+                            boost program giving you $23,435
+                        </span>{" "}
+                        towards your home purchase
                     </h2>
                     <p className={" text-lg font-medium mx-auto xl:w-3/4 "}>
-                        See if you qualify. Limited availability.
+                        Limited time offer we only have:{" "}
+                    </p>
+                    <p
+                        className={
+                            " text-lg font-medium mx-auto xl:w-3/4 text-red-500 "
+                        }
+                    >
+                        {amount} spots left
                     </p>
                 </div>
-
-                {state.currentIndex >= state.keys.length - 1 && (
-                    <video
-                        autoPlay
-                        playsInline
-                        controls
-                        className="rounded shadow-md h-[12rem] md:h-[14rem] 2xl:h-[20rem] mx-auto bg-black"
-                    >
-                        <source src="/thankYou.mp4" type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
-                )}
+                {state.currentIndex >= state.keys.length - 1 &&
+                    animationState === "finished" && (
+                        <video
+                            autoPlay
+                            playsInline
+                            controls
+                            className="rounded shadow-md h-[12rem] md:h-[14rem] 2xl:h-[20rem] mx-auto bg-black"
+                        >
+                            <source src="/thankYou.mp4" type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+                    )}
             </div>
             {state.currentIndex >= state.keys.length - 1 && (
                 <div className="min-h-screen flex h-full w-full">

@@ -65,9 +65,7 @@ export default function Question14() {
                     tags.push(state.keys[6].validationValues);
                     tags.push(`Has realtor: ${state.keys[7].validationValues}`);
                     tags.push(state.keys[8].validationValues);
-                    tags.push(
-                        `Phone consultation: ${state.keys[9].validationValues}`
-                    );
+                    tags.push(`Boost: ${state.keys[9].validationValues}`);
 
                     const name = state.keys[10].validationValues;
                     const email = state.keys[11].validationValues;
@@ -123,9 +121,7 @@ export default function Question14() {
                     tags.push(state.keys[6].validationValues);
                     tags.push(`Has realtor: ${state.keys[7].validationValues}`);
                     tags.push(state.keys[8].validationValues);
-                    tags.push(
-                        `Phone consultation: ${state.keys[9].validationValues}`
-                    );
+                    tags.push(`Boost: ${state.keys[9].validationValues}`);
 
                     const name = state.keys[10].validationValues;
                     const email = state.keys[11].validationValues;

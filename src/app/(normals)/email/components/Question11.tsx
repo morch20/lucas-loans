@@ -49,12 +49,13 @@ export default function Question11() {
         <div className="w-full h-[90dvh] py-6 flex flex-col items-center justify-between ">
             <div className="text-center ">
                 <h2 className={mina.className + " text-2xl sm:text-3xl"}>
-                    Would you like to have a free phone consultation?
+                    Check my eligibility for up to $23,435 towards closing
+                    costs?
                 </h2>
-                <h4 className={"text-lg sm:text-xl xl:text-2xl"}>
+                {/* <h4 className={"text-lg sm:text-xl xl:text-2xl"}>
                     See if you qualify for 5% towards down payment and closing
                     cost.
-                </h4>
+                </h4> */}
             </div>
 
             <div className="flex flex-col items-center md:justify-center md:flex-row gap-5 md:gap-10 w-full">

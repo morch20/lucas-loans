@@ -17,11 +17,13 @@ import Question14 from "./components/Question14";
 import ThankYou from "./components/ThankYou";
 import ProgressBar from "./components/ProgressBar";
 import { redirect } from "next/navigation";
+import BoostAvailability from "@/models/BoostAvailability";
+import { connectToDB } from "@/utils/db";
 
 type SearchParams = {
     [key: string]: string | undefined;
 };
-export default function Email({
+export default async function Email({
     searchParams,
 }: {
     searchParams: SearchParams;
@@ -41,9 +43,11 @@ export default function Email({
     if (!valid) {
         redirect("/");
     }
+
+    await connectToDB();
+    const boost = await BoostAvailability.findOne();
     return (
         <>
-            <Script src="https://cdn.lordicon.com/lordicon.js" />
             <main className=" min-h-[90dvh] h-full flex flex-col items-stretch">
                 <Carousel>
                     <ProgressBar />
@@ -89,7 +93,7 @@ export default function Email({
                             <Question14 />
                         </CarouselItem>
                         <CarouselItem keyword="15">
-                            <ThankYou />
+                            <ThankYou amount={boost.amount} />
                         </CarouselItem>
                     </CarouselContent>
                 </Carousel>
