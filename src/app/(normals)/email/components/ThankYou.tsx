@@ -5,7 +5,7 @@ import { useCarouselContext } from "@/components/carousel/Carousel";
 import { calculate } from "@/utils/functions";
 import { Mina } from "next/font/google";
 import Script from "next/script";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const mina = Mina({
     subsets: ["latin"],
@@ -16,6 +16,7 @@ const mina = Mina({
 export default function ThankYou({ amount }: { amount: number }) {
     const { state, dispatch } = useCarouselContext();
     const [number, setNumber] = useState("0");
+    const videoRef = useRef<HTMLVideoElement | null>(null);
 
     const { animationState, setAnimationState } = useBackPageAnimation();
 
@@ -36,6 +37,12 @@ export default function ThankYou({ amount }: { amount: number }) {
             setAnimationState("inProgress");
         }
     }, [state.currentIndex]);
+
+    useEffect(() => {
+        if (animationState === "finished") {
+            videoRef.current?.play();
+        }
+    }, [animationState]);
 
     useEffect(() => {
         const monthlyIncome = Number(
@@ -75,18 +82,15 @@ export default function ThankYou({ amount }: { amount: number }) {
                     </p>
                 </div>
 
-                {state.currentIndex >= state.keys.length - 1 &&
-                    animationState === "finished" && (
-                        <video
-                            autoPlay
-                            playsInline
-                            controls
-                            className="rounded shadow-md h-[12rem] md:h-[14rem] 2xl:h-[20rem] mx-auto bg-black"
-                        >
-                            <source src="/thankYou.mp4" type="video/mp4" />
-                            Your browser does not support the video tag.
-                        </video>
-                    )}
+                <video
+                    ref={videoRef}
+                    playsInline
+                    controls
+                    className="rounded shadow-md h-[12rem] md:h-[14rem] 2xl:h-[20rem] mx-auto bg-black"
+                >
+                    <source src="/thankYou.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
             </div>
             {state.currentIndex >= state.keys.length - 1 && (
                 <div className="min-h-screen flex h-full w-full">
