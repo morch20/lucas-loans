@@ -71,9 +71,6 @@ export default function Home({
                         >
                             {adGroupData.line}
                         </h2>
-                    </div>
-
-                    <div className="text-center">
                         <p className={" text-lg lg:text-xl mx-auto xl:w-3/4 "}>
                             No credit check, no risk, just numbers.{" "}
                             <span className="text-primary">
