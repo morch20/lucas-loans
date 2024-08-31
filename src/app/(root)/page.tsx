@@ -5,7 +5,11 @@ import InfiniteCarousel from "@/components/infiniteCarousel/InfiniteCarousel";
 import { EmblaOptionsType } from "embla-carousel";
 import { Progress } from "@/components/ui/Progress";
 import Link from "next/link";
-import { addGroupTexts, addGroupTextsDefault } from "@/utils/constants";
+import {
+    adGroupTexts,
+    adGroupTextsDefault,
+    GroupText,
+} from "@/utils/constants";
 
 const mina = Mina({
     subsets: ["latin"],
@@ -18,8 +22,6 @@ export default function Home({
 }: {
     searchParams: { [key: string]: string };
 }) {
-    console.log("searchParams: ", searchParams);
-
     const OPTIONS: EmblaOptionsType = { loop: true, align: "start" };
     const SLIDES = [
         "lending-logo.webp",
@@ -29,16 +31,14 @@ export default function Home({
         "visio lending.jpeg",
     ];
 
-    const addGroup = searchParams["addGroup"] || addGroupTextsDefault;
-    let addGroupData;
+    const adGroup = searchParams["adGroup"] || adGroupTextsDefault;
+    let adGroupData: GroupText;
 
-    if (addGroup in addGroupTexts) {
-        addGroupData = addGroupTexts[addGroup as keyof typeof addGroupTexts];
+    if (adGroup in adGroupTexts) {
+        adGroupData = adGroupTexts[adGroup as keyof typeof adGroupTexts];
     } else {
-        addGroupData = addGroupTexts[addGroupTextsDefault];
+        adGroupData = adGroupTexts[adGroupTextsDefault];
     }
-
-    console.log(addGroupData);
 
     return (
         <>
@@ -52,13 +52,13 @@ export default function Home({
                 </div>
                 <div className="h-[85dvh] w-full pt-2 flex flex-col justify-between container mx-auto px-5 sm:px-7">
                     <div className="text-center ">
-                        {addGroupData.lines.map((i) => (
+                        {adGroupData.lines.map((i) => (
                             <h2
                                 key={i}
                                 className={
                                     mina.className +
                                     " sm:hidden " +
-                                    addGroupData.size
+                                    adGroupData.size
                                 }
                             >
                                 {i}
@@ -69,7 +69,7 @@ export default function Home({
                                 mina.className + " hidden sm:block text-3xl"
                             }
                         >
-                            {addGroupData.line}
+                            {adGroupData.line}
                         </h2>
                     </div>
 
@@ -92,7 +92,7 @@ export default function Home({
                                 href={"/email"}
                                 className="w-full flex h-full justify-center items-center py-4"
                             >
-                                {addGroupData.callToAction}
+                                {adGroupData.callToAction}
                             </Link>
                             <Image
                                 src={"/arrow.svg"}

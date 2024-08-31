@@ -2,9 +2,16 @@ import { IQuestion } from "@/Interfaces";
 import { MdCreditScore, MdPayments, MdAttachMoney } from "react-icons/md";
 import { TbPigMoney } from "react-icons/tb";
 
-export const addGroupTextsDefault = "default";
+export const adGroupTextsDefault = "default";
 
-export const addGroupTexts = {
+export type GroupText = {
+    line: string;
+    lines: string[];
+    callToAction: string;
+    size: string;
+};
+
+export const adGroupTexts = {
     PA: {
         line: "Effortlessly get pre-approved for your Home Loan in less than 60 seconds.",
         lines: [
