@@ -5,6 +5,11 @@ import InfiniteCarousel from "@/components/infiniteCarousel/InfiniteCarousel";
 import { EmblaOptionsType } from "embla-carousel";
 import { Progress } from "@/components/ui/Progress";
 import Link from "next/link";
+import {
+    adGroupTexts,
+    adGroupTextsDefault,
+    GroupText,
+} from "@/utils/constants";
 
 const mina = Mina({
     subsets: ["latin"],
@@ -12,7 +17,11 @@ const mina = Mina({
     variable: "--font-mina",
 });
 
-export default function Home() {
+export default function Home({
+    searchParams,
+}: {
+    searchParams: { [key: string]: string };
+}) {
     const OPTIONS: EmblaOptionsType = { loop: true, align: "start" };
     const SLIDES = [
         "lending-logo.webp",
@@ -21,6 +30,15 @@ export default function Home() {
         "united-wholesale-mortgage.png",
         "visio lending.jpeg",
     ];
+
+    const adGroup = searchParams["adGroup"] || adGroupTextsDefault;
+    let adGroupData: GroupText;
+
+    if (adGroup in adGroupTexts) {
+        adGroupData = adGroupTexts[adGroup as keyof typeof adGroupTexts];
+    } else {
+        adGroupData = adGroupTexts[adGroupTextsDefault];
+    }
 
     return (
         <>
@@ -34,30 +52,35 @@ export default function Home() {
                 </div>
                 <div className="h-[85dvh] w-full pt-2 flex flex-col justify-between container mx-auto px-5 sm:px-7">
                     <div className="text-center ">
-                        <h2 className={mina.className + " text-3xl sm:hidden"}>
-                            Effortlessly find your
-                        </h2>
-                        <h2 className={mina.className + " text-3xl sm:hidden"}>
-                            Home-Buying Power
-                        </h2>
-                        <h2 className={mina.className + " text-3xl sm:hidden"}>
-                            in under 60 seconds.
-                        </h2>
+                        {adGroupData.lines.map((i) => (
+                            <h2
+                                key={i}
+                                className={
+                                    mina.className +
+                                    " sm:hidden " +
+                                    adGroupData.size
+                                }
+                            >
+                                {i}
+                            </h2>
+                        ))}
                         <h2
                             className={
                                 mina.className + " hidden sm:block text-3xl"
                             }
                         >
-                            Effortlessly find your Home-Buying Power in under 60
-                            seconds.
+                            {adGroupData.line}
                         </h2>
                         <p
                             className={
-                                " text-lg lg:text-xl mx-auto mt-2 xl:w-3/4 "
+                                " text-lg lg:text-xl mt-2 mx-auto xl:w-3/4 "
                             }
                         >
-                            Instantly know how much you can afford. We will find
-                            the best rates from our trusted partners risk free.
+                            No credit check, no risk, just numbers.{" "}
+                            <span className="text-primary">
+                                Plus check no money-down eligibility{" "}
+                            </span>
+                            and best rates.
                         </p>
                         <p className={" text-lg lg:text-xl font-semibold"}>
                             We guarantee it.
@@ -70,7 +93,7 @@ export default function Home() {
                                 href={"/email"}
                                 className="w-full flex h-full justify-center items-center py-4"
                             >
-                                Calculate Now!
+                                {adGroupData.callToAction}
                             </Link>
                             <Image
                                 src={"/arrow.svg"}

@@ -16,7 +16,6 @@ const mina = Mina({
 export default function ThankYou({ amount }: { amount: number }) {
     const { state, dispatch } = useCarouselContext();
     const [number, setNumber] = useState("0");
-    // const videoRef = useRef<HTMLVideoElement | null>(null);
 
     const { animationState, setAnimationState } = useBackPageAnimation();
 
@@ -27,6 +26,10 @@ export default function ThankYou({ amount }: { amount: number }) {
             validation: () => true,
             validationValues: number,
         });
+
+        return () => {
+            setAnimationState("initial");
+        };
     }, []);
 
     useEffect(() => {
@@ -37,18 +40,6 @@ export default function ThankYou({ amount }: { amount: number }) {
             setAnimationState("inProgress");
         }
     }, [state.currentIndex]);
-
-    // useEffect(() => {
-    //     // console.log(animationState);
-    //     if (animationState === "finished") {
-    //         // console.log(videoRef.current);
-    //         // videoRef.current?.play();
-    //         const video = document.getElementById(
-    //             "lastVideo"
-    //         ) as HTMLVideoElement;
-    //         video.play();
-    //     }
-    // }, [animationState]);
 
     useEffect(() => {
         const monthlyIncome = Number(
@@ -67,38 +58,46 @@ export default function ThankYou({ amount }: { amount: number }) {
 
     return (
         <>
-            <div className="w-full min-h-[65dvh] py-6 flex flex-col gap-y-10 items-center justify-between ">
+            <div className="w-full min-h-[65dvh] py-4 flex flex-col gap-y-10 items-center justify-between ">
                 <div className="text-center ">
-                    <h2 className={mina.className + " text-3xl"}>
-                        You are pre-qualified to our{" "}
-                        <span className="text-primary">
-                            boost program giving you $23,435
-                        </span>{" "}
-                        towards your home purchase
+                    <p className={" font-bold"}>You can afford up to:</p>
+                    <p className={" text-lg font-bold "}>{number}</p>
+                    <h2 className={mina.className + " text-2xl sm:text-3xl"}>
+                        You just got Pre-Qualified!
                     </h2>
-                    <p className={" text-lg font-medium mx-auto xl:w-3/4 "}>
-                        Limited time offer we only have:{" "}
-                    </p>
-                    <p
+                    <h2
                         className={
-                            " text-lg font-medium mx-auto xl:w-3/4 text-red-500 "
+                            mina.className + " text-2xl sm:text-3xl mb-4"
                         }
                     >
+                        Now claim $23,435 in savings
+                    </h2>
+                    <p className={"text-lg font-medium "}>
+                        <span className="text-primary">
+                            You can buy a home with no money out of pocket!
+                        </span>{" "}
+                        If you don&apos;t believe me, watch the video.
+                    </p>
+                    <p className="text-lg font-medium mb-4"></p>
+                    <p className={" text-lg font-medium "}>
+                        Limited time offer we only have:{" "}
+                    </p>
+                    <p className={" text-lg font-medium text-red-500 "}>
                         {amount} spots left
                     </p>
                 </div>
-                {state.currentIndex >= state.keys.length - 1 &&
-                    animationState === "finished" && (
-                        <video
-                            autoPlay
-                            playsInline
-                            controls
-                            className="rounded shadow-md h-[12rem] md:h-[14rem] 2xl:h-[20rem] mx-auto bg-black"
-                        >
-                            <source src="/thankYou.mp4" type="video/mp4" />
-                            Your browser does not support the video tag.
-                        </video>
-                    )}
+                {/* {state.currentIndex >= state.keys.length - 1 && */}
+                {animationState === "finished" && (
+                    <video
+                        autoPlay
+                        playsInline
+                        controls
+                        className="rounded shadow-md h-[12rem] md:h-[14rem] 2xl:h-[20rem] mx-auto bg-black"
+                    >
+                        <source src="/thankYou.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                )}
             </div>
             {state.currentIndex >= state.keys.length - 1 && (
                 <div className="min-h-screen flex h-full w-full">
