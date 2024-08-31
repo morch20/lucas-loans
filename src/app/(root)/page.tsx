@@ -71,7 +71,11 @@ export default function Home({
                         >
                             {adGroupData.line}
                         </h2>
-                        <p className={" text-lg lg:text-xl mx-auto xl:w-3/4 "}>
+                        <p
+                            className={
+                                " text-lg lg:text-xl mt-2 mx-auto xl:w-3/4 "
+                            }
+                        >
                             No credit check, no risk, just numbers.{" "}
                             <span className="text-primary">
                                 Plus check no money-down eligibility{" "}
