@@ -2,6 +2,41 @@ import { IQuestion } from "@/Interfaces";
 import { MdCreditScore, MdPayments, MdAttachMoney } from "react-icons/md";
 import { TbPigMoney } from "react-icons/tb";
 
+export const addGroupTextsDefault = "default";
+
+export const addGroupTexts = {
+    PA: {
+        line: "Effortlessly get pre-approved for your Home Loan in less than 60 seconds.",
+        lines: [
+            "Effortlessly get pre-approved ",
+            "for your Home Loan ",
+            "in less than 60 seconds.",
+        ],
+        callToAction: "Get started Now!",
+        size: "text-2xl sm:text-3xl",
+    },
+    HA: {
+        line: "Effortlessly find your Home-Affordability in under 60 seconds.",
+        lines: [
+            "Effortlessly find your",
+            "Home-Affordability",
+            "in under 60 seconds.",
+        ],
+        callToAction: "Calculate Now!",
+        size: "text-3xl",
+    },
+    default: {
+        line: "Effortlessly find your Home-Buying Power in under 60 seconds.",
+        lines: [
+            "Effortlessly find your",
+            "Home-Buying Power",
+            "in under 60 seconds.",
+        ],
+        callToAction: "Calculate Now!",
+        size: "text-3xl",
+    },
+};
+
 export const values: IQuestion[] = [
     {
         value: "MI",
