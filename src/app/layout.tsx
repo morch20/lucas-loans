@@ -7,6 +7,7 @@ import BackPageAnimation, {
 } from "@/components/BackPageAnimation";
 import Script from "next/script";
 import GoogleTagManager from "@/components/GoogleTagManager";
+import GoogleTag from "@/components/GoogleTag";
 
 export const metadata: Metadata = {
     title: "Lucas Loans",
@@ -23,8 +24,8 @@ export default function RootLayout({
         <html lang="en">
             <head>
                 <GoogleTagManager />
-                {/* <GoogleTag />
-                <GoogleTagAnalytics /> */}
+                <GoogleTag />
+                {/* <GoogleTagAnalytics /> */}
             </head>
             <body className="bg-[#eff4f7] text-tertiary w-full h-full flex flex-col items-center">
                 {/* Google Tag Manager */}
