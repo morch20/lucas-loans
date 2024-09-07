@@ -53,45 +53,25 @@ export default function ThankYou({ amount }: { amount: number }) {
 
     return (
         <>
-            <div className="w-full min-h-[65dvh] py-4 flex flex-col gap-y-10 items-center justify-between ">
-                <div className="text-center ">
-                    <p className={" font-bold"}>You can afford up to:</p>
-                    <p className={" text-lg font-bold "}>{number}</p>
-                    {Number(number.replaceAll(",", "")) < 100000 ? (
-                        <TryAgain />
-                    ) : state.keys[9].validationValues === "No" ? (
-                        <NoBoost />
-                    ) : (
-                        <Boost amount={amount} />
-                    )}
-                </div>
-                {/* {state.currentIndex >= state.keys.length - 1 && */}
-                {animationState === "finished" && (
-                    <video
-                        autoPlay
-                        playsInline
-                        controls
-                        className="rounded shadow-md h-[12rem] md:h-[14rem] 2xl:h-[20rem] mx-auto bg-black"
-                    >
-                        <source src="/thankYou.mp4" type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
-                )}
-            </div>
-            {/* {state.currentIndex >= state.keys.length - 1 && (
-                <div className="min-h-screen flex h-full w-full">
-                    <iframe
-                        src="https://api.leadconnectorhq.com/widget/booking/Y0fBPK62Ip9kLvW40dsf"
-                        className=" w-full flex-grow border-none overflow-hidden "
-                        // scrolling="no"
-                        id="Y0fBPK62Ip9kLvW40dsf_1704239607905"
-                    ></iframe>
-                    <Script
-                        src="https://link.msgsndr.com/js/form_embed.js"
-                        type="text/javascript"
-                    ></Script>
-                </div>
-            )} */}
+            {Number(number.replaceAll(",", "")) < 100000 ? (
+                <TryAgain
+                    number={number}
+                    showVideo={animationState === "finished"}
+                />
+            ) : state.keys[9].validationValues === "No" ? (
+                <NoBoost
+                    number={number}
+                    showVideo={animationState === "finished"}
+                    email={state.keys[11].validationValues}
+                />
+            ) : (
+                <Boost
+                    number={number}
+                    showVideo={animationState === "finished"}
+                    amount={amount}
+                    email={state.keys[11].validationValues}
+                />
+            )}
         </>
     );
 }

@@ -68,7 +68,7 @@ const Navbar = () => {
                                 </p>
                             </div>
                         </Link>
-                        <ul className="hidden md:flex font-medium lg:text-lg justify-between items-center max-w-sm w-2/5 lg:w-3/5 lg:max-w-xl">
+                        <ul className="hidden md:flex font-medium lg:text-lg justify-end items-center max-w-sm w-2/5 lg:w-3/5 lg:max-w-xl">
                             <CustomLink
                                 path="/how-to-buy-a-house-in-8-steps"
                                 onClick={() => handleClose()}
@@ -79,7 +79,7 @@ const Navbar = () => {
                                     How to buy a house
                                 </Link>
                             </CustomLink>
-                            <CustomLink
+                            {/* <CustomLink
                                 path="/calendar"
                                 onClick={() => handleClose()}
                                 className="my-4 shake2 flex w-fit gap-x-2 items-center nav__links__animation"
@@ -89,8 +89,8 @@ const Navbar = () => {
                                     className=" text-primary"
                                 />
                                 <Link href={"/calendar"}>Book a free call</Link>
-                            </CustomLink>
-                            <li
+                            </CustomLink> */}
+                            {/* <li
                                 onClick={() => handleClose()}
                                 className="my-4 shake2 flex w-fit gap-x-2 items-center nav__links__animation"
                             >
@@ -105,7 +105,7 @@ const Navbar = () => {
                                 >
                                     Apply Now
                                 </a>
-                            </li>
+                            </li> */}
                         </ul>
                         <div ref={ignoreRef} className="lg:hidden">
                             <Sling
@@ -144,7 +144,7 @@ const Navbar = () => {
                                         How to buy a house
                                     </Link>
                                 </CustomLink>
-                                <CustomLink
+                                {/* <CustomLink
                                     path="/calendar"
                                     onClick={() => handleClose()}
                                     className="my-4 shake2 flex w-fit gap-x-2 items-center nav__links__animation"
@@ -156,8 +156,8 @@ const Navbar = () => {
                                     <Link href={"/calendar"}>
                                         Book a free call
                                     </Link>
-                                </CustomLink>
-                                <li
+                                </CustomLink> */}
+                                {/* <li
                                     onClick={() => handleClose()}
                                     className="my-4 shake2 flex w-fit gap-x-2 items-center nav__links__animation"
                                 >
@@ -172,7 +172,7 @@ const Navbar = () => {
                                     >
                                         Apply Now
                                     </a>
-                                </li>
+                                </li> */}
                             </ul>
                         </div>
                     )}
