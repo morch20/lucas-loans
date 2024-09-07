@@ -6,7 +6,6 @@ const clientId = process.env.CLIENT_ID || "";
 const clientSecret = process.env.CLIENT_SECRET || "";
 
 export async function callback(code: string) {
-
     try {
         const response = await fetch(
             "https://services.leadconnectorhq.com/oauth/token",
@@ -24,16 +23,14 @@ export async function callback(code: string) {
                     code: code,
                     user_type: "Location",
                     redirect_uri: "https://lucas-loans.com/api/oauth/callback",
-                })
+                }),
             }
         );
 
         const data: IAccessToken = await response.json();
         return data;
-
-    } 
-    catch (e) {
-        console.log('Error on callback!');
+    } catch (e) {
+        console.log("Error on callback!");
         console.log(e);
         return null;
     }
@@ -45,6 +42,7 @@ export function initiate() {
         redirectUri: "https://lucas-loans.com/api/oauth/callback",
         scopes: [
             "contacts.write",
+            "contacts.readonly",
             "locations/tags.readonly",
             "locations/customFields.readonly",
             "locations/tags.write",
@@ -59,11 +57,9 @@ export function initiate() {
             options.redirectUri
         }&client_id=${clientId}&scope=${options.scopes.join(" ")}
     `);
-
 }
 
 export async function refresh(refreshToken: string) {
-
     try {
         const response = await fetch(
             "https://services.leadconnectorhq.com/oauth/token",
@@ -81,16 +77,14 @@ export async function refresh(refreshToken: string) {
                     refresh_token: refreshToken,
                     user_type: "Location",
                     redirect_uri: "https://lucas-loans.com/api/oauth/callback",
-                })
+                }),
             }
         );
 
         const data = await response.json();
         console.log("Refresh data: ", data);
         return data;
-
-    } 
-    catch (error) {
+    } catch (error) {
         console.log("Error on refresh!");
         console.log(error);
         return null;
