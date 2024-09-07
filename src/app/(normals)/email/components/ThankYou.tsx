@@ -3,15 +3,10 @@
 import { useBackPageAnimation } from "@/components/BackPageAnimation";
 import { useCarouselContext } from "@/components/carousel/Carousel";
 import { calculate } from "@/utils/functions";
-import { Mina } from "next/font/google";
-import Script from "next/script";
 import { useEffect, useState } from "react";
-
-const mina = Mina({
-    subsets: ["latin"],
-    weight: "700",
-    variable: "--font-mina",
-});
+import Boost from "./Boost";
+import TryAgain from "./TryAgain";
+import NoBoost from "./NoBoost";
 
 export default function ThankYou({ amount }: { amount: number }) {
     const { state, dispatch } = useCarouselContext();
@@ -62,29 +57,13 @@ export default function ThankYou({ amount }: { amount: number }) {
                 <div className="text-center ">
                     <p className={" font-bold"}>You can afford up to:</p>
                     <p className={" text-lg font-bold "}>{number}</p>
-                    <h2 className={mina.className + " text-2xl sm:text-3xl"}>
-                        You just got Pre-Qualified!
-                    </h2>
-                    <h2
-                        className={
-                            mina.className + " text-2xl sm:text-3xl mb-4"
-                        }
-                    >
-                        Now claim $23,435 in savings
-                    </h2>
-                    <p className={"text-lg font-medium "}>
-                        <span className="text-primary">
-                            You can buy a home with no money out of pocket!
-                        </span>{" "}
-                        If you don&apos;t believe me, watch the video.
-                    </p>
-                    <p className="text-lg font-medium mb-4"></p>
-                    <p className={" text-lg font-medium "}>
-                        Limited time offer we only have:{" "}
-                    </p>
-                    <p className={" text-lg font-medium text-red-500 "}>
-                        {amount} spots left
-                    </p>
+                    {Number(number.replaceAll(",", "")) < 100000 ? (
+                        <TryAgain />
+                    ) : state.keys[9].validationValues === "No" ? (
+                        <NoBoost />
+                    ) : (
+                        <Boost amount={amount} />
+                    )}
                 </div>
                 {/* {state.currentIndex >= state.keys.length - 1 && */}
                 {animationState === "finished" && (
@@ -99,7 +78,7 @@ export default function ThankYou({ amount }: { amount: number }) {
                     </video>
                 )}
             </div>
-            {state.currentIndex >= state.keys.length - 1 && (
+            {/* {state.currentIndex >= state.keys.length - 1 && (
                 <div className="min-h-screen flex h-full w-full">
                     <iframe
                         src="https://api.leadconnectorhq.com/widget/booking/Y0fBPK62Ip9kLvW40dsf"
@@ -112,7 +91,7 @@ export default function ThankYou({ amount }: { amount: number }) {
                         type="text/javascript"
                     ></Script>
                 </div>
-            )}
+            )} */}
         </>
     );
 }

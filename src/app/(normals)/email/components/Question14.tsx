@@ -192,12 +192,12 @@ export default function Question14() {
                     }
                 )}
             >
-                Click to text results!
+                Click to see results!
             </CarouselNext>
             <div className="text-xs max-w-2xl my-3">
                 <p className="inline">
                     By providing your contact info and clicking &quot;Click to
-                    text results!&quot; below, you agree to our{" "}
+                    see results!&quot; below, you agree to our{" "}
                     <a
                         className="text-blue-500"
                         href="https://www.termsfeed.com/live/afa2ca79-cec2-4e4a-b463-bbe50c6af066"
