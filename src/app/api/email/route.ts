@@ -84,3 +84,82 @@ export const POST = async (req: NextRequest) => {
         return new Response("Invalid Body", { status: 500 });
     }
 };
+
+export const GET = async (req: NextRequest) => {
+    try {
+        await connectToDB();
+        const token = await Token.findOne();
+        console.log(token);
+        let fetchingAccessToken = token.accessToken;
+
+        const date = new Date(token.created);
+        const newDate = addSeconds(date, token.expires_in);
+
+        if (new Date() >= newDate) {
+            console.log("EXPIRED");
+            const newToken = await refresh(token.refreshToken);
+
+            const savedToken = await Token.findOneAndUpdate(
+                { _id: "6590ebaf7ffcd4b1842d708a" },
+                {
+                    accessToken: newToken.access_token,
+                    refreshToken: newToken.refresh_token,
+                    expires_in: newToken.expires_in,
+                    created: new Date().toString(),
+                }
+            );
+            console.log("DB Updated!", savedToken);
+            fetchingAccessToken = savedToken.accessToken;
+        }
+
+        const searchParams = req.nextUrl.searchParams;
+        const query = searchParams.get("query");
+
+        const response = await fetch(
+            process.env.API_URL +
+                "contacts/" +
+                `?query=${query}&locationId=${process.env.LOCATION_ID}`,
+            {
+                headers: {
+                    Accept: "application/json",
+                    Authorization: "Bearer " + fetchingAccessToken,
+                    "Content-Type": "application/json",
+                    Version: "2021-07-28",
+                },
+                cache: "no-store",
+            }
+        );
+
+        const data = await response.json();
+        console.log("data:", data);
+
+        if (data?.contacts?.length === 1) {
+            const updatedResponse = await fetch(
+                process.env.API_URL + "contacts/" + data.contacts[0].id,
+                {
+                    method: "PUT",
+                    headers: {
+                        Accept: "application/json",
+                        Authorization: "Bearer " + fetchingAccessToken,
+                        "Content-Type": "application/json",
+                        Version: "2021-07-28",
+                    },
+                    cache: "no-store",
+                    body: JSON.stringify({
+                        tags: [...data.contacts[0].tags, "Send application"],
+                    }),
+                }
+            );
+
+            const updatedData = await updatedResponse.json();
+            console.log("updatedData:", updatedData);
+
+            return new Response(JSON.stringify(updatedResponse.status));
+        }
+
+        return new Response("Invalid Body", { status: 500 });
+    } catch (e) {
+        console.log(e);
+        return new Response("Invalid Body", { status: 500 });
+    }
+};
