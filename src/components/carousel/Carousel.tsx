@@ -18,6 +18,7 @@ type State = {
 };
 
 type Action =
+    | { type: "resetToStart" }
     | { type: "increment" }
     | { type: "decrement" }
     | {
@@ -45,6 +46,9 @@ const CarouselContext = createContext<CarouselContextType | undefined>(
 
 const reducer = (state: State, action: Action): State => {
     switch (action.type) {
+        case "resetToStart": {
+            return { ...state, currentIndex: 0 };
+        }
         case "increment":
             if (state.currentIndex >= state.keys.length - 1) return state;
 
