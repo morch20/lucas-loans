@@ -43,8 +43,9 @@ export function calculate(
 ): number {
     // right side
     const escrowPayment = 550;
+    // ! monthlyIncome is now a yearly income
     let principalAndInterestPayment =
-        monthlyIncome / 2 - monthlyDebt - escrowPayment;
+        monthlyIncome / 12 / 2 - monthlyDebt - escrowPayment;
 
     // second equation
     const rate = parseFloat(process.env.NEXT_PUBLIC_MORTGAGE_RATE || "0.07");

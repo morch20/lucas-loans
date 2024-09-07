@@ -52,10 +52,10 @@ export default function Question1() {
         <div className="w-full h-[90dvh] py-6 flex flex-col items-center justify-between">
             <div className="text-center ">
                 <h2 className={mina.className + " text-2xl sm:text-3xl"}>
-                    Monthly income before taxes
+                    Yearly income before taxes
                 </h2>
                 <h4 className={"text-lg sm:text-xl xl:text-2xl"}>
-                    Please put in the amount you make per month before taxes.
+                    Please put in the amount you make per year before taxes.
                 </h4>
                 <div className="flex mt-5 md:mt-16 flex-col items-center md:justify-center md:flex-row gap-5 md:gap-10 w-full">
                     <lord-icon
@@ -69,7 +69,7 @@ export default function Question1() {
                             id="MI"
                             type="tel"
                             className=" outline-none w-full max-w-xs rounded p-2 border bg-white focus:outline-primary"
-                            placeholder="Enter your monthly income..."
+                            placeholder="Enter your yearly income..."
                             value={value}
                             onKeyDownCapture={(e) => {
                                 if (e.key === "Enter") handleNext();
