@@ -32,6 +32,16 @@ export const adGroupTexts = {
         callToAction: "Calculate Now!",
         size: "text-3xl",
     },
+    FTBH: {
+        line: "First-time homebuyers get up to $23,435. Find out in 60 seconds.",
+        lines: [
+            "First-time homebuyers",
+            "get up to $23,435.",
+            "Find out in 60 seconds.",
+        ],
+        callToAction: "Find out Now!",
+        size: "text-3xl",
+    },
     default: {
         line: "Effortlessly find your Home-Buying Power in under 60 seconds.",
         lines: [
