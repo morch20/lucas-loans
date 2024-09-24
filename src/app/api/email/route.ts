@@ -114,6 +114,7 @@ export const GET = async (req: NextRequest) => {
 
         const searchParams = req.nextUrl.searchParams;
         const query = searchParams.get("query");
+        const action = searchParams.get("action") || "app send email";
 
         const response = await fetch(
             process.env.API_URL +
@@ -146,7 +147,7 @@ export const GET = async (req: NextRequest) => {
                     },
                     cache: "no-store",
                     body: JSON.stringify({
-                        tags: [...data.contacts[0].tags, "Send application"],
+                        tags: [...data.contacts[0].tags, action],
                     }),
                 }
             );
