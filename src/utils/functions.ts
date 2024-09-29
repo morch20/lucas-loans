@@ -62,6 +62,27 @@ export function calculate(
     return Math.trunc(P + downPayment);
 }
 
+export function calculateRefinance(
+    currentLoanAmount: number,
+    currentInterestRate: number,
+    piPayment: number
+) {
+    // Get percentage value
+    currentInterestRate = currentInterestRate / 100;
+
+    // New payment
+    const NP =
+        currentLoanAmount *
+        ((currentInterestRate * Math.pow(1 + currentInterestRate, 360)) /
+            (Math.pow(1 + currentInterestRate, 360) - 1));
+
+    // Monthly Savings
+    const MS = piPayment - NP;
+
+    // if (MS < 0) return 0;
+    return Math.trunc(MS);
+}
+
 export function generateCreditScoreTags(creditScore: number): string {
     let newCS = "Poor";
     if (creditScore < 580) newCS = "Poor";
