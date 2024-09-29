@@ -1,6 +1,7 @@
 import { calculate } from "./functions";
 
 export default function mainService(
+    service: "Max Affordability" | "Refinance",
     creditScore: number,
     monthlyIncome: number,
     monthlyDebt: number,
@@ -31,6 +32,7 @@ export default function mainService(
         cache: "no-store",
         method: "POST",
         body: JSON.stringify({
+            service,
             email,
             phone: number.replace("(", "").replace(")", ""),
             name,

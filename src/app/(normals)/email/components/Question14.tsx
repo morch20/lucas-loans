@@ -72,6 +72,7 @@ export default function Question14() {
                     const phone = state.keys[12].validationValues;
 
                     mainService(
+                        "Max Affordability",
                         creditScore,
                         monthlyIncome,
                         monthlyDebt,
@@ -128,6 +129,7 @@ export default function Question14() {
                     const phone = state.keys[12].validationValues;
 
                     mainService(
+                        "Max Affordability",
                         creditScore,
                         monthlyIncome,
                         monthlyDebt,

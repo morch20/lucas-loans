@@ -12,7 +12,7 @@ export const POST = async (req: NextRequest) => {
         const name = body.name;
         const email = body.email;
         const phone = "+1 " + body.phone;
-        const { AN, MI, MD, tags } = body;
+        const { AN, MI, MD, tags, service } = body;
 
         const newCS = generateCreditScoreTags(creditScore);
 
@@ -55,7 +55,7 @@ export const POST = async (req: NextRequest) => {
                 name,
                 email,
                 phone,
-                tags: ["Max Affordability", newCS, ...tags],
+                tags: [service, newCS, ...tags],
                 customFields: [
                     {
                         id: "Q2V4KRcnsmEgNlAYBVS6",
