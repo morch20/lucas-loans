@@ -1,7 +1,6 @@
 "use client";
 import { Sling } from "hamburger-react";
-import { FaHome, FaCalendarAlt } from "react-icons/fa";
-import { IoLinkSharp } from "react-icons/io5";
+import { FaHome, FaMoneyCheckAlt } from "react-icons/fa";
 import { Roboto, Mina } from "next/font/google";
 import { SetStateAction, useState, useRef } from "react";
 import Link from "next/link";
@@ -68,7 +67,18 @@ const Navbar = () => {
                                 </p>
                             </div>
                         </Link>
-                        <ul className="hidden md:flex font-medium lg:text-lg justify-end items-center max-w-sm w-2/5 lg:w-3/5 lg:max-w-xl">
+                        <ul className="hidden md:flex font-medium lg:text-lg justify-around items-center max-w-sm w-2/5 lg:w-3/5 lg:max-w-xl">
+                            <CustomLink
+                                path="/refinance"
+                                onClick={() => handleClose()}
+                                className="my-4 shake2 hidden lg:flex w-fit gap-x-2 items-center nav__links__animation"
+                            >
+                                <FaMoneyCheckAlt
+                                    size={25}
+                                    className=" text-primary"
+                                />
+                                <Link href={"/refinance"}>Refinance</Link>
+                            </CustomLink>
                             <CustomLink
                                 path="/how-to-buy-a-house-in-8-steps"
                                 onClick={() => handleClose()}
@@ -129,6 +139,17 @@ const Navbar = () => {
                         >
                             <hr className="w-full h-[1px] bg-gray-300" />
                             <ul className="p-5 sm:p-7 text-lg container w-full">
+                                <CustomLink
+                                    path="/refinance"
+                                    onClick={() => handleClose()}
+                                    className="my-4 shake2 flex w-fit gap-x-2 items-center nav__links__animation"
+                                >
+                                    <FaMoneyCheckAlt
+                                        size={25}
+                                        className=" text-primary"
+                                    />
+                                    <Link href={"/refinance"}>Refinance</Link>
+                                </CustomLink>
                                 <CustomLink
                                     path="/how-to-buy-a-house-in-8-steps"
                                     onClick={() => handleClose()}
