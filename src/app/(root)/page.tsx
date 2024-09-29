@@ -52,14 +52,14 @@ export default function Home({
                     <p className=" text-sm ml-2">0%</p>
                 </div>
                 <div className="h-[85dvh] w-full pt-2 flex flex-col lg:flex-row justify-between lg:items-center container mx-auto px-5 sm:px-7">
-                    <div className="lg:w-[45%]">
+                    <div className="lg:w-[45%] lg:h-full lg:flex lg:flex-col lg:justify-around lg:items-center">
                         <div className="text-center mb-10 w-full">
                             {adGroupData.lines.map((i) => (
                                 <h2
                                     key={i}
                                     className={
                                         mina.className +
-                                        " sm:hidden " +
+                                        " sm:hidden lg:text-4xl " +
                                         adGroupData.size
                                     }
                                 >
@@ -68,7 +68,8 @@ export default function Home({
                             ))}
                             <h2
                                 className={
-                                    mina.className + " hidden sm:block text-3xl"
+                                    mina.className +
+                                    " hidden sm:block text-3xl lg:text-4xl"
                                 }
                             >
                                 {adGroupData.line}
