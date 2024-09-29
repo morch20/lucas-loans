@@ -10,6 +10,7 @@ import {
     adGroupTextsDefault,
     GroupText,
 } from "@/utils/constants";
+import { BadgeRibbon, Reviews } from "@/components/ReviewsIO";
 
 const mina = Mina({
     subsets: ["latin"],
@@ -50,69 +51,71 @@ export default function Home({
                     />
                     <p className=" text-sm ml-2">0%</p>
                 </div>
-                <div className="h-[85dvh] w-full pt-2 flex flex-col justify-between container mx-auto px-5 sm:px-7">
-                    <div className="text-center ">
-                        {adGroupData.lines.map((i) => (
+                <div className="h-[85dvh] w-full pt-2 flex flex-col lg:flex-row justify-between lg:items-center container mx-auto px-5 sm:px-7">
+                    <div className="lg:w-[45%]">
+                        <div className="text-center mb-10 w-full">
+                            {adGroupData.lines.map((i) => (
+                                <h2
+                                    key={i}
+                                    className={
+                                        mina.className +
+                                        " sm:hidden " +
+                                        adGroupData.size
+                                    }
+                                >
+                                    {i}
+                                </h2>
+                            ))}
                             <h2
-                                key={i}
                                 className={
-                                    mina.className +
-                                    " sm:hidden " +
-                                    adGroupData.size
+                                    mina.className + " hidden sm:block text-3xl"
                                 }
                             >
-                                {i}
+                                {adGroupData.line}
                             </h2>
-                        ))}
-                        <h2
-                            className={
-                                mina.className + " hidden sm:block text-3xl"
-                            }
-                        >
-                            {adGroupData.line}
-                        </h2>
-                        <p
-                            className={
-                                " text-lg lg:text-xl mt-2 mx-auto xl:w-3/4 "
-                            }
-                        >
-                            No credit check, no risk, just numbers.{" "}
-                            <span className="text-primary">
-                                Plus check no money-down eligibility{" "}
-                            </span>
-                            and best rates.
-                        </p>
-                        <p className={" text-lg lg:text-xl font-semibold"}>
-                            We guarantee it.
-                        </p>
-                    </div>
-
-                    <div className="text-center w-full">
-                        <button className="max-w-xs w-full bg-primary h-14 text-white text-lg rounded-md shadow-md relative">
-                            <Link
-                                href={"/email"}
-                                className="w-full flex h-full justify-center items-center py-4"
+                            <p
+                                className={
+                                    " text-lg lg:text-xl mt-2 mx-auto xl:w-3/4 "
+                                }
                             >
-                                {adGroupData.callToAction}
-                            </Link>
-                            <Image
-                                src={"/arrow.svg"}
-                                width={10}
-                                height={10}
-                                alt="arrow"
-                                className="text-black absolute -top-8 left-3 animate-bounce"
-                            />
-                        </button>
-                        <p className=" mt-2 text-gray-500">
-                            Your info is private and stays with us
-                        </p>
+                                No credit check, no risk, just numbers.{" "}
+                                <span className="text-primary">
+                                    Plus check no money-down eligibility{" "}
+                                </span>
+                                and best rates.
+                            </p>
+                            <p className={" text-lg lg:text-xl font-semibold"}>
+                                We guarantee it.
+                            </p>
+                        </div>
+                        <div className="text-center w-full">
+                            <button className="max-w-xs w-full bg-primary h-14 text-white text-lg rounded-md shadow-md relative">
+                                <Link
+                                    href={"/email"}
+                                    className="w-full flex h-full justify-center items-center py-4"
+                                >
+                                    {adGroupData.callToAction}
+                                </Link>
+                                <Image
+                                    src={"/arrow.svg"}
+                                    width={10}
+                                    height={10}
+                                    alt="arrow"
+                                    className="text-black absolute -top-8 left-3 animate-bounce"
+                                />
+                            </button>
+                            <p className=" mt-2 text-gray-500 mb-12">
+                                Your info is private and stays with us
+                            </p>
+                            <BadgeRibbon />
+                        </div>
                     </div>
 
                     <video
                         playsInline
                         poster="/videoPoster.jpg"
                         controls
-                        className=" rounded shadow-md h-[10rem] md:h-[14rem] 2xl:h-[20rem] mx-auto bg-black"
+                        className=" rounded shadow-md h-[10rem] md:h-[14rem] 2xl:h-auto lg:w-[40%] mx-auto bg-black"
                     >
                         <source src="/lucasVideo.mp4" type="video/mp4" />
                         Your browser does not support the video tag.
@@ -152,7 +155,7 @@ export default function Home({
                     </div>
                 </div>
 
-                <div className="text-center w-full">
+                <div className="text-center w-full my-12">
                     <button className="max-w-xs w-full bg-primary h-14 text-white text-lg rounded-md shadow-md">
                         <Link
                             href={"/email"}
@@ -165,6 +168,8 @@ export default function Home({
                         Your info is private and stays with us
                     </p>
                 </div>
+
+                <Reviews />
             </main>
         </>
     );
