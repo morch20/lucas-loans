@@ -3,9 +3,10 @@
 import { useEffect, useState } from "react";
 import { CarouselBack, CarouselNext } from "@/components/carousel";
 import { Mina } from "next/font/google";
-import { cn } from "@/utils/functions";
+import { cn, formatPhoneNumber, phoneValidator } from "@/utils/functions";
 import { useCarouselContext } from "@/components/carousel/Carousel";
-import { emailValidator } from "@/utils/constants";
+import { validAreaCodes } from "@/utils/constants";
+import refinanceService from "@/utils/refinanceService";
 
 const mina = Mina({
     subsets: ["latin"],
@@ -15,10 +16,18 @@ const mina = Mina({
 
 export default function Question9() {
     const [value, setValue] = useState("");
-    const { dispatch } = useCarouselContext();
+    const [open, setOpen] = useState(false);
+    const { state, dispatch } = useCarouselContext();
 
-    const validateEmail = (email: string) => {
-        if (email && email.trim() && email.match(emailValidator)) return true;
+    const validatePhoneNumber = (number: string) => {
+        if (number && phoneValidator(number)) {
+            const areaCode = number.slice(1, 4);
+            if (validAreaCodes.hasOwnProperty(areaCode)) {
+                return true;
+            }
+
+            return false;
+        }
         return false;
     };
 
@@ -31,9 +40,52 @@ export default function Question9() {
             type: "setIndex",
             keyword: "9",
             validation: (validationValue: string) => {
-                return validateEmail(validationValue);
+                if (validatePhoneNumber(validationValue)) {
+                    const tags: string[] = [];
+
+                    // TODO: improve this hardcoded code
+                    const piPayment = Number(
+                        state.keys[0].validationValues.split(",").join("")
+                    );
+                    const currentLoanAmount = Number(
+                        state.keys[1].validationValues.split(",").join("")
+                    );
+
+                    const creditScore = Number(
+                        state.keys[2].validationValues.split(",").join("")
+                    );
+                    const mi = Number(
+                        state.keys[3].validationValues.split(",").join("")
+                    );
+
+                    tags.push(
+                        `Late mortgage payments: ${state.keys[4].validationValues}`
+                    );
+                    tags.push(
+                        `Mortgage type: ${state.keys[5].validationValues}`
+                    );
+
+                    const name = state.keys[6].validationValues;
+                    const email = state.keys[7].validationValues;
+                    const phone = state.keys[8].validationValues;
+
+                    refinanceService(
+                        piPayment,
+                        currentLoanAmount,
+                        creditScore,
+                        mi,
+                        name,
+                        email,
+                        phone,
+                        tags
+                    );
+
+                    return true;
+                }
+
+                return false;
             },
-            validationValues: value || "",
+            validationValues: value,
         });
     }, []);
 
@@ -42,62 +94,157 @@ export default function Question9() {
             type: "changeValidationValues",
             keyword: "9",
             validation: (validationValue: string) => {
-                return validateEmail(validationValue);
+                if (validatePhoneNumber(validationValue)) {
+                    const tags: string[] = [];
+
+                    // TODO: improve this hardcoded code
+                    const piPayment = Number(
+                        state.keys[0].validationValues.split(",").join("")
+                    );
+                    const currentLoanAmount = Number(
+                        state.keys[1].validationValues.split(",").join("")
+                    );
+
+                    const currentInterestRate = Number(
+                        state.keys[2].validationValues.split(",").join("")
+                    );
+                    const creditScore = Number(
+                        state.keys[3].validationValues.split(",").join("")
+                    );
+                    const mi = Number(
+                        state.keys[4].validationValues.split(",").join("")
+                    );
+
+                    tags.push(
+                        `Late mortgage payments: ${state.keys[5].validationValues}`
+                    );
+                    tags.push(
+                        `Mortgage type: ${state.keys[6].validationValues}`
+                    );
+
+                    const name = state.keys[7].validationValues;
+                    const email = state.keys[8].validationValues;
+                    const phone = state.keys[9].validationValues;
+
+                    refinanceService(
+                        piPayment,
+                        currentLoanAmount,
+                        creditScore,
+                        mi,
+                        name,
+                        email,
+                        phone,
+                        tags
+                    );
+
+                    return true;
+                }
+
+                return false;
             },
-            validationValues: value || "",
+            validationValues: value,
         });
     }, [dispatch, value]);
 
     return (
-        <div className="w-full h-[90dvh] py-6 flex flex-col items-center justify-between ">
+        <div className="w-full h-[90dvh] md:h-[100dvh] py-6 flex flex-col items-center justify-between ">
             <div className="text-center ">
                 <h2 className={mina.className + " text-2xl sm:text-3xl"}>
-                    What is your Email?
+                    What is your phone number?
                 </h2>
-                <div className="flex flex-col mt-5 md:mt-16 items-center md:justify-center md:flex-row gap-5 md:gap-10 w-full">
+                <div className="flex flex-col mt-5 md:mt16 items-center md:justify-center md:flex-row gap-5 md:gap-10 w-full">
                     <lord-icon
-                        src="https://cdn.lordicon.com/ebjjjrhp.json"
+                        src="https://cdn.lordicon.com/rbztokoj.json"
                         trigger="hover"
                         colors="primary:#073944,secondary:#1560bd"
                         class="w-20 h-20 md:w-28 md:h-28"
                     />
                     <div className="w-full max-w-xs">
                         <input
-                            id="email"
-                            type="email"
-                            className=" outline-none w-full max-w-xs rounded p-2 border bg-white focus:outline-primary"
-                            placeholder="Enter email..."
+                            id="number"
+                            type="tel"
+                            className=" outline-none w-full rounded p-2 bg-white focus:outline-primary border"
+                            placeholder="(xxx)-xxx-xxxx"
                             value={value}
-                            onChange={(e) => setValue(e.target.value)}
+                            onChange={(e) =>
+                                setValue(formatPhoneNumber(e.target.value))
+                            }
                             onKeyDownCapture={(e) => {
                                 if (e.key === "Enter") handleNext();
                             }}
                         />
-                        {!validateEmail(value) && (
+                        {!validatePhoneNumber(value) && (
                             <p className=" text-red-400">
-                                Please enter a valid email *
+                                Please enter a valid US phone number *
                             </p>
                         )}
                     </div>
                 </div>
             </div>
 
-            <div className="flex items-center justify-around w-full max-w-sm">
-                <CarouselBack className="bg-white text-black text-lg px-8 md:px-10 py-2 md:py-4 rounded-md hover:shadow-md">
-                    Back
-                </CarouselBack>
-                <CarouselNext
-                    className={cn(
-                        " text-white text-lg px-8 md:px-10 py-2 md:py-4 rounded-md",
-                        {
-                            "bg-primary cursor-pointer hover:shadow-md": value,
-                            "bg-secondary cursor-default": !value,
-                        }
-                    )}
-                >
-                    Next
-                </CarouselNext>
+            <CarouselNext
+                className={cn(
+                    " text-white text-lg px-8 md:px-10 py-2 md:py-4 rounded-md",
+                    {
+                        "bg-primary cursor-pointer hover:shadow-md": value,
+                        "bg-secondary cursor-default": !value,
+                    }
+                )}
+            >
+                Click to text results!
+            </CarouselNext>
+            <div className="text-xs max-w-2xl my-3">
+                <p className="inline">
+                    By providing your contact info and clicking &quot;Click to
+                    text results!&quot; below, you agree to our{" "}
+                    <a
+                        className="text-blue-500"
+                        href="https://www.termsfeed.com/live/afa2ca79-cec2-4e4a-b463-bbe50c6af066"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        Terms and Conditions
+                    </a>
+                    , which{" "}
+                </p>
+                {open ? (
+                    <>
+                        <p className="inline">
+                            include your agreement to arbitrate claims related
+                            to the Telephone Consumer Protection Act. You also
+                            expressly consent by electronic signature to receive
+                            sales, marketing, and other calls and texts,
+                            including those sent by any automated system or
+                            other means for selecting and dialing telephone
+                            numbers or using an artificial or prerecorded voice
+                            message when a connection is completed, from Rocket
+                            Mortgage at the telephone number you provided, even
+                            if that telephone number is on a do-not-call list.
+                            Agreement to receive such calls or texts is not a
+                            condition of purchasing goods or services from us.{" "}
+                        </p>
+                        <button
+                            onClick={() => setOpen(false)}
+                            type="button"
+                            className="text-blue-500"
+                        >
+                            See less
+                        </button>
+                    </>
+                ) : (
+                    <button
+                        onClick={() => setOpen(true)}
+                        type="button"
+                        className="text-blue-500"
+                    >
+                        See more...
+                    </button>
+                )}
             </div>
+
+            <CarouselBack className="bg-white text-black text-lg px-8 md:px-10 py-2 md:py-4 rounded-md hover:shadow-md">
+                Back
+            </CarouselBack>
         </div>
     );
 }

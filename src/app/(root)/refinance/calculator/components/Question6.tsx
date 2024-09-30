@@ -13,7 +13,7 @@ const mina = Mina({
     variable: "--font-mina",
 });
 
-type Value = "Yes" | "No";
+type Value = "Conventional" | "FHA" | "VA" | "Other";
 
 export default function Question6() {
     const [value, setValue] = useState<Value>();
@@ -44,28 +44,38 @@ export default function Question6() {
     const handleClick = (newValue: Value) => {
         setValue(newValue);
     };
-
     return (
         <div className="w-full h-[90dvh] py-6 flex flex-col items-center justify-between ">
             <div className="text-center ">
                 <h2 className={mina.className + " text-2xl sm:text-3xl"}>
-                    Are there any late mortgage payments?
+                    Mortgage type?
                 </h2>
             </div>
 
-            <div className="flex flex-col items-center md:justify-center md:flex-row gap-5 md:gap-10 w-full">
+            <div className="flex flex-col py-6 items-center md:justify-center md:flex-row gap-5 md:gap-10 w-full">
                 <SelectButton<Value>
-                    handleClick={() => handleClick("Yes")}
-                    value="Yes"
-                    selected={value === "Yes"}
-                    lordIcon="https://cdn.lordicon.com/xzybfbcm.json"
-                    lordIconClassName="rotate-180"
+                    handleClick={() => handleClick("Conventional")}
+                    value="Conventional"
+                    selected={value === "Conventional"}
+                    lordIcon="https://cdn.lordicon.com/laqlvddb.json"
                 />
                 <SelectButton<Value>
-                    handleClick={() => handleClick("No")}
-                    value="No"
-                    selected={value === "No"}
-                    lordIcon="https://cdn.lordicon.com/xzybfbcm.json"
+                    handleClick={() => handleClick("FHA")}
+                    value="FHA"
+                    selected={value === "FHA"}
+                    lordIcon="https://cdn.lordicon.com/vttzorhw.json"
+                />
+                <SelectButton<Value>
+                    handleClick={() => handleClick("VA")}
+                    value="VA"
+                    selected={value === "VA"}
+                    lordIcon="https://cdn.lordicon.com/knzzcfyy.json"
+                />
+                <SelectButton<Value>
+                    handleClick={() => handleClick("Other")}
+                    value="Other"
+                    selected={value === "Other"}
+                    lordIcon="https://cdn.lordicon.com/sbnjyzil.json"
                 />
             </div>
 

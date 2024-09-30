@@ -9,7 +9,6 @@ import { refresh } from "./goHighLevel";
 export default async function refinanceService(
     piPayment: number,
     currentLoanAmount: number,
-    currentInterestRate: number,
     creditScore: number,
     MI: number,
     name: string,
@@ -76,11 +75,6 @@ export default async function refinanceService(
                         id: "oslhBfBLZKjzcMdM3J1Y",
                         key: "contact.remaining_mortgage_balance",
                         field_value: currentLoanAmount.toString(),
-                    },
-                    {
-                        id: "DzMVzTwzbtI3o4Zf1Jsb",
-                        key: "contact.first_mortgage_rate",
-                        field_value: currentInterestRate.toString(),
                     },
                 ],
             }),

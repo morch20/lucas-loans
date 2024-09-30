@@ -15,7 +15,7 @@ export default function ThankYou() {
     useEffect(() => {
         dispatch({
             type: "setIndex",
-            keyword: "11",
+            keyword: "10",
             validation: () => true,
             validationValues: number,
         });
@@ -42,14 +42,9 @@ export default function ThankYou() {
             const currentLoanAmount = Number(
                 state.keys[1].validationValues.split(",").join("")
             );
-
-            const currentInterestRate = Number(
-                state.keys[2].validationValues.split(",").join("")
-            );
             setNumber(
                 calculateRefinance(
                     currentLoanAmount,
-                    currentInterestRate,
                     piPayment
                 ).toLocaleString()
             );

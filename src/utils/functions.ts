@@ -64,22 +64,34 @@ export function calculate(
 
 export function calculateRefinance(
     currentLoanAmount: number,
-    currentInterestRate: number,
     piPayment: number
 ) {
-    // Get percentage value
-    currentInterestRate = currentInterestRate / 100;
+    // // Get percentage value
+    // currentInterestRate = currentInterestRate / 100;
 
-    // New payment
-    const NP =
-        currentLoanAmount *
-        ((currentInterestRate * Math.pow(1 + currentInterestRate, 360)) /
-            (Math.pow(1 + currentInterestRate, 360) - 1));
+    // // New payment
+    // const NP =
+    //     currentLoanAmount *
+    //     ((currentInterestRate * Math.pow(1 + currentInterestRate, 360)) /
+    //         (Math.pow(1 + currentInterestRate, 360) - 1));
+
+    // // Monthly Savings
+    // const MS = piPayment - NP;
+
+    // // if (MS < 0) return 0;
+    // return Math.trunc(MS);
+
+    const rate = 0.053;
+    const n = 12; // Number of payments per year
+
+    // Regular Monthly Payment
+    const R =
+        (currentLoanAmount * (rate / n)) / (1 - Math.pow(1 + rate / n, -360));
 
     // Monthly Savings
-    const MS = piPayment - NP;
+    const MS = piPayment - R;
 
-    // if (MS < 0) return 0;
+    if (MS < 0) return 0;
     return Math.trunc(MS);
 }
 

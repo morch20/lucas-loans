@@ -5,7 +5,6 @@ import { CarouselBack, CarouselNext } from "@/components/carousel";
 import { Mina } from "next/font/google";
 import { cn } from "@/utils/functions";
 import { useCarouselContext } from "@/components/carousel/Carousel";
-import SelectButton from "./SelectButton";
 
 const mina = Mina({
     subsets: ["latin"],
@@ -13,18 +12,25 @@ const mina = Mina({
     variable: "--font-mina",
 });
 
-type Value = "Conventional" | "FHA" | "VA" | "Other";
-
 export default function Question7() {
-    const [value, setValue] = useState<Value>();
+    const [value, setValue] = useState("");
     const { dispatch } = useCarouselContext();
+
+    const validateName = (name: string) => {
+        if (name && name.trim()) return true;
+        return false;
+    };
+
+    const handleNext = () => {
+        dispatch({ type: "increment" });
+    };
 
     useEffect(() => {
         dispatch({
             type: "setIndex",
             keyword: "7",
             validation: (validationValue: string) => {
-                return validationValue ? true : false;
+                return validateName(validationValue);
             },
             validationValues: value || "",
         });
@@ -35,48 +41,44 @@ export default function Question7() {
             type: "changeValidationValues",
             keyword: "7",
             validation: (validationValue: string) => {
-                return validationValue ? true : false;
+                return validateName(validationValue);
             },
             validationValues: value || "",
         });
     }, [dispatch, value]);
 
-    const handleClick = (newValue: Value) => {
-        setValue(newValue);
-    };
     return (
         <div className="w-full h-[90dvh] py-6 flex flex-col items-center justify-between ">
             <div className="text-center ">
                 <h2 className={mina.className + " text-2xl sm:text-3xl"}>
-                    Mortgage type?
+                    What is your name?
                 </h2>
-            </div>
-
-            <div className="flex flex-col py-6 items-center md:justify-center md:flex-row gap-5 md:gap-10 w-full">
-                <SelectButton<Value>
-                    handleClick={() => handleClick("Conventional")}
-                    value="Conventional"
-                    selected={value === "Conventional"}
-                    lordIcon="https://cdn.lordicon.com/laqlvddb.json"
-                />
-                <SelectButton<Value>
-                    handleClick={() => handleClick("FHA")}
-                    value="FHA"
-                    selected={value === "FHA"}
-                    lordIcon="https://cdn.lordicon.com/vttzorhw.json"
-                />
-                <SelectButton<Value>
-                    handleClick={() => handleClick("VA")}
-                    value="VA"
-                    selected={value === "VA"}
-                    lordIcon="https://cdn.lordicon.com/knzzcfyy.json"
-                />
-                <SelectButton<Value>
-                    handleClick={() => handleClick("Other")}
-                    value="Other"
-                    selected={value === "Other"}
-                    lordIcon="https://cdn.lordicon.com/sbnjyzil.json"
-                />
+                <div className="flex flex-col mt-5 md:mt-16 items-center md:justify-center md:flex-row gap-5 md:gap-10 w-full">
+                    <lord-icon
+                        src="https://cdn.lordicon.com/qitvuzec.json"
+                        trigger="hover"
+                        colors="primary:#073944,secondary:#1560bd"
+                        class="w-20 h-20 md:w-28 md:h-28"
+                    />
+                    <div className="w-full max-w-xs">
+                        <input
+                            id="name"
+                            type="text"
+                            className=" outline-none w-full max-w-xs border rounded p-2 bg-white focus:outline-primary"
+                            placeholder="Enter name..."
+                            value={value}
+                            onChange={(e) => setValue(e.target.value)}
+                            onKeyDownCapture={(e) => {
+                                if (e.key === "Enter") handleNext();
+                            }}
+                        />
+                        {!validateName(value) && (
+                            <p className=" text-red-400">
+                                Please enter a valid name *
+                            </p>
+                        )}
+                    </div>
+                </div>
             </div>
 
             <div className="flex items-center justify-around w-full max-w-sm">

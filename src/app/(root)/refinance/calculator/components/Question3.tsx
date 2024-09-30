@@ -13,7 +13,7 @@ const mina = Mina({
 });
 
 export default function Question3() {
-    const [value, setValue] = useState("0");
+    const [value, setValue] = useState("");
     const { dispatch } = useCarouselContext();
 
     const handleValidation = (val: string) => {
@@ -51,45 +51,40 @@ export default function Question3() {
         <div className="w-full h-[90dvh] py-6 flex flex-col items-center justify-between ">
             <div className="text-center ">
                 <h2 className={mina.className + " text-2xl sm:text-3xl"}>
-                    Current interest rate
+                    Estimated Credit score
                 </h2>
-                <h4 className={" text-xl xl:text-2xl"}>
-                    Enter rate in percentage
-                </h4>
+                <h4 className={" text-xl xl:text-2xl"}>300-850</h4>
                 <div className="flex flex-col mt-5 md:mt-16 items-center md:justify-center md:flex-row gap-5 md:gap-10 w-full">
                     <lord-icon
-                        src="https://cdn.lordicon.com/kxockqqi.json"
+                        src="https://cdn.lordicon.com/ofdfurqa.json"
                         trigger="hover"
                         colors="primary:#073944,secondary:#1560bd"
                         class="w-20 h-20 md:w-28 md:h-28"
                     />
-                    <div className="w-full max-w-xs flex items-center">
+                    <div className="w-full max-w-xs">
                         <input
-                            id="currentInterestRate"
-                            type="number"
+                            id="CS"
+                            type="tel"
                             className=" outline-none w-full max-w-xs rounded p-2 border bg-white focus:outline-primary"
-                            placeholder="Enter interest rate..."
+                            placeholder="Enter credit score..."
                             value={value}
                             onKeyDownCapture={(e) => {
                                 if (e.key === "Enter") handleNext();
                             }}
                             onChange={(e) => {
-                                // if (e.target.value === "") {
-                                //     setValue("0");
-                                //     return;
-                                // }
+                                if (e.target.value === "") {
+                                    setValue("0");
+                                    return;
+                                }
 
-                                // if (e.target.value.length > 3) return;
-                                // let value = e.target.value.replaceAll(",", "");
-                                // if (!isNumeric(value)) return;
-                                // const newValue = Number(value);
-                                // if (newValue > 850) return;
-                                setValue(
-                                    Number(e.target.value).toString() || "0"
-                                );
+                                if (e.target.value.length > 8) return;
+                                let value = e.target.value.replaceAll(",", "");
+                                if (!isNumeric(value)) return;
+                                const newValue = parseInt(value);
+                                if (newValue > 850) return;
+                                setValue(newValue.toLocaleString());
                             }}
                         />
-                        <p className="ml-2 text-lg font-bold">%</p>
                     </div>
                 </div>
             </div>

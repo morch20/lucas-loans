@@ -5,6 +5,7 @@ import { CarouselBack, CarouselNext } from "@/components/carousel";
 import { Mina } from "next/font/google";
 import { cn, isNumeric } from "@/utils/functions";
 import { useCarouselContext } from "@/components/carousel/Carousel";
+import Link from "next/link";
 
 const mina = Mina({
     subsets: ["latin"],
@@ -48,25 +49,27 @@ export default function Question4() {
     }, [dispatch, value]);
 
     return (
-        <div className="w-full h-[90dvh] py-6 flex flex-col items-center justify-between ">
+        <div className="w-full h-[90dvh] py-6 flex flex-col items-center justify-between">
             <div className="text-center ">
                 <h2 className={mina.className + " text-2xl sm:text-3xl"}>
-                    Estimated Credit score
+                    Yearly income before taxes
                 </h2>
-                <h4 className={" text-xl xl:text-2xl"}>300-850</h4>
-                <div className="flex flex-col mt-5 md:mt-16 items-center md:justify-center md:flex-row gap-5 md:gap-10 w-full">
+                <h4 className={"text-lg sm:text-xl xl:text-2xl"}>
+                    Please put in the amount you make per year before taxes.
+                </h4>
+                <div className="flex mt-5 md:mt-16 flex-col items-center md:justify-center md:flex-row gap-5 md:gap-10 w-full">
                     <lord-icon
-                        src="https://cdn.lordicon.com/ofdfurqa.json"
+                        src="https://cdn.lordicon.com/eaegfqtv.json"
                         trigger="hover"
                         colors="primary:#073944,secondary:#1560bd"
                         class="w-20 h-20 md:w-28 md:h-28"
                     />
-                    <div className="w-full max-w-xs">
+                    <div className="w-full max-w-xs mb-6 sm:mb-0">
                         <input
-                            id="CS"
+                            id="MI"
                             type="tel"
                             className=" outline-none w-full max-w-xs rounded p-2 border bg-white focus:outline-primary"
-                            placeholder="Enter credit score..."
+                            placeholder="Enter your yearly income..."
                             value={value}
                             onKeyDownCapture={(e) => {
                                 if (e.key === "Enter") handleNext();
@@ -81,7 +84,7 @@ export default function Question4() {
                                 let value = e.target.value.replaceAll(",", "");
                                 if (!isNumeric(value)) return;
                                 const newValue = parseInt(value);
-                                if (newValue > 850) return;
+                                // if (limit && newValue > 850) return;
                                 setValue(newValue.toLocaleString());
                             }}
                         />

@@ -5,6 +5,7 @@ import { CarouselBack, CarouselNext } from "@/components/carousel";
 import { Mina } from "next/font/google";
 import { cn } from "@/utils/functions";
 import { useCarouselContext } from "@/components/carousel/Carousel";
+import { emailValidator } from "@/utils/constants";
 
 const mina = Mina({
     subsets: ["latin"],
@@ -16,8 +17,8 @@ export default function Question8() {
     const [value, setValue] = useState("");
     const { dispatch } = useCarouselContext();
 
-    const validateName = (name: string) => {
-        if (name && name.trim()) return true;
+    const validateEmail = (email: string) => {
+        if (email && email.trim() && email.match(emailValidator)) return true;
         return false;
     };
 
@@ -30,7 +31,7 @@ export default function Question8() {
             type: "setIndex",
             keyword: "8",
             validation: (validationValue: string) => {
-                return validateName(validationValue);
+                return validateEmail(validationValue);
             },
             validationValues: value || "",
         });
@@ -41,7 +42,7 @@ export default function Question8() {
             type: "changeValidationValues",
             keyword: "8",
             validation: (validationValue: string) => {
-                return validateName(validationValue);
+                return validateEmail(validationValue);
             },
             validationValues: value || "",
         });
@@ -51,30 +52,30 @@ export default function Question8() {
         <div className="w-full h-[90dvh] py-6 flex flex-col items-center justify-between ">
             <div className="text-center ">
                 <h2 className={mina.className + " text-2xl sm:text-3xl"}>
-                    What is your name?
+                    What is your Email?
                 </h2>
                 <div className="flex flex-col mt-5 md:mt-16 items-center md:justify-center md:flex-row gap-5 md:gap-10 w-full">
                     <lord-icon
-                        src="https://cdn.lordicon.com/qitvuzec.json"
+                        src="https://cdn.lordicon.com/ebjjjrhp.json"
                         trigger="hover"
                         colors="primary:#073944,secondary:#1560bd"
                         class="w-20 h-20 md:w-28 md:h-28"
                     />
                     <div className="w-full max-w-xs">
                         <input
-                            id="name"
-                            type="text"
-                            className=" outline-none w-full max-w-xs border rounded p-2 bg-white focus:outline-primary"
-                            placeholder="Enter name..."
+                            id="email"
+                            type="email"
+                            className=" outline-none w-full max-w-xs rounded p-2 border bg-white focus:outline-primary"
+                            placeholder="Enter email..."
                             value={value}
                             onChange={(e) => setValue(e.target.value)}
                             onKeyDownCapture={(e) => {
                                 if (e.key === "Enter") handleNext();
                             }}
                         />
-                        {!validateName(value) && (
+                        {!validateEmail(value) && (
                             <p className=" text-red-400">
-                                Please enter a valid name *
+                                Please enter a valid email *
                             </p>
                         )}
                     </div>
