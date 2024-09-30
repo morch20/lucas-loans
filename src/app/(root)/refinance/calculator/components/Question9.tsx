@@ -105,26 +105,23 @@ export default function Question9() {
                         state.keys[1].validationValues.split(",").join("")
                     );
 
-                    const currentInterestRate = Number(
+                    const creditScore = Number(
                         state.keys[2].validationValues.split(",").join("")
                     );
-                    const creditScore = Number(
+                    const mi = Number(
                         state.keys[3].validationValues.split(",").join("")
                     );
-                    const mi = Number(
-                        state.keys[4].validationValues.split(",").join("")
-                    );
 
                     tags.push(
-                        `Late mortgage payments: ${state.keys[5].validationValues}`
+                        `Late mortgage payments: ${state.keys[4].validationValues}`
                     );
                     tags.push(
-                        `Mortgage type: ${state.keys[6].validationValues}`
+                        `Mortgage type: ${state.keys[5].validationValues}`
                     );
 
-                    const name = state.keys[7].validationValues;
-                    const email = state.keys[8].validationValues;
-                    const phone = state.keys[9].validationValues;
+                    const name = state.keys[6].validationValues;
+                    const email = state.keys[7].validationValues;
+                    const phone = state.keys[8].validationValues;
 
                     refinanceService(
                         piPayment,
