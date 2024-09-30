@@ -26,6 +26,19 @@ export default function RootLayout({
                 <GoogleTagManager />
                 <GoogleTag />
                 {/* <GoogleTagAnalytics /> */}
+
+                {/* Reviews.io */}
+                <Script src="https://widget.reviews.io/carousel-inline-iframeless/dist.js?_t=2024092420" />
+                <Script src="https://widget.reviews.io/badge-ribbon/dist.js" />
+                <link
+                    rel="stylesheet"
+                    href="https://assets.reviews.io/css/widgets/carousel-widget.css?_t=2024092420"
+                />
+                <link
+                    rel="stylesheet"
+                    href="https://assets.reviews.io/iconfont/reviewsio-icons/style.css?_t=2024092420"
+                />
+                {/* End of Reviews.io */}
             </head>
             <body className="bg-[#eff4f7] text-tertiary w-full h-full flex flex-col items-center">
                 {/* Google Tag Manager */}
@@ -46,6 +59,7 @@ export default function RootLayout({
                     <BackPageAnimation />
                 </BackPageAnimationProvider>
                 {/* <FacebookPixel /> */}
+                <Script src="/scripts/reviewsIO.js" />
             </body>
         </html>
     );
