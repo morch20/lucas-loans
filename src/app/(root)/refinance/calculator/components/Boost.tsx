@@ -22,10 +22,10 @@ export default function Boost({
     const [hideButton, setHideButton] = useState(false);
     const handleClick = (action: string) => {
         setHideButton(true);
-        // fetch(`/api/email?query=${email}&action=${action}`)
-        //     .then((data) => data.json())
-        //     .then((data) => console.log(data))
-        //     .catch((error) => console.log(error));
+        fetch(`/api/email?query=${email}&action=${action}`)
+            .then((data) => data.json())
+            .then((data) => console.log(data))
+            .catch((error) => console.log(error));
     };
     return (
         <div className="w-full min-h-[65dvh] py-4 text-center space-y-10 flex flex-col items-center justify-around ">
@@ -60,8 +60,8 @@ export default function Boost({
                             No
                         </Link>
                         <button
-                            id="app-send-email"
-                            onClick={() => handleClick("app send email")}
+                            id="app-send-refinance"
+                            onClick={() => handleClick("app send refinance")}
                             className="bg-primary max-w-xs text-white w-full py-3 rounded-lg mt-6"
                         >
                             Yes
