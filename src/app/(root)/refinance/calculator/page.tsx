@@ -7,6 +7,7 @@ import Question5 from "./components/Question5";
 import Question6 from "./components/Question6";
 import Question7 from "./components/Question7";
 import Question8 from "./components/Question8";
+import Question9 from "./components/Question9";
 import Question10 from "./components/Question10";
 import ThankYou from "./components/ThankYou";
 import ProgressBar from "./components/ProgressBar";
@@ -41,6 +42,9 @@ export default async function Calculator() {
                         </CarouselItem>
                         <CarouselItem keyword="8">
                             <Question8 />
+                        </CarouselItem>
+                        <CarouselItem keyword="9">
+                            <Question9 />
                         </CarouselItem>
                         <CarouselItem keyword="10">
                             <Question10 />
